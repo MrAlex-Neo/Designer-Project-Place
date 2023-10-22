@@ -1,0 +1,160 @@
+body {
+    background-color: #060606;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+.contentBlock {
+    margin: 0 calc(24vw - 60px);
+    margin-top: calc(2vw + 87px);
+    padding: calc(3vw + 7.3px);
+    border-radius: 16px;
+    border: 1px solid #414141;
+    background-color: #111;
+}
+
+
+/* logo */
+.logo {
+    position: absolute;
+    left: calc(2vw + 10px);
+    top: calc(1vw + 4.4px);
+}
+.logo img {
+    margin-top: 6px 0;
+    width: calc(2.6vw + 125px);
+    height: calc(0.3vw + 16px);
+}
+/* logo */
+
+/* стилистика первого окна регистрации пользователя, окно выбора направления */
+.joinBox {
+    display: flex;
+    flex-direction: column;
+    gap: calc(3vw + 7.3px);
+    
+    
+}
+.joinSmallBox img{
+    width: calc(1.8vw + 26px);
+}
+.joinSmallBox p{
+    font-family: Inter;
+    font-size: calc(0.4vw + 15px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+.joinSmallBox {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-radius: 8px;
+    border: 1px solid #292929;
+    padding: calc(0.9vw + 21px) calc(0.9vw + 13.1px);
+    transition: border-color 0.5s; /* Длительность и свойство перехода */
+}
+.activeBorder {
+    border-color: #ffffff; /* Цвет бордера при активации */
+}
+.registration h3 {
+    margin: 0;
+    padding: 0;
+    font-family: Cygre;
+    letter-spacing: 1px;
+    text-align: center;
+    font-size: calc(0.9vw + 21px);
+    font-weight: 700;
+    line-height: 133%;
+}
+.userSelection {
+    display: flex;
+    gap: calc(2vw + 10px);
+}
+.joinDesigner {
+    position: relative;
+    flex-grow: 1;
+}
+.joinProvider {
+    position: relative;
+    flex-grow: 1;
+}
+.circle {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.5s;
+}
+.clicked {
+    background-color: #ffffff;    
+}
+.createBtn{
+    margin-bottom: 12px;
+}
+.Btn{
+    width: 100%;
+}
+.Btn button{
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    padding: 12px 24px;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 8px;
+    background: #0084FF;
+    cursor: pointer;
+    transition: background 0.5s;
+}
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed; /* Стиль курсора, указывающий на то, что кнопка неактивна */
+}
+.activeBtn button{
+    background: #0084FF;
+}
+.activeBtn button:hover{
+    background: #389fff;
+}
+.logIn{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+.logIn p{
+    font-family: Inter;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    line-height: 114%;
+}
+.ligInHandler{
+    cursor: pointer;
+    transition: color 0.5s;
+    color: #0084FF;
+}
+.ligInHandler:hover{
+    color: #389fff
+}
+/* стилистика первого окна регистрации пользователя, окно выбора направления */
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 800px) {
+    .userSelection {
+        flex-wrap: wrap;
+    }
+}
