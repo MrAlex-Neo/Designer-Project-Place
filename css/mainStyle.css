@@ -1,7 +1,9 @@
-body {
-    background-color: #060606;
+*{
     margin: 0;
     padding: 0;
+}
+body {
+    background-color: #060606;
     color: #fff;
 }
 .contentBlock {
@@ -12,6 +14,26 @@ body {
     border: 1px solid #414141;
     background-color: #111;
 }
+h3 {
+    font-family: Cygre;
+    letter-spacing: 1px;
+    text-align: center;
+    font-size: calc(0.9vw + 21px);
+    font-weight: 700;
+    line-height: 133%;
+}
+
+h5{
+    font-family: Inter;
+    font-size: calc(0.5vw + 14.4px);
+    font-weight: 400;
+    line-height: 150%;
+    color: #8F8F8F;
+}
+.none{
+    display: none;
+}
+
 
 
 /* logo */
@@ -27,13 +49,11 @@ body {
 }
 /* logo */
 
-/* стилистика первого окна регистрации пользователя, окно выбора направления */
+/* Логика стартового окна регистрации с выбором роли в приложении */
 .joinBox {
     display: flex;
     flex-direction: column;
     gap: calc(3vw + 7.3px);
-    
-    
 }
 .joinSmallBox img{
     width: calc(1.8vw + 26px);
@@ -56,16 +76,6 @@ body {
 }
 .activeBorder {
     border-color: #ffffff; /* Цвет бордера при активации */
-}
-.registration h3 {
-    margin: 0;
-    padding: 0;
-    font-family: Cygre;
-    letter-spacing: 1px;
-    text-align: center;
-    font-size: calc(0.9vw + 21px);
-    font-weight: 700;
-    line-height: 133%;
 }
 .userSelection {
     display: flex;
@@ -142,16 +152,129 @@ button:disabled {
 .ligInHandler:hover{
     color: #389fff
 }
-/* стилистика первого окна регистрации пользователя, окно выбора направления */
+/* Логика стартового окна регистрации с выбором роли в приложении */
+
+
+/* Логика первой части регистрации с вводом телефонного номера */
+.RegPartHeader{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+.RegPartHeaderH3{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.RegPartHeaderH3 p{
+    font-family: Montserrat;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 125%;
+    color: #292929;
+    margin-top: 4px;
+}
+.input-container {
+    position: relative;
+    width: 100%; /* Выберите подходящую ширину */
+}
+.input-container label {
+    position: absolute;
+    top: 20%;
+    left: 2%;
+    pointer-events: none; /* Метка не перехватывает события клика */
+    transition: all 0.2s ease-in-out; /* Плавное анимирование */
+    font-size: calc(0.4vw + 11px);
+    font-weight: 400;
+    line-height: 150%;
+    color: #8F8F8F;
+}
+.input-container input {
+    margin: auto 0;
+    width: 98%;
+    height: calc(1.4vw + 8.6px);
+    padding: 10px 0;
+    padding-left: 2%;
+    border-radius: 8px;
+    border: 1px solid #292929;
+    background-color: #111;
+    outline: none; /* Убираем рамку фокуса */
+    font-size: calc(0.4vw + 11px);
+    font-weight: 400;
+    line-height: 150%;
+    color: #8F8F8F;
+}
+/* Скрываем стандартную стрелку выпадающего списка */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: auto 0;
+    width: 98%;
+    height: 10%;
+    padding: 10px 0;
+    padding-left: 2%;
+    border-radius: 8px;
+    border: 1px solid #292929;
+    background-color: #111;
+    outline: none; /* Убираем рамку фокуса */
+    font-size: calc(0.4vw + 11px);
+    font-weight: 400;
+    line-height: 150%;
+    color: #8F8F8F;
+    outline: none; /* Убираем рамку фокуса */
+    cursor: pointer; /* Изменяем курсор при наведении */
+  }
+  
+  /* Добавляем кастомную стрелку для выпадающего списка */
+  select::after {
+    content: "\25BC"; /* Здесь вы можете использовать другой символ или изображение */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none; /* Метка не перехватывает события клика */
+  }
+  
+/* Логика первой части регистрации с вводом телефонного номера */
+
+/* Логика второй части регистрации с вводом данных о пользователе */
+.inputBox h5{
+    font-size: calc(0.4vw + 11px);
+}
+.inputBoxList{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+.inputBox{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.chooseInput{
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #414141;
+    transition: border 0.5s;
+    cursor: pointer;
+}
+.chooseInput p{
+    font-family: Inter;
+    font-size: calc(0.5vw + 14.4px);
+    font-weight: 400;
+    line-height: 150%;
+}
+
+.chooseInputActive {
+    border: 1px solid #0084FF;
+}
 
 
 
 
-
-
-
-
-
+/* Логика второй части регистрации с вводом данных о пользователе */
 
 @media (max-width: 800px) {
     .userSelection {

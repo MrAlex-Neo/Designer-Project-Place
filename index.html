@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Design Cloud</title>
     <link rel="stylesheet" href="./css/mainStyle.css">
-    <script src="./js/mainScrypt.js" type="module"></script>
+    <script src="./js/registration.js" type="module"></script>
     <script src="./js/scrypt.js" type="module"></script>
 </head>
 <body>
     <div class="logo">
         <img src="./img/Design Cloud.svg" alt="">
     </div>
-    <section class="registration contentBlock">
-        <form class="joinBox">
+    <section class="registrationRoles contentBlock">
+        <div class="joinBox">
             <h3>Присоединяйтесь</h3>
             <div class="userSelection">
                 <div class="joinDesigner" id="designerBox">
@@ -44,7 +44,132 @@
                     <p class="ligInHandler">Войдите</p>
                 </div>
             </div>
-        </form>
+        </div>
+    </section>
+    <section class="registrationMain none contentBlock">
+        <div class="regFormBox">
+            <div id="regBoxOne" class="">
+                <div class="RegFirstPart joinBox">
+                    <div class="RegPartHeader">
+                        <div class="RegPartHeaderH3">
+                            <h3>Регистрация</h3>
+                            <p class="regPartSign">1/4</p>
+                        </div>
+                        <h5>Подтверждение телефона</h5>
+                    </div>
+                    <div class="input-container">
+                        <input type="tel" id="phone" name="phone" required>
+                        <label for="phone">Телефон</label>
+                    </div>
+                    <div class="joinButtons">
+                        <div class="createBtn Btn">
+                            <button class="Btn" id="createPhoneBtn" disabled>Продолжить</button>
+                        </div>
+                        <div class="logIn">
+                            <p>Уже есть аккаунт?</p>
+                            <p class="ligInHandler">Войдите</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="regBoxTwo" class="none">
+                <div class="RegSecondPart joinBox">
+                    <div class="RegPartHeader">
+                        <div class="RegPartHeaderH3">
+                            <h3>Регистрация</h3>
+                            <p class="regPartSign">2/4</p>
+                        </div>
+                        <h5>Юридическая информация</h5>
+                    </div>
+                    <div class="inputBox">
+                        <h5>Формат деятельности</h5>
+                        <div class="inputBoxList">
+                            <div class="chooseInput private">
+                                <p>Частный дизайнер</p>
+                            </div>
+                            <div class="chooseInput company">
+                                <p>Дизайн-агентство</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="organizForm none">
+                        <div class="joinBox">
+                            <div class="privateBranch">
+                                <div class="inputBox">
+                                    <h5>Организационная форма</h5>
+                                    <div class="inputBoxList">
+                                        <div class="chooseInput self">
+                                            <p>Самозанятый</p>
+                                        </div>
+                                        <div class="chooseInput ip">
+                                            <p>ИП</p>
+                                        </div>
+                                        <div class="chooseInput ooo">
+                                            <p>ООО</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="inputBox">
+                                <h5>Название организации</h5>
+                                <div class="input-container">
+                                    <input type="text" id="userNameCompany" name="userNameCompany" required>
+                                </div>
+                            </div>
+                            <div class="inputBox">
+                                <h5>Организационная форма</h5>
+                                <div class="joinButtons">
+                                    <div class="createBtn Btn">
+                                        <button class="Btn" id="finishTwoPartPrivateRegistr" disabled>Продолжить</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div id="regBoxThree" class="none">
+                <div class="RegThirthPart joinBox">
+                    <div class="RegPartHeader">
+                        <div class="RegPartHeaderH3">
+                            <h3>Регистрация</h3>
+                            <p class="regPartSign">3/4</p>
+                        </div>
+                        <h5>Личные данные</h5>
+                    </div>
+                    <div class="inputBox">
+                        <h5>ФИО</h5>
+                        <div class="input-container">
+                            <input type="text" id="userName" name="userNameCompany" required>
+                        </div>
+                    </div><div class="inputBox">
+                        <h5>Город</h5>
+                        <div class="input-container">
+                            <input type="text" id="userCity" name="userNameCompany" required>
+                        </div>
+                    </div><div class="inputBox">
+                        <h5>Типы проектов</h5>
+                        <div class="input-container">
+                            <select name="typeProjects">
+                                <option disabled selected>Выберите тип проекта:</option>
+                                <option value="cherry">Pair</option>
+                                <option value="grape">Seth</option>
+                                <option value="apple">Street</option>
+                                <option value="banana">Full House</option>
+                                <option value="orange">Royal Flush</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="joinButtons">
+                        <div class="createBtn Btn">
+                            <button class="Btn" id="createPhoneBtn" disabled>Продолжить</button>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
     </section>
     
     <section class="authorization"></section>
