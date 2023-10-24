@@ -89,6 +89,7 @@ document.getElementById('createPhoneBtn').onclick = () => {
 function LogData() {
     console.log(userData)
 }
+
 //Логика первой части регистрации с вводом телефонного номера
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -146,11 +147,114 @@ document.getElementById('finishTwoPartPrivateRegistr').onclick = () => {
     document.getElementById('regBoxTwo').classList.add('none')
     document.getElementById('regBoxThree').classList.remove('none')
     LogData()
+    render()
+}
+
+// добавление организации в userdata при регистрации
+var token = "604ceb4b3fb376968d5303185e3a88cc503e5f08";
+function join(arr /*, separator */) {
+    var separator = arguments.length > 1 ? arguments[1] : ", ";
+    return arr.filter(function(n){return n}).join(separator);
+}
+function showSuggestion(suggestion) {
+    userData.suggestion = suggestion
+    LogData()
+}
+$("#userNameCompany").suggestions({
+    token: token,
+    type: "PARTY",
+    count: 5,
+    /* Вызывается, когда пользователь выбирает одну из подсказок */
+    onSelect: showSuggestion
+});
+// добавление организации в userdata при регистрации
+
+//Логика второй части регистрации с вводом данных о пользователе
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Логика третьей части регистрации с вводом данных о пользователе
+const typeProjectsArray = ['Простой', 'Кратко-срочный', 'Безде-фектный', 'Монопроект', 'Ресурсно сложный', 'Долгосрочный', 'Стандартный', 'Мультипроект',]
+function render() {
+    const typeArray = document.getElementById('typeProjects')
+    typeArray.innerHTML = ''
+    for(let i = 0; i < typeProjectsArray.length; i++) {
+        typeArray.insertAdjacentHTML("beforeend", TheyAreTypeProgectsFormToList (typeProjectsArray[i], i))
+        console.log(typeProjectsArray[i])
+    }
+}
+
+function TheyAreTypeProgectsFormToList (text, index) {
+    return `
+    <option selected data-index="${index}">${text}</option>`
+}
+document.getElementById('userName').addEventListener('input', (event) => {
+    const value = event.target.value;
+    if (value != '') {
+        document.getElementById('finishThreePartPrivateRegistr').removeAttribute('disabled');
+    } else {
+        document.getElementById('finishThreePartPrivateRegistr').setAttribute('disabled', 'disabled');
+    }
+});
+
+document.getElementById('finishThreePartPrivateRegistr').onclick = () => {
+    userData.userName = document.getElementById('userName').value
+    userData.userCity = document.getElementById('userCity').value
+    userData.typeProjects = document.getElementById('typeProjects').value
+    document.getElementById('regBoxThree').classList.add('none')
+    document.getElementById('regBoxFour').classList.remove('none')
+    LogData()
 }
 
 
+//Логика третьей части регистрации с вводом данных о пользователе
 
 
 
-//Логика второй части регистрации с вводом данных о пользователе
+
+
+
+
+
+
+
+
+// API
+const fileInput = document.getElementById('fileInput');
+const userAva = document.getElementById('userAva');
+
+fileInput.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        // Отправка файла на сервер
+        const formData = new FormData();
+        formData.append('userAva', file);
+
+        // Здесь вы можете использовать метод fetch или другие методы для отправки файла на сервер и получения ссылки на него
+        // Затем обновите ваш объект данных userData с полученной ссылкой
+
+        // Пример с fetch:
+        fetch('/upload', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Обновление объекта данных
+                userData.userAva = data.imageUrl;
+                userAva.src = data.imageUrl; // Отображение выбранного изображения
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка при загрузке изображения:', error);
+        });
+    }
+});
+
+// Добавьте обработчик клика на .avaDownload, чтобы открыть диалог выбора файла
+document.querySelector('.avaDownload').addEventListener('click', () => {
+    fileInput.click();
+});
+
 

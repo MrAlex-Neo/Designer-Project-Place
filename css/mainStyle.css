@@ -1,283 +1,415 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
 body {
-    background-color: #060606;
-    color: #fff;
+  background-color: #060606;
+  color: #fff;
 }
 .contentBlock {
-    margin: 0 calc(24vw - 60px);
-    margin-top: calc(2vw + 87px);
-    padding: calc(3vw + 7.3px);
-    border-radius: 16px;
-    border: 1px solid #414141;
-    background-color: #111;
+  margin: 0 calc(24vw - 60px);
+  margin-top: calc(2vw + 87px);
+  padding: calc(3vw + 7.3px);
+  border-radius: 16px;
+  border: 1px solid #414141;
+  background-color: #111;
 }
 h3 {
-    font-family: Cygre;
-    letter-spacing: 1px;
-    text-align: center;
-    font-size: calc(0.9vw + 21px);
-    font-weight: 700;
-    line-height: 133%;
+  font-family: Cygre;
+  letter-spacing: 1px;
+  text-align: center;
+  font-size: calc(0.9vw + 21px);
+  font-weight: 700;
+  line-height: 133%;
 }
 
-h5{
-    font-family: Inter;
-    font-size: calc(0.5vw + 14.4px);
-    font-weight: 400;
-    line-height: 150%;
-    color: #8F8F8F;
+h5 {
+  font-family: Inter;
+  font-size: calc(0.5vw + 14.4px);
+  font-weight: 400;
+  line-height: 150%;
+  color: #8f8f8f;
 }
-.none{
-    display: none;
+.none {
+  display: none;
 }
-
-
 
 /* logo */
 .logo {
-    position: absolute;
-    left: calc(2vw + 10px);
-    top: calc(1vw + 4.4px);
+  position: absolute;
+  left: calc(2vw + 10px);
+  top: calc(1vw + 4.4px);
 }
 .logo img {
-    margin-top: 6px 0;
-    width: calc(2.6vw + 125px);
-    height: calc(0.3vw + 16px);
+  margin-top: 6px 0;
+  width: calc(2.6vw + 125px);
+  height: calc(0.3vw + 16px);
 }
 /* logo */
 
-/* Логика стартового окна регистрации с выбором роли в приложении */
+/* Логика СТАРТОВОГО окна регистрации с выбором роли в приложении */
 .joinBox {
-    display: flex;
-    flex-direction: column;
-    gap: calc(3vw + 7.3px);
+  display: flex;
+  flex-direction: column;
+  gap: calc(3vw + 7.3px);
 }
-.joinSmallBox img{
-    width: calc(1.8vw + 26px);
+.joinSmallBox img {
+  width: calc(1.8vw + 26px);
 }
-.joinSmallBox p{
-    font-family: Inter;
-    font-size: calc(0.4vw + 15px);
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120%;
+.joinSmallBox p {
+  font-family: Inter;
+  font-size: calc(0.4vw + 15px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
 }
 .joinSmallBox {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    border-radius: 8px;
-    border: 1px solid #292929;
-    padding: calc(0.9vw + 21px) calc(0.9vw + 13.1px);
-    transition: border-color 0.5s; /* Длительность и свойство перехода */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 8px;
+  border: 1px solid #292929;
+  padding: calc(0.9vw + 21px) calc(0.9vw + 13.1px);
+  transition: border-color 0.5s; /* Длительность и свойство перехода */
 }
 .activeBorder {
-    border-color: #ffffff; /* Цвет бордера при активации */
+  border-color: #ffffff; /* Цвет бордера при активации */
 }
 .userSelection {
-    display: flex;
-    gap: calc(2vw + 10px);
+  display: flex;
+  gap: calc(2vw + 10px);
 }
 .joinDesigner {
-    position: relative;
-    flex-grow: 1;
+  position: relative;
+  flex-grow: 1;
 }
 .joinProvider {
-    position: relative;
-    flex-grow: 1;
+  position: relative;
+  flex-grow: 1;
 }
 .circle {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    width: 24px;
-    height: 24px;
-    border: 2px solid #ffffff;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.5s;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.5s;
 }
 .clicked {
-    background-color: #ffffff;    
+  background-color: #ffffff;
 }
-.createBtn{
-    margin-bottom: 12px;
+.createBtn {
+  margin-bottom: 12px;
 }
-.Btn{
-    width: 100%;
+.Btn {
+  width: 100%;
 }
-.Btn button{
-    color: #fff;
-    font-size: 16px;
-    display: flex;
-    padding: 12px 24px;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    border-radius: 8px;
-    background: #0084FF;
-    cursor: pointer;
-    transition: background 0.5s;
+.Btn button {
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 8px;
+  background: #0084ff;
+  cursor: pointer;
+  transition: background 0.5s;
 }
 button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed; /* Стиль курсора, указывающий на то, что кнопка неактивна */
+  opacity: 0.5;
+  cursor: not-allowed; /* Стиль курсора, указывающий на то, что кнопка неактивна */
 }
-.activeBtn button{
-    background: #0084FF;
+.activeBtn button {
+  background: #0084ff;
 }
-.activeBtn button:hover{
-    background: #389fff;
+.activeBtn button:hover {
+  background: #389fff;
 }
-.logIn{
-    display: flex;
-    justify-content: center;
-    gap: 5px;
+.logIn {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
 }
-.logIn p{
-    font-family: Inter;
-    font-size: 14px;
-    letter-spacing: 1px;
-    font-weight: 400;
-    line-height: 114%;
+.logIn p {
+  font-family: Inter;
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  line-height: 114%;
 }
-.ligInHandler{
-    cursor: pointer;
-    transition: color 0.5s;
-    color: #0084FF;
+.ligInHandler {
+  cursor: pointer;
+  transition: color 0.5s;
+  color: #0084ff;
 }
-.ligInHandler:hover{
-    color: #389fff
+.ligInHandler:hover {
+  color: #389fff;
 }
-/* Логика стартового окна регистрации с выбором роли в приложении */
+/* Логика СТАРТОВОГО окна регистрации с выбором роли в приложении */
 
-
-/* Логика первой части регистрации с вводом телефонного номера */
-.RegPartHeader{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
+/* Логика ПЕРВОЙ части регистрации с вводом телефонного номера */
+.RegPartHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
-.RegPartHeaderH3{
-    display: flex;
-    align-items: center;
-    gap: 6px;
+.RegPartHeaderH3 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
-.RegPartHeaderH3 p{
-    font-family: Montserrat;
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 125%;
-    color: #292929;
-    margin-top: 4px;
+.RegPartHeaderH3 p {
+  font-family: Montserrat;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 125%;
+  color: #292929;
+  margin-top: 4px;
 }
 .input-container {
-    position: relative;
-    width: 100%; /* Выберите подходящую ширину */
+  position: relative;
+  width: 100%; /* Выберите подходящую ширину */
 }
 .input-container label {
-    position: absolute;
-    top: 20%;
-    left: 2%;
-    pointer-events: none; /* Метка не перехватывает события клика */
-    transition: all 0.2s ease-in-out; /* Плавное анимирование */
-    font-size: calc(0.4vw + 11px);
-    font-weight: 400;
-    line-height: 150%;
-    color: #8F8F8F;
+  position: absolute;
+  top: 20%;
+  left: 2%;
+  pointer-events: none; /* Метка не перехватывает события клика */
+  transition: all 0.2s ease-in-out; /* Плавное анимирование */
+  font-size: calc(0.4vw + 11px);
+  font-weight: 400;
+  line-height: 150%;
+  color: #8f8f8f;
 }
 .input-container input {
-    margin: auto 0;
-    width: 98%;
-    height: calc(1.4vw + 8.6px);
-    padding: 10px 0;
-    padding-left: 2%;
-    border-radius: 8px;
-    border: 1px solid #292929;
-    background-color: #111;
-    outline: none; /* Убираем рамку фокуса */
-    font-size: calc(0.4vw + 11px);
-    font-weight: 400;
-    line-height: 150%;
-    color: #8F8F8F;
+  margin: auto 0;
+  width: 98%;
+  height: calc(1.4vw + 8.6px);
+  padding: 10px 0;
+  padding-left: 2%;
+  border-radius: 8px;
+  border: 1px solid #292929;
+  background-color: #111;
+  outline: none; /* Убираем рамку фокуса */
+  font-size: calc(0.4vw + 11px);
+  font-weight: 400;
+  line-height: 150%;
+  color: #8f8f8f;
 }
 /* Скрываем стандартную стрелку выпадающего списка */
 select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    margin: auto 0;
-    width: 98%;
-    height: 10%;
-    padding: 10px 0;
-    padding-left: 2%;
-    border-radius: 8px;
-    border: 1px solid #292929;
-    background-color: #111;
-    outline: none; /* Убираем рамку фокуса */
-    font-size: calc(0.4vw + 11px);
-    font-weight: 400;
-    line-height: 150%;
-    color: #8F8F8F;
-    outline: none; /* Убираем рамку фокуса */
-    cursor: pointer; /* Изменяем курсор при наведении */
-  }
-  
-  /* Добавляем кастомную стрелку для выпадающего списка */
-  select::after {
-    content: "\25BC"; /* Здесь вы можете использовать другой символ или изображение */
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    pointer-events: none; /* Метка не перехватывает события клика */
-  }
-  
-/* Логика первой части регистрации с вводом телефонного номера */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: auto 0;
+  width: 98%;
+  height: 10%;
+  padding: 10px 0;
+  padding-left: 2%;
+  border-radius: 8px;
+  border: 1px solid #292929;
+  background-color: #111;
+  outline: none; /* Убираем рамку фокуса */
+  font-size: calc(0.4vw + 11px);
+  font-weight: 400;
+  line-height: 150%;
+  color: #8f8f8f;
+  outline: none; /* Убираем рамку фокуса */
+  cursor: pointer; /* Изменяем курсор при наведении */
+}
 
-/* Логика второй части регистрации с вводом данных о пользователе */
-.inputBox h5{
-    font-size: calc(0.4vw + 11px);
+/* Добавляем кастомную стрелку для выпадающего списка */
+select::after {
+  content: "\25BC"; /* Здесь вы можете использовать другой символ или изображение */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none; /* Метка не перехватывает события клика */
 }
-.inputBoxList{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
+
+/* Логика ПЕРВОЙ части регистрации с вводом телефонного номера */
+
+/* Логика ВТОРОЙ части регистрации с вводом данных о пользователе */
+.inputBox h5 {
+  font-size: calc(0.4vw + 11px);
 }
-.inputBox{
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+.inputBoxList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
 }
-.chooseInput{
-    padding: 8px 16px;
-    border-radius: 8px;
-    border: 1px solid #414141;
-    transition: border 0.5s;
-    cursor: pointer;
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
-.chooseInput p{
-    font-family: Inter;
-    font-size: calc(0.5vw + 14.4px);
-    font-weight: 400;
-    line-height: 150%;
+.chooseInput {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #414141;
+  transition: border 0.5s;
+  cursor: pointer;
+}
+.chooseInput p {
+  font-family: Inter;
+  font-size: calc(0.5vw + 14.4px);
+  font-weight: 400;
+  line-height: 150%;
 }
 
 .chooseInputActive {
-    border: 1px solid #0084FF;
+  border: 1px solid #0084ff;
+}
+/* инпут с добавлением выпадающим списком для выбора организации при регистрации */
+.userNameCompany input {
+    height: calc(0.8vw + 27px);
+}
+.suggestions-input {
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+}
+.suggestions-input::-ms-clear {
+    display: none;
+}
+.suggestions-wrapper {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+    -webkit-text-size-adjust: 100%;
+}
+.suggestions-suggestions {
+    background: #060606;
+    border: 1px solid #0084ff;
+    border-radius: 8px;
+    border-top: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 98%;
+    position: absolute;
+}
+.suggestions-suggestions strong {
+    font-weight: 400;
+    color: #39f;
+}
+.suggestions-suggestions.suggestions-mobile .suggestions-suggestion {
+    border-bottom: 1px solid #ddd;
+}
+.suggestions-suggestion {
+    padding: 4px 4px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+.suggestions-suggestion:hover {
+    background: #f7f7f7;
+    border-radius: 8px;
+    color: #060606;
+    transition: background 1s;
+}
+.suggestions-selected {
+    background: #f0f0f0;
+}
+.suggestions-selected:hover {
+    background: #f0f0f0;
+}
+.suggestions-hint {
+    padding: 4px 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #777;
+    font-size: 85%;
+    line-height: 20px;
+}
+.suggestions-subtext {
+    color: #777;
+}
+.suggestions-subtext:hover {
+    color: #060606;
+}
+/* инпут с добавлением выпадающим списком для выбора организации при регистрации */
+/* Логика ВТОРОЙ части регистрации с вводом данных о пользователе */
+
+/* Логика ТРЕТЬЕЙ части регистрации с вводом данных о пользователе */
+.avaDefault {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+    cursor: pointer;
 }
 
+.avaDefault img {
+    border-radius: 50%;
+    width: 120px;
+    opacity: 1;
+    z-index: 100;
+    transition: opacity 0.2s; /* Добавьте плавный эффект перехода */
+}
+
+.avaDefault:hover img {
+    opacity: 0.2; /* Уменьшите непрозрачность при наведении на .avaDefault */
+}
+
+.avaDownload img {
+    width: 40px;
+    position: absolute;
+    opacity: 0; /* Установите начальную непрозрачность на 0 */
+    z-index: 1;
+    transition: opacity 0.2s; /* Добавьте плавный эффект перехода */
+}
+
+.avaDefault:hover .avaDownload img {
+    opacity: 1;
+}
+
+.avaDownload {
+    position: absolute;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%); /* Центрируйте .avaDownload */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* Логика ТРЕТЬЕЙ части регистрации с вводом данных о пользователе */
 
 
+/* Логика ЧЕТВЕРТОЙ части регистрации с вводом данных о пользователе */
+.regBoxFour h4{
+    font-family: Inter;
+    font-size: calc(0.5vw + 15px);
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+.regBoxFourLinksWords{
+    margin-top: 4px;
+    margin-bottom: 12px;
+    font-family: Inter;
+    font-size: calc(0.3vw + 13px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 143%;
+}
 
-/* Логика второй части регистрации с вводом данных о пользователе */
+.inputBoxList.boxFour{
+    margin-top: 24px;
+}
+/* Логика ЧЕТВЕРТОЙ части регистрации с вводом данных о пользователе */
 
 @media (max-width: 800px) {
-    .userSelection {
-        flex-wrap: wrap;
-    }
+  .userSelection {
+    flex-wrap: wrap;
+  }
 }
