@@ -144,7 +144,7 @@
                         </div>
                         <h5>Личные данные</h5>
                     </div>
-                    <div class="avaDefault">
+                    <div class="avaDefault uImg">
                         <label for="fileInput">
                             <img id="userAva" src="./img/Ava.svg" alt="">
                             <div class="avaDownload">
@@ -182,7 +182,7 @@
                 </div>
             </div>
             <div id="regBoxFour" class="none">
-                <div class="RegThirthPart joinBox">
+                <div class="RegFourthPart joinBox">
                     <div class="RegPartHeader">
                         <div class="RegPartHeaderH3">
                             <h3>Регистрация</h3>
@@ -193,19 +193,114 @@
                     <div class="inputBox">
                         <h4>Социальные сети</h4>
                         <p class="regBoxFourLinksWords">Укажите ссылки на ваши рабочие страницы в интернете</p>
-                        <div class="inputBox">
-                            <div class="input-container">
+                        <div class="inputBox linkBoxArray" id="linkBoxArray">
+                            <div class="input-container link">
                                 <h5>Ссылка:</h5>
-                                <input type="text" name="" id=""  required>
+                                <input type="text" data-index="0" required>
                             </div>
-                            <div class="inputBoxList boxFour">
-                                <div class="chooseInput self">
-                                    <p>Добавить ссылку +</p>
+                        </div>
+                        <div class="inputBoxList boxFour">
+                            <div class="chooseInput" id="createLinkRegBoxFour">
+                                <p>Добавить ссылку +</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="inputBox">
+                        <h4>Образование</h4>
+                        <p class="regBoxFourLinksWords">У вас есть профильное образование?</p>
+                        <div class="">
+                            <div class="form_radio">
+                                <input id="radio-1" type="radio" name="education" value="1" >
+                                <label for="radio-1">Да</label>
+                            </div>
+                            
+                            <div class="form_radio">
+                                <input id="radio-2" type="radio" name="education" value="2" checked>
+                                <label for="radio-2">Нет</label>
+                            </div>
+                        </div>
+                        <div class="educationRadioAssent none">
+                            <p class="regBoxFourLinksWords">Приложите документы подтверждающие наличие образование (сканы или фото диплома, сертификата и т.п.):</p>
+                            <div class="educationFiles avaDefault">
+                                <label for="userEducation" class="educationImgLabel">
+                                    <img class="userDoc downloadDiplomIng" src="./img/downloadFile.svg" alt="">
+                                </label>
+                                <input type="file" id="userEducation" accept="image/*" style="display: none" multiple>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <hr>
+                    <div class="inputBox">
+                        <h4>Портфолио</h4>
+                        <div class="">
+                            <div class="form_radio">
+                                <input id="radio-3" type="radio" name="partfolio" value="1" >
+                                <label for="radio-3">Да</label>
+                            </div>
+                            <div class="form_radio">
+                                <input id="radio-4" type="radio" name="partfolio" value="2" checked>
+                                <label for="radio-4">Нет</label>
+                            </div>
+                        </div>
+                        <div class="projectsRadioAssent none">
+                            <div class="inputBox projectsBoxArray" id="projectsBoxArray">
+                                <div class="accordion">
+                                    <div class="accordion-item">
+                                        <div class="accordion-title">Проект №1</div>
+                                        <div class="accordion-content">
+                                            <p class="regBoxFourLinksWords">Загрузите фотографии проекта</p>
+                                            <div class="projectFiles avaDefault">
+                                                <label for="userProject" class="projectsImgLabel">
+                                                    <img class="userDoc downloadProjectImg" src="./img/downloadFile.svg" alt="">
+                                                </label>
+                                                <input type="file" id="userProject" accept="image/*" style="display: none" multiple>
+                                            </div>
+                                            <div class="inputBox aboutUserProject">
+                                                <div class="input-container aboutUserProjectChild">
+                                                    <h5>Тип объекта</h5>
+                                                    <input type="text">
+                                                </div>
+                                                <div class="input-container aboutUserProjectChild">
+                                                    <h5>Стиль</h5>
+                                                    <input type="text">
+                                                </div>
+                                                <div class="input-container aboutUserProjectChild">
+                                                    <h5>Площадь объекта, кв.м.</h5>
+                                                    <input type="text">
+                                                </div>
+                                                <div class="input-container aboutUserProjectChild">
+                                                    <h5>Стоимость дизайн-проекта, ₽</h5>
+                                                    <input type="text">
+                                                </div>
+                                            </div>
+                                            <div class="input-container aboutUserProjectChild">
+                                                <h5>Описание проекта</h5>
+                                                <textarea type="text"></textarea> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="inputBoxList projects boxFour">
+                                <div class="chooseInput projects" id="createProgectRegBoxFour">
+                                    <p>Добавить другой проект +</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-    
+                    <div class="joinButtons projects">
+                        <div class="createBtn Btn">
+                            <button class="Btn" id="finishFourPartPrivateRegistr">Продолжить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="regBoxFIve" class="none">
+                <div class="RegFivePart joinBox">
+                    <h3>Успешно!</h3>
+                    <h5>Ваша заявка отправлена на модерацию! В течении 24 часов вам придёт смс-уведомление о результатах модерации</h5>
                 </div>
             </div>
         </div>
