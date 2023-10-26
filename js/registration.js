@@ -1,4 +1,32 @@
-const userData = {};
+const userDataReg = {};
+const userDataAuth = {};
+
+
+const inputElements = document.querySelectorAll('input');
+inputElements.forEach(input => {
+    input.setAttribute('autocomplete', 'off');
+});
+
+document.querySelector('.regBoxOne .getLastWindowPlease').onclick = () => {
+    document.querySelector('.registrationRoles').classList.remove('none')
+    document.querySelector('.registrationMain').classList.add('none')
+}
+document.querySelector('.regBoxTwo .getLastWindowPlease').onclick = () => {
+    document.querySelector('.regBoxTwo').classList.add('none')
+    document.querySelector('.regBoxOne').classList.remove('none')
+    
+}
+document.querySelector('.regBoxThree .getLastWindowPlease').onclick = () => {
+    document.querySelector('.regBoxThree').classList.add('none')
+    document.querySelector('.regBoxTwo').classList.remove('none')
+}
+document.querySelector('.regBoxFour .getLastWindowPlease').onclick = () => {
+    document.querySelector('.regBoxFour').classList.add('none')
+    document.querySelector('.regBoxThree').classList.remove('none')
+}
+
+
+
 
 //Логика стартового окна регистрации с выбором роли в приложении
 const designerBox = document.getElementById('designerBox');
@@ -24,8 +52,8 @@ providerBox.addEventListener('click', () => {
 });
 
 function registrationRolesBox() {
-    userData.designer = designerBox.querySelector('.circle').classList.contains('clicked');
-    userData.provider = providerBox.querySelector('.circle').classList.contains('clicked');
+    userDataReg.designer = designerBox.querySelector('.circle').classList.contains('clicked');
+    userDataReg.provider = providerBox.querySelector('.circle').classList.contains('clicked');
     document.querySelector('.registrationRoles').classList.add('none')
     document.querySelector('.registrationMain').classList.remove('none')
     LogData()
@@ -41,30 +69,36 @@ createAccountBtn.onclick = registrationRolesBox;
 
 //Логика первой части регистрации с вводом телефонного номера
 const phoneInput = document.getElementById('phone');
-const label = document.querySelector('.input-container label');
+const label = document.querySelector('.input-container.registration label');
 
 phoneInput.addEventListener('focus', () => {
-    phoneInput.value = '+7';
+    if (phoneInput.value.length == 0) {
+        phoneInput.value = '+7';
+    }
     label.style.top = '-25px';
     label.style.left = '-2px';
     label.style.fontSize = '14px';
 });
 phoneInput.addEventListener('blur', () => {
     if (!phoneInput.value) {
-        phoneInput.value = '';
+        if (phoneInput.value.length == 0) {
+            phoneInput.value = '+7';
+        }
         label.style.top = '20%';
         label.style.left = '2%';
         label.style.fontSize = '16px';
     }
 });
-document.addEventListener('click', (event) => {
-    if (event.target !== phoneInput) {
-        phoneInput.value = '';
-        label.style.top = '20%';
-        label.style.left = '2%';
-        label.style.fontSize = '16px';
-    }
-});
+// document.addEventListener('click', (event) => {
+//     if (event.target !== phoneInput) {
+//         if (phoneInput.value.length == 0 ) {
+//             phoneInput.value = '+7';
+//         }
+//         label.style.top = '20%';
+//         label.style.left = '2%';
+//         label.style.fontSize = '16px';
+//     }
+// });
 
 const phonePattern = /^\+7\d{10}$/
 phoneInput.addEventListener('input', (event) => {
@@ -77,7 +111,7 @@ phoneInput.addEventListener('input', (event) => {
 });
 
 document.getElementById('createPhoneBtn').onclick = () => {
-    userData.phone = phoneInput.value
+    userDataReg.phone = phoneInput.value
     document.getElementById('regBoxOne').classList.add('none')
     document.getElementById('regBoxTwo').classList.remove('none')
     LogData()
@@ -92,7 +126,7 @@ document.getElementById('createPhoneBtn').onclick = () => {
 document.querySelector('.private').onclick = () => {
     document.querySelector('.private').classList.add('chooseInputActive')
     document.querySelector('.company').classList.remove('chooseInputActive')
-    userData.format = 'private'
+    userDataReg.format = 'private'
     document.querySelector('.organizForm').classList.remove('none')
     document.querySelector('.privateBranch').classList.remove('none')
     LogData()
@@ -101,7 +135,7 @@ document.querySelector('.private').onclick = () => {
 document.querySelector('.company').onclick = () => {
     document.querySelector('.private').classList.remove('chooseInputActive')
     document.querySelector('.company').classList.add('chooseInputActive')
-    userData.format = 'company'
+    userDataReg.format = 'company'
     document.querySelector('.organizForm').classList.remove('none')
     document.querySelector('.privateBranch').classList.add('none')
     LogData()
@@ -110,21 +144,21 @@ document.querySelector('.self').onclick = () => {
     document.querySelector('.self').classList.add('chooseInputActive')
     document.querySelector('.ip').classList.remove('chooseInputActive')
     document.querySelector('.ooo').classList.remove('chooseInputActive')
-    userData.privateform = 'self'
+    userDataReg.privateform = 'self'
     LogData()
 };
 document.querySelector('.ip').onclick = () => {
     document.querySelector('.self').classList.remove('chooseInputActive')
     document.querySelector('.ip').classList.add('chooseInputActive')
     document.querySelector('.ooo').classList.remove('chooseInputActive')
-    userData.privateform = 'ip'
+    userDataReg.privateform = 'ip'
     LogData()
 };
 document.querySelector('.ooo').onclick = () => {
     document.querySelector('.self').classList.remove('chooseInputActive')
     document.querySelector('.ooo').classList.add('chooseInputActive')
     document.querySelector('.ip').classList.remove('chooseInputActive')
-    userData.privateform = 'ooo'
+    userDataReg.privateform = 'ooo'
     LogData()
 };
 
@@ -137,7 +171,7 @@ document.getElementById('userNameCompany').addEventListener('input', (event) => 
     }
 });
 document.getElementById('finishTwoPartPrivateRegistr').onclick = () => {
-    userData.privateCompanyName = document.getElementById('userNameCompany').value
+    userDataReg.privateCompanyName = document.getElementById('userNameCompany').value
     document.getElementById('regBoxTwo').classList.add('none')
     document.getElementById('regBoxThree').classList.remove('none')
     LogData()
@@ -151,7 +185,7 @@ function join(arr /*, separator */) {
     return arr.filter(function (n) { return n }).join(separator);
 }
 function showSuggestion(suggestion) {
-    userData.suggestion = suggestion
+    userDataReg.suggestion = suggestion
     LogData()
 }
 $("#userNameCompany").suggestions({
@@ -192,9 +226,9 @@ document.getElementById('userName').addEventListener('input', (event) => {
 });
 
 document.getElementById('finishThreePartPrivateRegistr').onclick = () => {
-    userData.userName = document.getElementById('userName').value
-    userData.userCity = document.getElementById('userCity').value
-    userData.typeProjects = document.getElementById('typeProjects').value
+    userDataReg.userName = document.getElementById('userName').value
+    userDataReg.userCity = document.getElementById('userCity').value
+    userDataReg.typeProjects = document.getElementById('typeProjects').value
     document.getElementById('regBoxThree').classList.add('none')
     document.getElementById('regBoxFour').classList.remove('none')
     LogData()
@@ -366,26 +400,79 @@ function createAccordElemForRegPgoject(sum) {
 }
 
 document.getElementById('finishFourPartPrivateRegistr').onclick = () => {
-    // userData.userName = document.getElementById('userName').value
-    // userData.userCity = document.getElementById('userCity').value
-    // userData.typeProjects = document.getElementById('typeProjects').value
+    // userDataReg.userName = document.getElementById('userName').value
+    // userDataReg.userCity = document.getElementById('userCity').value
+    // userDataReg.typeProjects = document.getElementById('typeProjects').value
     document.getElementById('regBoxFour').classList.add('none')
     document.getElementById('regBoxFIve').classList.remove('none')
     LogData()
 }
-
-
-
-
-
-
-
-
-
-
-
-
 //Логика четвертой части регистрации с вводом данных о пользователе
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Логика окна авторизации с вводом телефонного номера
+const phoneInputAuth = document.getElementById('phoneAuth');
+const labelAuth = document.getElementById('labelAuthTel');
+const checkTelAuth = document.getElementById('checkTelAuth');
+const labelCheckAuthTel = document.getElementById('labelCheckAuthTel');
+
+phoneInputAuth.addEventListener('focus', () => {
+    if (phoneInputAuth.value.length == 0) {
+        phoneInputAuth.value = '+7';
+    }
+    labelAuth.style.top = '-25px';
+    labelAuth.style.left = '-2px';
+    labelAuth.style.fontSize = '14px';
+});
+phoneInputAuth.addEventListener('blur', () => {
+    if (!phoneInputAuth.value) {
+        if (phoneInputAuth.value.length == 0) {
+            phoneInputAuth.value = '+7';
+        }
+        labelAuth.style.top = '20%';
+        labelAuth.style.left = '2%';
+        labelAuth.style.fontSize = '16px';
+    }
+});
+checkTelAuth.addEventListener('focus', () => {
+    labelCheckAuthTel.style.top = '-25px';
+    labelCheckAuthTel.style.left = '-2px';
+    labelCheckAuthTel.style.fontSize = '14px';
+});
+
+phoneInputAuth.addEventListener('input', (event) => {
+    const value = event.target.value;
+    if (phonePattern.test(value)) {
+        document.getElementById('createPhoneBtnAuth').removeAttribute('disabled');
+    } else {
+        document.getElementById('createPhoneBtnAuth').setAttribute('disabled', 'disabled');
+    }
+});
+
+document.getElementById('createPhoneBtnAuth').onclick = () => {
+    userDataAuth.phone = phoneInputAuth.value
+    // document.getElementById('regBoxOne').classList.add('none')
+    phoneInputAuth.setAttribute('disabled', true);
+    document.querySelector('.checkCodeTel').classList.remove('none')
+    document.getElementById('createPhoneBtnAuth').textContent = 'Войти'
+    // LogData()
+}
+
+document.getElementById('getRegProcess').onclick = () => {
+    document.querySelector('.authorizationBox').classList.add('none')
+    document.querySelector('.registrationRoles').classList.remove('none')
+    
+}
+document.querySelectorAll('.getAuthProcess').forEach(input => {
+    input.addEventListener('click', event => {
+        document.querySelector('.registrationRoles').classList.add('none')
+        document.querySelector('.authorizationBox').classList.remove('none')
+    });
+});
+
+// Логика окна авторизации с вводом телефонного номера
 
 // API
 const fileInput = document.getElementById('fileInput');
@@ -402,7 +489,7 @@ fileInput.addEventListener('change', (event) => {
         readURL(fileInput, userAva);
 
         // Здесь вы можете использовать метод fetch или другие методы для отправки файла на сервер и получения ссылки на него
-        // Затем обновите ваш объект данных userData с полученной ссылкой
+        // Затем обновите ваш объект данных userDataReg с полученной ссылкой
 
         // Пример с fetch:
         fetch('/upload', {
@@ -413,7 +500,7 @@ fileInput.addEventListener('change', (event) => {
             .then(data => {
                 if (data.success) {
                     // Обновление объекта данных
-                    userData.userAva = data.imageUrl;
+                    userDataReg.userAva = data.imageUrl;
                 }
             })
             .catch(error => {
@@ -438,7 +525,7 @@ function readURL(input, boxId) {
 }
 //Проверка собираемого объекта при регистрации
 function LogData() {
-    console.log(userData)
+    console.log(userDataReg)
 }
 
 

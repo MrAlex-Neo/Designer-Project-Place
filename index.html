@@ -18,7 +18,7 @@
     <div class="logo">
         <img src="./img/Design Cloud.svg" alt="">
     </div>
-    <section class="registrationRoles  contentBlock">
+    <section class="registrationRoles none contentBlock" data-step="1">
         <div class="joinBox">
             <h3>Присоединяйтесь</h3>
             <div class="userSelection">
@@ -47,14 +47,14 @@
                 </div>
                 <div class="logIn">
                     <p>Уже есть аккаунт?</p>
-                    <p class="ligInHandler">Войдите</p>
+                    <p class="ligInHandler getAuthProcess">Войдите</p>
                 </div>
             </div>
         </div>
     </section>
     <section class="registrationMain none contentBlock">
         <div class="regFormBox">
-            <div id="regBoxOne" class="">
+            <div id="regBoxOne" class="regBoxOne">
                 <div class="RegFirstPart  joinBox">
                     <div class="RegPartHeader">
                         <div class="RegPartHeaderH3">
@@ -63,7 +63,7 @@
                         </div>
                         <h5>Подтверждение телефона</h5>
                     </div>
-                    <div class="input-container">
+                    <div class="input-container registration">
                         <input type="tel" id="phone" name="phone" required>
                         <label for="phone">Телефон</label>
                     </div>
@@ -73,12 +73,15 @@
                         </div>
                         <div class="logIn">
                             <p>Уже есть аккаунт?</p>
-                            <p class="ligInHandler">Войдите</p>
+                            <p class="ligInHandler getAuthProcess">Войдите</p>
                         </div>
                     </div>
                 </div>
+                <div class="getLastWindowPlease">
+                    <p>Назад</p>
+                </div>
             </div>
-            <div id="regBoxTwo" class="none">
+            <div id="regBoxTwo" class="regBoxTwo none">
                 <div class="RegSecondPart joinBox">
                     <div class="RegPartHeader">
                         <div class="RegPartHeaderH3">
@@ -132,10 +135,12 @@
                             </div>
                         </div>
                     </div>
-                    
+                </div>
+                <div class="getLastWindowPlease">
+                    <p>Назад</p>
                 </div>
             </div>
-            <div id="regBoxThree" class="none">
+            <div id="regBoxThree" class="regBoxThree none">
                 <div class="RegThirthPart joinBox">
                     <div class="RegPartHeader">
                         <div class="RegPartHeaderH3">
@@ -178,10 +183,12 @@
                             <button class="Btn" id="finishThreePartPrivateRegistr" disabled>Продолжить</button>
                         </div>
                     </div>
-    
+                </div>
+                <div class="getLastWindowPlease">
+                    <p>Назад</p>
                 </div>
             </div>
-            <div id="regBoxFour" class="none">
+            <div id="regBoxFour" class="regBoxFour none">
                 <div class="RegFourthPart joinBox">
                     <div class="RegPartHeader">
                         <div class="RegPartHeaderH3">
@@ -296,6 +303,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="getLastWindowPlease">
+                    <p>Назад</p>
+                </div>
             </div>
             <div id="regBoxFIve" class="none">
                 <div class="RegFivePart joinBox">
@@ -306,7 +316,38 @@
         </div>
     </section>
     
-    <section class="authorization"></section>
+    <section class="authorizationBox contentBlock">
+        <div class="joinBox">
+            <div class="RegPartHeader">
+                <div class="RegPartHeaderH3">
+                    <h3>Авторизация</h3>
+                </div>
+                <h5>Подтверждение телефона</h5>
+            </div>
+            <div class="input-container authorization">
+                <input type="tel" id="phoneAuth" name="phoneAuth" required>
+                <label id="labelAuthTel" for="phoneAuth">Телефон</label>
+            </div>
+            <div class="checkCodeTel none">
+                <div class="input-container">
+                    <input type="tel" id="checkTelAuth" name="checkTelAuth" required>
+                    <label id="labelCheckAuthTel" for="checkTelAuth">Введите код</label>
+                    <div class="logIn getTheCodeAgain">
+                        <p>Выслать код повторно</p>
+                    </div>
+                </div>
+            </div>
+            <div class="joinButtons">
+                <div class="createBtn Btn">
+                    <button class="Btn" id="createPhoneBtnAuth" disabled>Продолжить</button>
+                </div>
+                <div class="logIn">
+                    <p>Нет аккаунта?</p>
+                    <p class="ligInHandler" id="getRegProcess">Зарегистрируйтесь</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     
 </body>

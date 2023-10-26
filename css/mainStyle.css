@@ -33,6 +33,24 @@ h5 {
 .none {
   display: none;
 }
+.getLastWindowPlease{
+  position: absolute;
+  right: calc(2vw + 10px);
+  top: calc(1vw + 4.4px);
+  cursor: pointer;
+}
+.getLastWindowPlease:hover p {
+  /* text-shadow: 5px 3px 12px white; */
+  font-size: 18px;
+}
+
+.getLastWindowPlease p{
+  transition: font-size 1s;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+}
 
 /* logo */
 .logo {
@@ -645,8 +663,12 @@ select::after {
 .RegFivePart{
     text-align: center;
 }
-
-
+/* Логика окна авторизации */
+.getTheCodeAgain{
+  margin-top: 16px;
+  cursor: pointer;
+}
+/* Логика окна авторизации */
 
 
 
