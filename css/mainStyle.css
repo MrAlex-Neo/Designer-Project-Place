@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Inter', sans-serif;
 }
 body {
   background-color: #060606;
@@ -15,7 +16,7 @@ body {
   background-color: #111;
 }
 h3 {
-  font-family: Cygre;
+  font-family: 'Montserrat', sans-serif;
   letter-spacing: 1px;
   text-align: center;
   font-size: calc(0.9vw + 21px);
@@ -24,7 +25,6 @@ h3 {
 }
 
 h5 {
-  font-family: Inter;
   font-size: calc(0.5vw + 14.4px);
   font-weight: 400;
   line-height: 150%;
@@ -46,7 +46,6 @@ h5 {
 
 .getLastWindowPlease p{
   transition: font-size 1s;
-  font-family: Inter;
   font-size: 16px;
   font-weight: 400;
   line-height: 150%;
@@ -75,7 +74,6 @@ h5 {
   width: calc(1.8vw + 26px);
 }
 .joinSmallBox p {
-  font-family: Inter;
   font-size: calc(0.4vw + 15px);
   font-style: normal;
   font-weight: 400;
@@ -154,7 +152,6 @@ button:disabled {
   gap: 5px;
 }
 .logIn p {
-  font-family: Inter;
   font-size: 14px;
   letter-spacing: 1px;
   font-weight: 400;
@@ -183,7 +180,7 @@ button:disabled {
   gap: 6px;
 }
 .RegPartHeaderH3 p {
-  font-family: Montserrat;
+  font-family: 'Montserrat', sans-serif;
   font-size: 32px;
   font-weight: 600;
   line-height: 125%;
@@ -235,14 +232,10 @@ button:disabled {
   line-height: 150%;
   color: #8f8f8f;
 }
-/* Скрываем стандартную стрелку выпадающего списка */
+/* Стили для select */
 select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   margin: auto 0;
-  width: 98%;
-  height: 10%;
+  width: 100%;
   padding: 10px 0;
   padding-left: 2%;
   border-radius: 8px;
@@ -253,19 +246,33 @@ select {
   font-weight: 400;
   line-height: 150%;
   color: #8f8f8f;
-  outline: none; /* Убираем рамку фокуса */
   cursor: pointer; /* Изменяем курсор при наведении */
+  max-height: 200px !important; /* Максимальная высота списка */
+  overflow-y: auto !important; /* Включаем прокручивание, если список превышает максимальную высоту */
 }
 
 /* Добавляем кастомную стрелку для выпадающего списка */
 select::after {
-  content: "\25BC"; /* Здесь вы можете использовать другой символ или изображение */
-  position: absolute;
-  top: 50%;
-  right: 10px;
   transform: translateY(-50%);
   pointer-events: none; /* Метка не перехватывает события клика */
 }
+
+/* Стили для опций в выпадающем списке */
+select option {
+  font-size: calc(0.4vw + 11px);
+  font-weight: 400;
+  line-height: 150%;
+}
+
+select::-webkit-scrollbar {
+  width: 3px; /* Ширина полосы прокрутки */
+  height: 56px;
+}
+select::-webkit-scrollbar-thumb {
+  background: #8F8F8F; /* Цвет бегунка прокрутки */
+}
+
+
 
 /* Логика ПЕРВОЙ части регистрации с вводом телефонного номера */
 
@@ -291,7 +298,6 @@ select::after {
   cursor: pointer;
 }
 .chooseInput p {
-  font-family: Inter;
   font-size: calc(0.5vw + 14.4px);
   font-weight: 400;
   line-height: 150%;
@@ -302,7 +308,14 @@ select::after {
 }
 /* инпут с добавлением выпадающим списком для выбора организации при регистрации */
 .userNameCompany input {
-    height: calc(0.8vw + 27px);
+    height: auto;
+    width: 100%;
+    padding: 16 10px;
+}
+.userNameCompanyProvider input {
+    height: auto;
+    width: 100%;
+    padding: 16 10px;
 }
 .suggestions-input {
     -ms-box-sizing: border-box;
@@ -311,9 +324,7 @@ select::after {
     box-sizing: border-box;
     width: 100%;
 }
-.suggestions-input::-ms-clear {
-    display: none;
-}
+
 .suggestions-wrapper {
     position: relative;
     margin: 0;
@@ -322,15 +333,26 @@ select::after {
     -webkit-text-size-adjust: 100%;
 }
 .suggestions-suggestions {
-    background: #060606;
-    border: 1px solid #0084ff;
-    border-radius: 8px;
-    border-top: none;
-    box-sizing: border-box;
-    cursor: pointer;
-    width: 98%;
-    position: absolute;
+  background: #212121;
+  box-sizing: border-box;
+  cursor: pointer;
+  width: 100%;
+  max-height: 250px;
+  overflow-y: auto; 
+  border-radius: 8px;
+  border: 1px solid #303030;
 }
+
+.suggestions-suggestions::-webkit-scrollbar {
+  width: 3px; /* Ширина полосы прокрутки */
+  height: 56px;
+}
+
+/* Стилизация бегунка прокрутки */
+.suggestions-suggestions::-webkit-scrollbar-thumb {
+  background: #8F8F8F; /* Цвет бегунка прокрутки */
+}
+
 .suggestions-suggestions strong {
     font-weight: 400;
     color: #39f;
@@ -342,18 +364,11 @@ select::after {
     padding: 4px 4px;
     overflow: hidden;
     margin-bottom: 5px;
+    
 }
 .suggestions-suggestion:hover {
-    background: #f7f7f7;
-    border-radius: 8px;
-    color: #060606;
+    background: #303030;
     transition: background 1s;
-}
-.suggestions-selected {
-    background: #f0f0f0;
-}
-.suggestions-selected:hover {
-    background: #f0f0f0;
 }
 .suggestions-hint {
     padding: 4px 4px;
@@ -366,9 +381,7 @@ select::after {
 .suggestions-subtext {
     color: #777;
 }
-.suggestions-subtext:hover {
-    color: #060606;
-}
+
 /* инпут с добавлением выпадающим списком для выбора организации при регистрации */
 /* Логика ВТОРОЙ части регистрации с вводом данных о пользователе */
 
@@ -423,7 +436,6 @@ select::after {
 
 /* Логика ЧЕТВЕРТОЙ части регистрации с вводом данных о пользователе */
 .inputBox h4{
-    font-family: Inter;
     font-size: calc(0.5vw + 15px);
     font-weight: 700;
     line-height: 120%;
@@ -431,7 +443,6 @@ select::after {
 .regBoxFourLinksWords{
     margin-top: 4px;
     margin-bottom: 12px;
-    font-family: Inter;
     font-size: calc(0.3vw + 13px);
     font-weight: 400;
     line-height: 143%;
@@ -477,23 +488,22 @@ select::after {
 	position: relative;
 	padding-left: 35px;
 	margin-right: 0;
-	font-family: Inter;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 150%;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
 	user-select: none;
     
 }
 .form_radio label:before {
     transition: background 1.5s;
     transition: filter 1.5s;
-	content: "";
-	display: inline-block;
-	width: 24px;
-	height: 24px;
-	position: absolute;
-	left: 0;
-	bottom: 1px;
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
     background: url('../img/icons-outline.svg') 0 0 no-repeat;
     background-size: 24px 24px; /* Установите размер фонового изображения */
 }
@@ -570,9 +580,7 @@ select::after {
 
 
 .accordion-title {
-    font-family: Inter;
     font-size: 16px;
-    font-style: normal;
     font-weight: 400;
     line-height: 150%;
     display: flex;
@@ -677,5 +685,15 @@ select::after {
 @media (max-width: 800px) {
   .userSelection {
     flex-wrap: wrap;
+  };
+}
+@media (min-width: 800px) {
+  .joinSmallBox {
+    height: 150px;
   }
 }
+
+
+
+
+

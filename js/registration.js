@@ -16,6 +16,11 @@ document.querySelector('.regBoxTwo .getLastWindowPlease').onclick = () => {
     document.querySelector('.regBoxOne').classList.remove('none')
     
 }
+document.querySelector('.regBoxTwoForProvider .getLastWindowPlease').onclick = () => {
+    document.querySelector('.regBoxTwoForProvider').classList.add('none')
+    document.querySelector('.regBoxOne').classList.remove('none')
+    
+}
 document.querySelector('.regBoxThree .getLastWindowPlease').onclick = () => {
     document.querySelector('.regBoxThree').classList.add('none')
     document.querySelector('.regBoxTwo').classList.remove('none')
@@ -112,8 +117,13 @@ phoneInput.addEventListener('input', (event) => {
 
 document.getElementById('createPhoneBtn').onclick = () => {
     userDataReg.phone = phoneInput.value
-    document.getElementById('regBoxOne').classList.add('none')
-    document.getElementById('regBoxTwo').classList.remove('none')
+    if (userDataReg.designer) {
+        document.getElementById('regBoxOne').classList.add('none')
+        document.getElementById('regBoxTwo').classList.remove('none')
+    }else{
+        document.getElementById('regBoxOne').classList.add('none')
+        document.getElementById('regBoxTwoForProvider').classList.remove('none')
+    }
     LogData()
 }
 
@@ -186,14 +196,23 @@ function join(arr /*, separator */) {
 }
 function showSuggestion(suggestion) {
     userDataReg.suggestion = suggestion
+    document.querySelector('.checkBoxListForProviderTwoPartReg').classList.remove('none')
     LogData()
 }
 $("#userNameCompany").suggestions({
     token: token,
     type: "PARTY",
-    count: 5,
+    count: 10,
     /* Вызывается, когда пользователь выбирает одну из подсказок */
     onSelect: showSuggestion
+});
+$("#userNameCompanyProvider").suggestions({
+    token: token,
+    type: "PARTY",
+    count: 10,
+    /* Вызывается, когда пользователь выбирает одну из подсказок */
+    onSelect: showSuggestion
+    
 });
 // добавление организации в userdata при регистрации
 
@@ -474,6 +493,49 @@ document.querySelectorAll('.getAuthProcess').forEach(input => {
 
 // Логика окна авторизации с вводом телефонного номера
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Логика второго окна дополнительной ветки регистрации для постовщика
+document.addEventListener('DOMContentLoaded', function () {
+    const providerRolesList = document.getElementById('providerRolesList');
+    const lastBoxForTwoPartRegistrationProvider = document.querySelector('.lastBoxForTwoPartRegistrationProvider');
+    const chooseInputs = providerRolesList.querySelectorAll('.chooseInput');
+    const finishTwoPartProviderRegistr = document.getElementById('finishTwoPartProviderRegistr');
+  
+
+    chooseInputs.forEach(chooseInput => {
+        chooseInput.addEventListener('click', () => {
+            chooseInputs.forEach(input => input.classList.remove('chooseInputActive'));
+            chooseInput.classList.add('chooseInputActive');
+            lastBoxForTwoPartRegistrationProvider.classList.remove('none');
+            checkInputs();
+        });
+    });
+
+    const userNameCompanyProvider = document.getElementById('userNameCompanyProvider');
+    const cityDepartments = document.getElementById('cityDepartments');
+    const userPosition = document.getElementById('userPosition');
+    const userFullName = document.getElementById('userFullName');
+
+    const checkInputs = () => {
+        const isAnyChooseInputActive = Array.from(chooseInputs).some(chooseInput => chooseInput.classList.contains('chooseInputActive'));
+
+        const isAllInputsFilled = userNameCompanyProvider.value.trim() !== '' &&
+            cityDepartments.value.trim() !== '' &&
+            userPosition.value.trim() !== '' &&
+            userFullName.value.trim() !== '';
+
+        finishTwoPartProviderRegistr.disabled = !(isAllInputsFilled && isAnyChooseInputActive);
+    };
+
+    userNameCompanyProvider.addEventListener('input', checkInputs);
+    cityDepartments.addEventListener('input', checkInputs);
+    userPosition.addEventListener('input', checkInputs);
+    userFullName.addEventListener('input', checkInputs);
+});
+
+//Логика второго окна дополнительной ветки регистрации для постовщика
+
 // API
 const fileInput = document.getElementById('fileInput');
 fileInput.addEventListener('change', (event) => {
@@ -527,5 +589,23 @@ function readURL(input, boxId) {
 function LogData() {
     console.log(userDataReg)
 }
+
+
+//Логика для получения списка городов
+fetch('https://raw.githubusercontent.com/russ666/all-countries-and-cities-json/master/countries.json')
+  .then(res => res.json())
+  .then(json => {
+    let jsObj = json;
+    let cities = jsObj['Russia']; // Города России
+
+    let citySelect = document.getElementById('cityDepartments');
+
+    cities.forEach(city => {
+      let cityOption = document.createElement('option');
+      cityOption.value = city; // Устанавливаем значение для каждой опции
+      cityOption.text = city; // Устанавливаем отображаемый текст для опции
+      citySelect.appendChild(cityOption);
+    });
+  });
 
 

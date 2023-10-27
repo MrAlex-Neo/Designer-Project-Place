@@ -10,6 +10,9 @@
       href="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/css/suggestions.min.css"
       rel="stylesheet"
     /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@600&family=Raleway:wght@300&family=Sedgwick+Ave+Display&family=Ubuntu:ital@1&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/js/jquery.suggestions.min.js"></script>
     <script src="./js/registration.js" type="module"></script>
     <script src="./js/scrypt.js" type="module"></script>
@@ -64,7 +67,7 @@
                         <h5>Подтверждение телефона</h5>
                     </div>
                     <div class="input-container registration">
-                        <input type="tel" id="phone" name="phone" required>
+                        <input type="tel" id="phone" name="phone" maxlength="12" required>
                         <label for="phone">Телефон</label>
                     </div>
                     <div class="joinButtons">
@@ -135,6 +138,83 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="getLastWindowPlease">
+                    <p>Назад</p>
+                </div>
+            </div>
+            <div id="regBoxTwoForProvider" class="regBoxTwoForProvider none">
+                <div class="RegSecondPart joinBox">
+                    <div class="RegPartHeader">
+                        <div class="RegPartHeaderH3">
+                            <h3>Регистрация</h3>
+                            <p class="regPartSign">2/3</p>
+                        </div>
+                        <h5>Юридическая информация</h5>
+                    </div>
+                    <div class="joinBox">
+                        <div class="inputBox">
+                            <h5>Название организации</h5>
+                            <div class="input-container userNameCompanyProvider">
+                                <input type="text" name="userNameCompanyProvider" id="userNameCompanyProvider"  required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inputBox">
+                        <h5>Город нахождения главного офиса</h5>
+                        <div class="input-container">
+                            <div class="input-container">
+                                <select name="typeProjects" id="cityDepartments">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkBoxListForProviderTwoPartReg none">
+                        <div class="inputBox">
+                            <h5>Ваше участие в организации</h5>
+                            <div class="inputBoxList" id="providerRolesList">
+                                <div class="chooseInput">
+                                    <p>Владелец / учредитель</p>
+                                </div>
+                                <div class="chooseInput">
+                                    <p>Директор / управленец</p>
+                                </div>
+                                <div class="chooseInput">
+                                    <p>Руководитель отдела продаж</p>
+                                </div>
+                                <div class="chooseInput">
+                                    <p>Менеджер</p>
+                                </div>
+                                <div class="chooseInput">
+                                    <p>Другое</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lastBoxForTwoPartRegistrationProvider none">
+                        <div class="joinBox">
+                            <div class="inputBox">
+                                <h5>Должность</h5>
+                                <div class="input-container">
+                                    <input type="text" id="userPosition" name="userPosition" required>
+                                </div>
+                            </div>
+                            <div class="inputBox">
+                                <h5>ФИО</h5>
+                                <div class="input-container">
+                                    <input type="text" id="userFullName" name="userFullName" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inputBox">
+                        <div class="joinButtons">
+                            <div class="createBtn Btn">
+                                <button class="Btn" id="finishTwoPartProviderRegistr" disabled>Продолжить</button>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="getLastWindowPlease">
                     <p>Назад</p>
@@ -325,7 +405,7 @@
                 <h5>Подтверждение телефона</h5>
             </div>
             <div class="input-container authorization">
-                <input type="tel" id="phoneAuth" name="phoneAuth" required>
+                <input type="tel" id="phoneAuth" name="phoneAuth" maxlength="12" required>
                 <label id="labelAuthTel" for="phoneAuth">Телефон</label>
             </div>
             <div class="checkCodeTel none">
