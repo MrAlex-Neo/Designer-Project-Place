@@ -14,12 +14,12 @@ document.querySelector('.regBoxOne .getLastWindowPlease').onclick = () => {
 document.querySelector('.regBoxTwo .getLastWindowPlease').onclick = () => {
     document.querySelector('.regBoxTwo').classList.add('none')
     document.querySelector('.regBoxOne').classList.remove('none')
-    
+
 }
 document.querySelector('.regBoxTwoForProvider .getLastWindowPlease').onclick = () => {
     document.querySelector('.regBoxTwoForProvider').classList.add('none')
     document.querySelector('.regBoxOne').classList.remove('none')
-    
+
 }
 document.querySelector('.regBoxThree .getLastWindowPlease').onclick = () => {
     document.querySelector('.regBoxThree').classList.add('none')
@@ -120,7 +120,7 @@ document.getElementById('createPhoneBtn').onclick = () => {
     if (userDataReg.designer) {
         document.getElementById('regBoxOne').classList.add('none')
         document.getElementById('regBoxTwo').classList.remove('none')
-    }else{
+    } else {
         document.getElementById('regBoxOne').classList.add('none')
         document.getElementById('regBoxTwoForProvider').classList.remove('none')
     }
@@ -212,7 +212,7 @@ $("#userNameCompanyProvider").suggestions({
     count: 10,
     /* Вызывается, когда пользователь выбирает одну из подсказок */
     onSelect: showSuggestion
-    
+
 });
 // добавление организации в userdata при регистрации
 
@@ -298,6 +298,19 @@ document.querySelectorAll('input[type="radio"][name="partfolio"]').forEach(input
             document.querySelector('.projectsRadioAssent').classList.add('none')
     });
 });
+document.querySelectorAll('input[type="radio"][name="showrooms"]').forEach(input => {
+    input.addEventListener('change', event => {
+        input.value === '1' ? document.querySelector('.thingsRadioAssent').classList.remove('none') :
+            document.querySelector('.thingsRadioAssent').classList.add('none')
+    });
+});
+document.querySelectorAll('input[type="radio"][name="things"]').forEach(input => {
+    input.addEventListener('change', event => {
+        input.value === '1' ? document.querySelector('.linksRadioAssent').classList.remove('none') :
+            document.querySelector('.linksRadioAssent').classList.add('none')
+    });
+});
+
 
 // Функция для обработки загрузки файлов и создания элементов
 function handleFileUpload(userEducationInput, educationFilesContainer) {
@@ -482,7 +495,7 @@ document.getElementById('createPhoneBtnAuth').onclick = () => {
 document.getElementById('getRegProcess').onclick = () => {
     document.querySelector('.authorizationBox').classList.add('none')
     document.querySelector('.registrationRoles').classList.remove('none')
-    
+
 }
 document.querySelectorAll('.getAuthProcess').forEach(input => {
     input.addEventListener('click', event => {
@@ -501,7 +514,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const lastBoxForTwoPartRegistrationProvider = document.querySelector('.lastBoxForTwoPartRegistrationProvider');
     const chooseInputs = providerRolesList.querySelectorAll('.chooseInput');
     const finishTwoPartProviderRegistr = document.getElementById('finishTwoPartProviderRegistr');
-  
+
 
     chooseInputs.forEach(chooseInput => {
         chooseInput.addEventListener('click', () => {
@@ -534,7 +547,109 @@ document.addEventListener('DOMContentLoaded', function () {
     userFullName.addEventListener('input', checkInputs);
 });
 
+
+document.getElementById('finishTwoPartProviderRegistr').onclick = () => {
+    // userDataReg.userName = document.getElementById('userName').value
+    // userDataReg.userCity = document.getElementById('userCity').value
+    // userDataReg.typeProjects = document.getElementById('typeProjects').value
+    document.getElementById('regBoxTwoForProvider').classList.add('none')
+    document.getElementById('regBoxThreeForProvider').classList.remove('none')
+    LogData()
+}
 //Логика второго окна дополнительной ветки регистрации для постовщика
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+const selectValuesDisplay = document.getElementById('selectValuesDisplay');
+const mySelect = document.getElementById('mySelect');
+const selectedValues = [];
+let textElem = ''
+mySelect.addEventListener('change', function (event) {
+    const selectedOption = event.target.value;
+
+    // Проверяем, есть ли значение в массиве
+    const index = selectedValues.indexOf(selectedOption);
+
+    if (index > -1) {
+        // Если уже есть, удаляем из массива
+        selectedValues.splice(index, 1);
+    } else {
+        // Иначе добавляем в массив, но не более 3 элементов
+        if (selectedValues.length < 3) {
+            selectedValues.push(selectedOption);
+        } else {
+            alert('Максимальное количество выбранных опций - три.');
+            // Возвращаемся к предыдущему выбору
+            event.target.value = selectedValues[selectedValues.length - 1];
+        }
+    }
+
+    // Помечаем соответствующие элементы в списке с классом .selectedOption
+    const options = document.querySelectorAll('#mySelect option');
+    options.forEach(option => {
+        if (selectedValues.includes(option.value)) {
+            option.classList.add('actionOption');
+        } else {
+            option.classList.remove('actionOption');
+        }
+    });
+
+    for (let g = 0; g < selectedValues.length; g++) {
+        if (g === 2) {
+            textElem += ` и ${selectedValues[g]}`
+            
+        }else if(g === 0){
+            textElem += `    ${selectedValues[g]}`
+        }else{
+            textElem += `, ${selectedValues[g]}`
+        }
+        
+    }
+    selectValuesDisplay.textContent = textElem + `  (${selectedValues.length}/3)`
+    textElem = ""
+});
+
+const linkShowrooms = document.getElementById('linkShowrooms');
+let linkShow = document.querySelectorAll('.linkShow');
+
+document.getElementById('createLinkShowroomsBox').onclick = () => {
+    const newLinkElement = document.createElement('div');
+    newLinkElement.className = 'input-container linkShow';
+
+    newLinkElement.innerHTML = `
+        <div class="linkHeader">
+            <h5>Ссылка:</h5>
+            <div class="imgDeleteLink"><img src="./img/icons8-delete.svg"></div>
+        </div>
+        <input type="text" data-index="${linkShow.length}"  required>
+    `;
+
+    linkShowrooms.appendChild(newLinkElement);
+    linkShow = document.querySelectorAll('.linkShow'); // Обновляем массив linkBoxArray
+    console.log(linkShow);
+
+    // Добавляем обработчик клика на .imgDeleteLink в новом элементе
+    const deleteLinkButton = newLinkElement.querySelector('.imgDeleteLink');
+    deleteLinkButton.addEventListener('click', () => {
+        linkShowrooms.removeChild(newLinkElement); // Удаляем родительский элемент при клике
+        linkShow = document.querySelectorAll('.linkShow'); // Обновляем массив linkBoxArray
+        console.log(linkShow);
+    });
+};
+
+document.getElementById('finishRegBoxThreeForProvider').onclick = () => {
+    // userDataReg.userName = document.getElementById('userName').value
+    // userDataReg.userCity = document.getElementById('userCity').value
+    // userDataReg.typeProjects = document.getElementById('typeProjects').value
+    document.getElementById('regBoxThreeForProvider').classList.add('none')
+    document.getElementById('regBoxFIve').classList.remove('none')
+    LogData()
+}
+
+
+
+//Логика третьего окна дополнительной ветки регистрации для постовщика
 
 // API
 const fileInput = document.getElementById('fileInput');
@@ -593,19 +708,19 @@ function LogData() {
 
 //Логика для получения списка городов
 fetch('https://raw.githubusercontent.com/russ666/all-countries-and-cities-json/master/countries.json')
-  .then(res => res.json())
-  .then(json => {
-    let jsObj = json;
-    let cities = jsObj['Russia']; // Города России
+    .then(res => res.json())
+    .then(json => {
+        let jsObj = json;
+        let cities = jsObj['Russia']; // Города России
 
-    let citySelect = document.getElementById('cityDepartments');
+        let citySelect = document.getElementById('cityDepartments');
 
-    cities.forEach(city => {
-      let cityOption = document.createElement('option');
-      cityOption.value = city; // Устанавливаем значение для каждой опции
-      cityOption.text = city; // Устанавливаем отображаемый текст для опции
-      citySelect.appendChild(cityOption);
+        cities.forEach(city => {
+            let cityOption = document.createElement('option');
+            cityOption.value = city; // Устанавливаем значение для каждой опции
+            cityOption.text = city; // Устанавливаем отображаемый текст для опции
+            citySelect.appendChild(cityOption);
+        });
     });
-  });
 
 
