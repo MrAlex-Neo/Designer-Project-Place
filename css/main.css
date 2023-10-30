@@ -119,6 +119,7 @@ hr {
   flex-direction: column;
   justify-content: space-between;
   margin-top: 50px;
+
   margin-bottom: 24px;
 }
 /* burger */
@@ -130,7 +131,7 @@ hr {
   transition: all 0.2s;
 }
 .unBurgerBox .categoryForMenuBurger {
-  height: 95vh;
+  height: 100vh;
   margin-top: 0;
 }
 .unBurgerBox li {
@@ -138,18 +139,19 @@ hr {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin: 20px 16px;
+  padding: 20px 16px;
 }
 .lableForLiForBurger .firstImgLable {
   width: 36px;
   height: 17px;
 }
-.lastLiForBurger {
+.asd li {
   display: flex;
-  padding: 16px;
   border-radius: 32px;
+  padding: 10px 9px;
+  margin: 10px 8px;
   border: 1px solid var(--grayColor-dark);
-  transition: all 1.5s;
+  transition: all 0.5s;
 }
 
 /* Применение стилей при наведении на .unBurgerBox */
@@ -158,6 +160,12 @@ hr {
 }
 .unBurgerBox:hover ul li {
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.unBurgerBox ul {
+  margin: 0;
+  padding: 0;
 }
 .unBurgerBox ul li p {
   opacity: 0;
@@ -172,23 +180,42 @@ hr {
 .unBurgerBox:hover ul li p {
   opacity: 1;
   visibility: visible;
+  width: auto;
+}
+.unBurgerBox:hover ul li {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.unBurgerBox:hover .lastLiForBurger {
+  padding: 16px;
 }
 
 .unBurgerBox:hover .firstImgLable {
   display: none;
 }
 .firstImgLable {
+  position: absolute;
+  left: 10px;
+  top: 20px;
   transition: all 0.5s;
 }
 .secondImgLable {
-  transition: all 0.5s;
-  margin: 0;
-  padding: 0;
+  position: absolute;
+  left: -5px;
+  top: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, all 1.5s; /* Объедините свойства transition */
 }
+
 .unBurgerBox:hover .secondImgLable {
-  display: block;
-  margin: 0;
-  padding: 0;
+  opacity: 1;
+  visibility: visible;
+  display: flex;
+  position: absolute;
+  left: -5px;
+  top: 20px;
   width: 156px;
   height: 17px;
 }
@@ -198,12 +225,12 @@ hr {
   .burger {
     display: flex;
   }
-  .unBurgerBox{
+  .unBurgerBox {
     display: none;
   }
 }
 @media (min-width: 600px) {
-  .unBurgerBox{
+  .unBurgerBox {
     display: block;
   }
 }
