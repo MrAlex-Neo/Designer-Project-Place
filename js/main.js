@@ -9,3 +9,16 @@ menuBtn.addEventListener('click', function(){
 	menu.classList.toggle('active');
 })
 
+const listItems = document.querySelectorAll('.categoryForMenuBurgerUp li');
+
+listItems.forEach((item, index) => {
+  if (index !== 0) {
+    item.addEventListener('click', () => {
+        listItems.forEach((item, index) => {
+            item.classList.remove('activeLiMenuBurger');
+            });
+        item.classList.add('activeLiMenuBurger');
+    });
+  }
+});
+

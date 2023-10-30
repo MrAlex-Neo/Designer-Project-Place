@@ -128,10 +128,13 @@ hr {
 .unBurgerBox {
   max-width: 60px;
   border-right: 1px solid var(--grayColor-dark);
+  background-color: var(--grayColor-dark);
+  border-radius: 16px;
+  margin: 24px 16px;
   transition: all 0.2s;
 }
 .unBurgerBox .categoryForMenuBurger {
-  height: 100vh;
+  height: 95vh;
   margin-top: 0;
 }
 .unBurgerBox li {
@@ -157,12 +160,39 @@ hr {
 /* Применение стилей при наведении на .unBurgerBox */
 .unBurgerBox:hover {
   max-width: 250px;
+  background-color: var(--background);
+  margin-top: 10px;
+  padding: 0;
+  border-radius: 1px;
 }
+.unBurgerBox:hover .categoryForMenuBurger {
+  height: 100vh;
+  margin-top: 0;
+}
+
 .unBurgerBox:hover ul li {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  transition: all 0.5s;
 }
+.unBurgerBox li:active {
+    transform: translateY(7px); /* Например, сдвиг вниз */
+  }
+.unBurgerBox:hover ul li:hover {
+  cursor: pointer;
+  background-color: var(--grayColor-dark);
+  
+}
+.unBurgerBox:hover ul .lableForLiForBurger:hover {
+  cursor: auto;
+  background-color: var(--background);
+}
+.activeLiMenuBurger {
+  background-color: var(--grayColor-dark);
+}
+
 .unBurgerBox ul {
   margin: 0;
   padding: 0;
@@ -196,8 +226,8 @@ hr {
 }
 .firstImgLable {
   position: absolute;
-  left: 12px;
-  top: 20px;
+  left: 27px;
+  top: 40px;
   transition: all 0.5s;
 }
 .secondImgLable {
