@@ -28,37 +28,53 @@
     <div class="menu">
         <nav class="categoryForMenuBurger">
             <ul class="categoryForMenuBurgerUp">
-                <li><img src="./img/burgerIcons/provider.svg" alt=""><p>Поставщики</p></li>
-                <li><img src="./img/burgerIcons/armchair.svg" alt=""><p>Барахолка</p></li>
+                <li class="activeLi"><img src="./img/burgerIcons/provider.svg" alt=""><p>Поставщики</p></li>
+                <li class="activeLi"><img src="./img/burgerIcons/armchair.svg" alt=""><p>Барахолка</p></li>
                 <hr>
-                <li><img src="./img/burgerIcons/news.svg" alt=""><p>Новости</p></li>
-                <li><img src="./img/burgerIcons/account.svg" alt=""><p>Личный кабинет</p></li>
+                <li class="activeLi"><img src="./img/burgerIcons/news.svg" alt=""><p>Новости</p></li>
+                <li class="activeLi"><img src="./img/burgerIcons/account.svg" alt=""><p>Личный кабинет</p></li>
             </ul>
             <ul>
-                <li><img src="./img/burgerIcons/plus.svg" alt=""><p>Запросить товар</p></li>
+                <li class="activeLi"><img src="./img/burgerIcons/plus.svg" alt=""><p>Запросить товар</p></li>
             </ul>
         </nav>
     </div>
     <main>
         <div class="mainBox">
-            <div class="burgerBox">
-
-            </div>
-                
             <div class="unBurgerBox">
                 <nav class="categoryForMenuBurger">
                     <ul class="categoryForMenuBurgerUp">
                         <li class="lableForLiForBurger"><img class="firstImgLable" src="./img/burgerIcons/DC.svg" alt=""><img class="secondImgLable none" src="./img/Design Cloud.svg"></img></li>
-                        <li class="activeLiMenuBurger"><img src="./img/burgerIcons/provider.svg" alt=""><p class="none">Поставщики</p></li>
-                        <li><img src="./img/burgerIcons/armchair.svg" alt=""><p class="none">Барахолка</p></li>
+                        <li class="activeLiMenuBurger activeLi"><img src="./img/burgerIcons/provider.svg" alt=""><p class="none">Поставщики</p></li>
+                        <li class="activeLi"><img src="./img/burgerIcons/armchair.svg" alt=""><p class="none">Барахолка</p></li>
                         <hr>
-                        <li><img src="./img/burgerIcons/news.svg" alt=""><p class="none">Новости</p></li>
-                        <li><img src="./img/burgerIcons/account.svg" alt=""><p class="none">Личный кабинет</p></li>
+                        <li class="activeLi"><img src="./img/burgerIcons/news.svg" alt=""><p class="none">Новости</p></li>
+                        <li class="activeLi"><img src="./img/burgerIcons/account.svg" alt=""><p class="none">Личный кабинет</p></li>
                     </ul>
                     <ul class="ulLastLiForBurger">
-                        <li class="lastLiForBurger"><img src="./img/burgerIcons/plus.svg" alt=""><p class="none">Запросить товар</p></li>
+                        <li class="lastLiForBurger activeLi"><img src="./img/burgerIcons/plus.svg" alt=""><p class="none">Запросить товар</p></li>
                     </ul>
                 </nav>
+            </div>
+            <div class="mainBoxInThisContainer">
+                <div class="providerBox">
+                    <div class="headerBoxH2andSpan">
+                        <h2>Поставщики</h2>
+                        <span>(13)</span>
+                    </div>
+                    <div class="searchCategory">
+                        <div class="multiselect">
+                            <input type="text" id="multiselect-input" placeholder="Выберите варианты">
+                            <ul class="multiselect-options" id="multiselect-options">
+                              <li><input type="checkbox" value="apple"> Apple</li>
+                              <li><input type="checkbox" value="banana"> Banana</li>
+                              <li><input type="checkbox" value="orange"> Orange</li>
+                              <!-- Другие варианты -->
+                            </ul>
+                          </div>
+                          
+                    </div>
+                </div>
             </div>
         </div>
     </main>

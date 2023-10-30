@@ -9,16 +9,39 @@ menuBtn.addEventListener('click', function(){
 	menu.classList.toggle('active');
 })
 
-const listItems = document.querySelectorAll('.categoryForMenuBurgerUp li');
+const listItems = document.querySelectorAll('.activeLi');
 
-listItems.forEach((item, index) => {
-  if (index !== 0) {
-    item.addEventListener('click', () => {
-        listItems.forEach((item, index) => {
-            item.classList.remove('activeLiMenuBurger');
-            });
-        item.classList.add('activeLiMenuBurger');
+listItems.forEach((item) => {
+  item.addEventListener('click', () => {
+    listItems.forEach((el) => {
+      el.classList.remove('activeLiMenuBurger');
     });
+    item.classList.add('activeLiMenuBurger');
+  });
+});
+
+const input = document.getElementById('multiselect-input');
+const options = document.getElementById('multiselect-options');
+
+input.addEventListener('click', function () {
+  options.style.display = options.style.display === 'block' ? 'none' : 'block';
+});
+
+options.addEventListener('change', function (event) {
+  const selectedOptions = Array.from(
+    options.querySelectorAll('input[type="checkbox"]:checked')
+  ).map((checkbox) => checkbox.value);
+
+  input.value = selectedOptions.join(', ');
+});
+
+document.addEventListener('click', function (event) {
+  if (!input.contains(event.target) && !options.contains(event.target)) {
+    options.style.display = 'none';
   }
 });
+
+
+
+
 
