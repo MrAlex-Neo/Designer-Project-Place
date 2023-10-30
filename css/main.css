@@ -163,10 +163,12 @@ hr {
   background-color: var(--background);
   margin-top: 10px;
   padding: 0;
+  padding: 0;
   border-radius: 1px;
 }
 .unBurgerBox:hover .categoryForMenuBurger {
   height: 100vh;
+  margin-left: -20px;
   margin-top: 0;
 }
 
@@ -219,6 +221,7 @@ hr {
 }
 .unBurgerBox:hover .lastLiForBurger {
   padding: 16px;
+  margin-bottom: 25px;
 }
 
 .unBurgerBox:hover .firstImgLable {
