@@ -145,7 +145,7 @@ hr {
   width: 36px;
   height: 17px;
 }
-.asd li {
+.ulLastLiForBurger li {
   display: flex;
   border-radius: 32px;
   padding: 10px 9px;
@@ -196,7 +196,7 @@ hr {
 }
 .firstImgLable {
   position: absolute;
-  left: 10px;
+  left: 12px;
   top: 20px;
   transition: all 0.5s;
 }
