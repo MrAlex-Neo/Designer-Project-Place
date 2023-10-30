@@ -1,0 +1,209 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+}
+:root {
+  --white: #ffffff;
+  --grayColor: #8f8f8f;
+  --grayColor-dark: #292929;
+  --red: #db3138;
+  --btnBlue: #0084ff;
+  --background: #060606;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+  color: var(--white);
+}
+hr {
+  height: 1px;
+  background: var(--grayColor-dark);
+  border: none;
+}
+.none {
+  display: none;
+}
+
+/* burger */
+.burger {
+  margin: 16px;
+  gap: 16px;
+  display: none;
+  justify-content: flex-start;
+  align-items: center;
+}
+.burger img {
+  width: 133px;
+  height: 17px;
+  z-index: 111;
+}
+/* Гамбургер иконка */
+.menu-btn {
+  width: 30px;
+  height: 30px;
+  z-index: 2;
+  overflow: hidden;
+  position: relative;
+}
+.menu-btn span {
+  width: 40px;
+  height: 3px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--white);
+  transition: all 0.5s;
+}
+.menu-btn span:nth-of-type(2) {
+  top: calc(50% - 5px);
+}
+.menu-btn span:nth-of-type(3) {
+  top: calc(50% + 5px);
+}
+/* Меняем гамбургер иконку, когда меню открыто */
+.menu-btn.active span:nth-of-type(1) {
+  display: none;
+}
+.menu-btn.active span:nth-of-type(2) {
+  top: 50%;
+  transform: translate(-50%, 0%) rotate(45deg);
+}
+.menu-btn.active span:nth-of-type(3) {
+  top: 50%;
+  transform: translate(-50%, 0%) rotate(-45deg);
+}
+/* Меню, которое будет появляться */
+.mobileHeader {
+  height: 100%;
+}
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0.1, 0.1, 0.1, 0.5);
+  transform: translateX(-100%);
+  transition: transform 0.5s;
+  z-index: 1;
+}
+.menu.active {
+  transform: translateX(0);
+}
+.menu li {
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 20px 16px;
+}
+.menu hr {
+  margin: 12px 0;
+}
+.menu img {
+  width: 24px;
+  height: 24px;
+  margin: 16px;
+}
+.menu p {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+}
+.categoryForMenuBurger {
+  display: flex;
+  height: 85vh;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 50px;
+  margin-bottom: 24px;
+}
+/* burger */
+
+/* main page burger */
+.unBurgerBox {
+  max-width: 60px;
+  border-right: 1px solid var(--grayColor-dark);
+  transition: all 0.2s;
+}
+.unBurgerBox .categoryForMenuBurger {
+  height: 95vh;
+  margin-top: 0;
+}
+.unBurgerBox li {
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 20px 16px;
+}
+.lableForLiForBurger .firstImgLable {
+  width: 36px;
+  height: 17px;
+}
+.lastLiForBurger {
+  display: flex;
+  padding: 16px;
+  border-radius: 32px;
+  border: 1px solid var(--grayColor-dark);
+  transition: all 1.5s;
+}
+
+/* Применение стилей при наведении на .unBurgerBox */
+.unBurgerBox:hover {
+  max-width: 250px;
+}
+.unBurgerBox:hover ul li {
+  display: flex;
+}
+.unBurgerBox ul li p {
+  opacity: 0;
+  margin-left: 16px;
+  visibility: hidden;
+  transition: opacity 0.5s;
+  white-space: nowrap;
+  display: block; /* Этот блок покажет текст */
+  width: 0;
+}
+
+.unBurgerBox:hover ul li p {
+  opacity: 1;
+  visibility: visible;
+}
+
+.unBurgerBox:hover .firstImgLable {
+  display: none;
+}
+.firstImgLable {
+  transition: all 0.5s;
+}
+.secondImgLable {
+  transition: all 0.5s;
+  margin: 0;
+  padding: 0;
+}
+.unBurgerBox:hover .secondImgLable {
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 156px;
+  height: 17px;
+}
+
+/* main page burger */
+@media (max-width: 600px) {
+  .burger {
+    display: flex;
+  }
+  .unBurgerBox{
+    display: none;
+  }
+}
+@media (min-width: 600px) {
+  .unBurgerBox{
+    display: block;
+  }
+}

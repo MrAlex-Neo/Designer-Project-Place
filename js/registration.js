@@ -21,6 +21,11 @@ document.querySelector('.regBoxTwoForProvider .getLastWindowPlease').onclick = (
     document.querySelector('.regBoxOne').classList.remove('none')
 
 }
+document.querySelector('.regBoxThreeForProvider .getLastWindowPlease').onclick = () => {
+    document.querySelector('.regBoxThreeForProvider').classList.add('none')
+    document.querySelector('.regBoxTwoForProvider').classList.remove('none')
+
+}
 document.querySelector('.regBoxThree .getLastWindowPlease').onclick = () => {
     document.querySelector('.regBoxThree').classList.add('none')
     document.querySelector('.regBoxTwo').classList.remove('none')
@@ -441,71 +446,6 @@ document.getElementById('finishFourPartPrivateRegistr').onclick = () => {
 }
 //Логика четвертой части регистрации с вводом данных о пользователе
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//Логика окна авторизации с вводом телефонного номера
-const phoneInputAuth = document.getElementById('phoneAuth');
-const labelAuth = document.getElementById('labelAuthTel');
-const checkTelAuth = document.getElementById('checkTelAuth');
-const labelCheckAuthTel = document.getElementById('labelCheckAuthTel');
-
-phoneInputAuth.addEventListener('focus', () => {
-    if (phoneInputAuth.value.length == 0) {
-        phoneInputAuth.value = '+7';
-    }
-    labelAuth.style.top = '-25px';
-    labelAuth.style.left = '-2px';
-    labelAuth.style.fontSize = '14px';
-});
-phoneInputAuth.addEventListener('blur', () => {
-    if (!phoneInputAuth.value) {
-        if (phoneInputAuth.value.length == 0) {
-            phoneInputAuth.value = '+7';
-        }
-        labelAuth.style.top = '20%';
-        labelAuth.style.left = '2%';
-        labelAuth.style.fontSize = '16px';
-    }
-});
-checkTelAuth.addEventListener('focus', () => {
-    labelCheckAuthTel.style.top = '-25px';
-    labelCheckAuthTel.style.left = '-2px';
-    labelCheckAuthTel.style.fontSize = '14px';
-});
-
-phoneInputAuth.addEventListener('input', (event) => {
-    const value = event.target.value;
-    if (phonePattern.test(value)) {
-        document.getElementById('createPhoneBtnAuth').removeAttribute('disabled');
-    } else {
-        document.getElementById('createPhoneBtnAuth').setAttribute('disabled', 'disabled');
-    }
-});
-
-document.getElementById('createPhoneBtnAuth').onclick = () => {
-    userDataAuth.phone = phoneInputAuth.value
-    // document.getElementById('regBoxOne').classList.add('none')
-    phoneInputAuth.setAttribute('disabled', true);
-    document.querySelector('.checkCodeTel').classList.remove('none')
-    document.getElementById('createPhoneBtnAuth').textContent = 'Войти'
-    // LogData()
-}
-
-document.getElementById('getRegProcess').onclick = () => {
-    document.querySelector('.authorizationBox').classList.add('none')
-    document.querySelector('.registrationRoles').classList.remove('none')
-
-}
-document.querySelectorAll('.getAuthProcess').forEach(input => {
-    input.addEventListener('click', event => {
-        document.querySelector('.registrationRoles').classList.add('none')
-        document.querySelector('.authorizationBox').classList.remove('none')
-    });
-});
-
-// Логика окна авторизации с вводом телефонного номера
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Логика второго окна дополнительной ветки регистрации для постовщика
@@ -561,6 +501,7 @@ document.getElementById('finishTwoPartProviderRegistr').onclick = () => {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+//Логика третьего окна дополнительной ветки регистрации для постовщика
 const selectValuesDisplay = document.getElementById('selectValuesDisplay');
 const mySelect = document.getElementById('mySelect');
 const selectedValues = [];
@@ -647,9 +588,76 @@ document.getElementById('finishRegBoxThreeForProvider').onclick = () => {
     LogData()
 }
 
-
-
 //Логика третьего окна дополнительной ветки регистрации для постовщика
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Логика окна авторизации с вводом телефонного номера
+const phoneInputAuth = document.getElementById('phoneAuth');
+const labelAuth = document.getElementById('labelAuthTel');
+const checkTelAuth = document.getElementById('checkTelAuth');
+const labelCheckAuthTel = document.getElementById('labelCheckAuthTel');
+
+phoneInputAuth.addEventListener('focus', () => {
+    if (phoneInputAuth.value.length == 0) {
+        phoneInputAuth.value = '+7';
+    }
+    labelAuth.style.top = '-25px';
+    labelAuth.style.left = '-2px';
+    labelAuth.style.fontSize = '14px';
+});
+phoneInputAuth.addEventListener('blur', () => {
+    if (!phoneInputAuth.value) {
+        if (phoneInputAuth.value.length == 0) {
+            phoneInputAuth.value = '+7';
+        }
+        labelAuth.style.top = '20%';
+        labelAuth.style.left = '2%';
+        labelAuth.style.fontSize = '16px';
+    }
+});
+checkTelAuth.addEventListener('focus', () => {
+    labelCheckAuthTel.style.top = '-25px';
+    labelCheckAuthTel.style.left = '-2px';
+    labelCheckAuthTel.style.fontSize = '14px';
+});
+
+phoneInputAuth.addEventListener('input', (event) => {
+    const value = event.target.value;
+    if (phonePattern.test(value)) {
+        document.getElementById('createPhoneBtnAuth').removeAttribute('disabled');
+    } else {
+        document.getElementById('createPhoneBtnAuth').setAttribute('disabled', 'disabled');
+    }
+});
+
+document.getElementById('createPhoneBtnAuth').onclick = () => {
+    if (document.getElementById('createPhoneBtnAuth').textContent === 'Войти') {
+        // const user = {name: 'Alex', age: 29}
+        // localStorage.setItem('user', JSON.stringify(user))
+        location = './main.html'
+    }
+    userDataAuth.phone = phoneInputAuth.value
+    // document.getElementById('regBoxOne').classList.add('none')
+    phoneInputAuth.setAttribute('disabled', true);
+    document.querySelector('.checkCodeTel').classList.remove('none')
+    document.getElementById('createPhoneBtnAuth').textContent = 'Войти'
+    // LogData()
+}
+
+document.getElementById('getRegProcess').onclick = () => {
+    document.querySelector('.authorizationBox').classList.add('none')
+    document.querySelector('.registrationRoles').classList.remove('none')
+
+}
+document.querySelectorAll('.getAuthProcess').forEach(input => {
+    input.addEventListener('click', event => {
+        document.querySelector('.registrationRoles').classList.add('none')
+        document.querySelector('.authorizationBox').classList.remove('none')
+    });
+});
+
+// Логика окна авторизации с вводом телефонного номера
 
 // API
 const fileInput = document.getElementById('fileInput');
