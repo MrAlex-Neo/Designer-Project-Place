@@ -502,54 +502,58 @@ document.getElementById('finishTwoPartProviderRegistr').onclick = () => {
 
 
 //Логика третьего окна дополнительной ветки регистрации для постовщика
-const selectValuesDisplay = document.getElementById('selectValuesDisplay');
-const mySelect = document.getElementById('mySelect');
-const selectedValues = [];
-let textElem = ''
-mySelect.addEventListener('change', function (event) {
-    const selectedOption = event.target.value;
+//ИНПУТ С КАТЕГОРИЯМИ
+let searchArray = []
+document.querySelectorAll('.inputCheck p').forEach((elem) => {
+  elem.addEventListener('click', (event) => {
+    console.log(event)
+    const dataIndex = elem.getAttribute('data-index');
+    const suboptions = document.querySelector(`.suboptions[data-index="${dataIndex}"]`);
 
-    // Проверяем, есть ли значение в массиве
-    const index = selectedValues.indexOf(selectedOption);
-
-    if (index > -1) {
-        // Если уже есть, удаляем из массива
-        selectedValues.splice(index, 1);
-    } else {
-        // Иначе добавляем в массив, но не более 3 элементов
-        if (selectedValues.length < 3) {
-            selectedValues.push(selectedOption);
-        } else {
-            alert('Максимальное количество выбранных опций - три.');
-            // Возвращаемся к предыдущему выбору
-            event.target.value = selectedValues[selectedValues.length - 1];
-        }
+    if (suboptions) {
+      suboptions.classList.toggle('none');
     }
-
-    // Помечаем соответствующие элементы в списке с классом .selectedOption
-    const options = document.querySelectorAll('#mySelect option');
-    options.forEach(option => {
-        if (selectedValues.includes(option.value)) {
-            option.classList.add('actionOption');
-        } else {
-            option.classList.remove('actionOption');
-        }
-    });
-
-    for (let g = 0; g < selectedValues.length; g++) {
-        if (g === 2) {
-            textElem += ` и ${selectedValues[g]}`
-            
-        }else if(g === 0){
-            textElem += `    ${selectedValues[g]}`
-        }else{
-            textElem += `, ${selectedValues[g]}`
-        }
-        
-    }
-    selectValuesDisplay.textContent = textElem + `  (${selectedValues.length}/3)`
-    textElem = ""
+  });
 });
+document.querySelectorAll('.liContent').forEach((elem) => {
+  elem.addEventListener('click', (event) => {
+    const text = elem.querySelector('h6').textContent;
+    const img = elem.querySelector('img');
+    if (searchArray.includes(text)) {
+      searchArray = searchArray.filter(item => item !== text);
+      img.classList.add('none');
+    } else if (searchArray.length < 3) {
+      img.classList.remove('none');
+      searchArray.push(text);
+    }
+    const inputField = document.getElementById('multiselect-input');
+
+    if (searchArray.length > 0) {
+      const displayText = searchArray.slice(0, 3).join(', ');
+      inputField.value = searchArray.length < 4 ? displayText + ` (${searchArray.length}/3)` : displayText;
+    } else {
+      inputField.value = '';
+    }
+    console.log(searchArray);
+  });
+});
+document.addEventListener('click', function (event) {
+  const multiselect = document.getElementById('multiselect');
+  const multiselectOptions = document.querySelector('.multiselect-options');
+
+  if (event.target !== multiselect && !multiselect.contains(event.target)) {
+    multiselectOptions.classList.add('none');
+  }
+});
+
+document.getElementById('multiselect-input').addEventListener('click', function (event) {
+  document.querySelector('.multiselect-options').classList.remove('none');
+  document.querySelectorAll('.suboptions').forEach(elem => {
+    elem.classList.add('none');
+  });
+  event.stopPropagation();
+});
+//ИНПУТ С КАТЕГОРИЯМИ
 
 const linkShowrooms = document.getElementById('linkShowrooms');
 let linkShow = document.querySelectorAll('.linkShow');
@@ -653,6 +657,7 @@ document.getElementById('getRegProcess').onclick = () => {
 document.querySelectorAll('.getAuthProcess').forEach(input => {
     input.addEventListener('click', event => {
         document.querySelector('.registrationRoles').classList.add('none')
+        document.querySelector('.registrationMain').classList.add('none')
         document.querySelector('.authorizationBox').classList.remove('none')
     });
 });

@@ -12,6 +12,8 @@
   --red: #db3138;
   --btnBlue: #0084ff;
   --background: #060606;
+  --BGselect: #212121;
+  --BGselectLI: #303030;
 }
 body {
   margin: 0;
@@ -214,17 +216,22 @@ input:hover, input:active, input:focus {
 /* main page burger */
 
 /* provider Box */
+.mainBoxInThisContainer{
+  margin-left: 32px;
+  margin-top: 40px;
+
+}
+.providerBox .headerBoxH2andSpan{
+  margin-bottom: 32px;
+}
 .mainBox {
   display: flex;
-  gap: 32px;
 }
-.providerBox {
-  margin-top: 40px;
-}
+
 .headerBoxH2andSpan {
   display: flex;
-  gap: 8px;
   align-items: center;
+  gap: 8px;
 }
 .headerBoxH2andSpan span {
   color: var(--text-prizrak);
@@ -235,17 +242,21 @@ input:hover, input:active, input:focus {
 }
 .multiselect {
   position: relative;
-  width: 200px;
 }
 #multiselect-input {
   padding: 12px 16px;
-  width: 684px;
+  width: 688px;
   border-radius: 8px;
   border: 1px solid var(--grayColor-dark);
   background-color: var(--background);
   color: var(--white);
   transition: border 0.5s;
-  
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+}
+.regBoxThreeForProvider #multiselect-input{
+  background-color: #111;
 }
 #multiselect-input:hover {
   border: 1px solid var(--inputfocus);
@@ -265,8 +276,7 @@ input:hover, input:active, input:focus {
 }
 #multiselect-options {
   padding: 12px 16px;
-
-  width: 684px;
+  width: 688px;
   border-radius: 8px;
   border: 1px solid var(--grayColor-dark);
 }
@@ -282,29 +292,59 @@ input:hover, input:active, input:focus {
 }
 
 /*чекбокс */
+.inputCheck p{
+  color: var(--grayColor);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  cursor: pointer;
+}
+.multiselect-options{
+  background-color: var(--BGselect);
+}
 /* Скрываем стандартный чекбокс */
 /* .multiselect-options input[type="checkbox"] {
   display: none;
 } */
-/* Создаем стилизованный кастомный чекбокс */
-.multiselect-options input[type="checkbox"] + label::before {
-  content: '';
-  display: inline-block;
-  width: 16px; /* Размер кастомного чекбокса */
-  height: 16px; /* Размер кастомного чекбокса */
-  border: 1px solid #ccc; /* Обводка кастомного чекбокса */
-  border-radius: 3px; /* Скругление кастомного чекбокса */
-  margin-right: 5px; /* Отступ между чекбоксом и текстом */
+.suboptions{
+  padding-left: 5px;
+  margin: 16px 0;
 }
-/* Изменяем внешний вид кастомного чекбокса при его активации (отметке) */
-.multiselect-options input[type="checkbox"]:checked + label::before {
-  background-color: #007bff; /* Цвет заполнения кастомного чекбокса при отметке */
+.suboptions h6{
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  padding: 12px 16px;
+}
+.suboptions img{
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+}
+.liContent{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 1px solid var(--BGselectLI);
+  transition: all 0.5s;
+}
+.suboptions li:hover{
+  background-color: var(--BGselectLI);
+  cursor: pointer;
+  border-left: 1px solid var(--white);
+}
+/* Создаем стилизованный кастомный чекбокс */
+.inputCheck input[type="checkbox"] {
+  display: none;
 }
 /*чекбокс */
 
 /* provider Box */
 
 @media (max-width: 640px) {
+  #multiselect-input{
+    display: none;
+  }
   .burger {
     display: flex;
   }
@@ -317,7 +357,14 @@ input:hover, input:active, input:focus {
     display: block;
   }
 }
+
 @media (min-width: 640px) and (max-width: 960px) {
+  #multiselect-input {
+    width: calc(72vw - 180px);
+  }
+  #multiselect-options {
+    width: calc(72vw - 180px);
+  }
   .firstImgLable {
     display: block;
   }
