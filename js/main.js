@@ -1,16 +1,13 @@
 // const savedUser = JSON.parse(localStorage.getItem('user'));
 // console.log(savedUser)
+//БУРГЕР
 let menuBtn = document.querySelector('.menu-btn');
 let menu = document.querySelector('.menu');
-
-
 menuBtn.addEventListener('click', function(){
-	menuBtn.classList.toggle('active');
+  menuBtn.classList.toggle('active');
 	menu.classList.toggle('active');
 })
-
 const listItems = document.querySelectorAll('.activeLi');
-
 listItems.forEach((item) => {
   item.addEventListener('click', () => {
     listItems.forEach((el) => {
@@ -19,27 +16,27 @@ listItems.forEach((item) => {
     item.classList.add('activeLiMenuBurger');
   });
 });
+//БУРГЕР
+//ИНПУТ С КАТЕГОРИЯМИ
+document.querySelectorAll('.inputCheck p').forEach((elem) => {
+  elem.addEventListener('click', (event) => {
+    console.log(event)
+    const dataIndex = elem.getAttribute('data-index');
+    const suboptions = document.querySelector(`.suboptions[data-index="${dataIndex}"]`);
 
-const input = document.getElementById('multiselect-input');
-const options = document.getElementById('multiselect-options');
-
-input.addEventListener('click', function () {
-  options.style.display = options.style.display === 'block' ? 'none' : 'block';
+    if (suboptions) {
+      suboptions.classList.toggle('none');
+    }
+  });
 });
+document.getElementById('multiselect-input').addEventListener('click', () => {
+  document.querySelector('.multiselect-options').classList.toggle('none')
+})
 
-options.addEventListener('change', function (event) {
-  const selectedOptions = Array.from(
-    options.querySelectorAll('input[type="checkbox"]:checked')
-  ).map((checkbox) => checkbox.value);
 
-  input.value = selectedOptions.join(', ');
-});
+//ИНПУТ С КАТЕГОРИЯМИ
 
-document.addEventListener('click', function (event) {
-  if (!input.contains(event.target) && !options.contains(event.target)) {
-    options.style.display = 'none';
-  }
-});
+
 
 
 

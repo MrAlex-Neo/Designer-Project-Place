@@ -8,6 +8,7 @@
   --grayColor: #8f8f8f;
   --text-prizrak: #414141;
   --grayColor-dark: #292929;
+  --inputfocus: #636363;
   --red: #db3138;
   --btnBlue: #0084ff;
   --background: #060606;
@@ -36,6 +37,9 @@ p{
     font-size: 16px;
     font-weight: 400;
     line-height: 150%;
+}
+input:hover, input:active, input:focus {
+  outline: none; /* Убрать обводку */
 }
 /* burger */
 .burger {
@@ -155,21 +159,17 @@ p{
   align-items: center;
   padding: 20px 16px;
 }
-
 .ulLastLiForBurger li {
   display: flex;
   border-radius: 32px;
-  padding: 10px 9px;
-  margin: 10px 8px;
+  padding: 16px;
+  margin: 10px 6px;
   border: 1px solid var(--grayColor-dark);
 }
 .unBurgerBox:hover ul li {
   cursor: pointer;
 }
-/* .unBurgerBox li:active {
-    transform: translateY(7px); /* Например, сдвиг вниз */
-/* } */
-*/ .unBurgerBox:hover ul li:hover {
+.unBurgerBox:hover ul li:hover {
   cursor: pointer;
   background-color: var(--grayColor-dark);
 }
@@ -193,7 +193,6 @@ p{
   white-space: nowrap;
   display: block; /* Этот блок покажет текст */
 }
-
 .unBurgerBox:hover ul li {
   display: flex;
   justify-content: start;
@@ -234,12 +233,10 @@ p{
   font-weight: 600;
   line-height: 125%;
 }
-
 .multiselect {
   position: relative;
   width: 200px;
 }
-
 #multiselect-input {
   padding: 12px 16px;
   width: 684px;
@@ -247,10 +244,16 @@ p{
   border: 1px solid var(--grayColor-dark);
   background-color: var(--background);
   color: var(--white);
+  transition: border 0.5s;
+  
+}
+#multiselect-input:hover {
+  border: 1px solid var(--inputfocus);
 
 }
-
-
+#multiselect-input:focus {
+  border: 1px solid var(--btnBlue);
+}
 #multiselect-input::placeholder{
     color: var(--grayColor);
     font-size: 16px;
@@ -259,9 +262,7 @@ p{
 }
 #multiselect-input::content{
     border: 1px solid var(--btnBlue);
-
 }
-
 #multiselect-options {
   padding: 12px 16px;
 
@@ -279,6 +280,27 @@ p{
 #multiselect-options li input[type="checkbox"] {
   margin-right: 5px;
 }
+
+/*чекбокс */
+/* Скрываем стандартный чекбокс */
+/* .multiselect-options input[type="checkbox"] {
+  display: none;
+} */
+/* Создаем стилизованный кастомный чекбокс */
+.multiselect-options input[type="checkbox"] + label::before {
+  content: '';
+  display: inline-block;
+  width: 16px; /* Размер кастомного чекбокса */
+  height: 16px; /* Размер кастомного чекбокса */
+  border: 1px solid #ccc; /* Обводка кастомного чекбокса */
+  border-radius: 3px; /* Скругление кастомного чекбокса */
+  margin-right: 5px; /* Отступ между чекбоксом и текстом */
+}
+/* Изменяем внешний вид кастомного чекбокса при его активации (отметке) */
+.multiselect-options input[type="checkbox"]:checked + label::before {
+  background-color: #007bff; /* Цвет заполнения кастомного чекбокса при отметке */
+}
+/*чекбокс */
 
 /* provider Box */
 
