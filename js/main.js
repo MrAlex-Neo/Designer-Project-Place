@@ -224,9 +224,11 @@ document.querySelector('.cleanAll').onclick = () => {
   document.getElementById('filterBoxChooseTown-input').value = '';
   document.getElementById('filterBoxChooseState-input').value = '';
   document.querySelectorAll('.checkShowRoom').forEach(elem => {
-    elem.removeAttribute('checked'); // Снятие галочки с чекбокса
+    elem.querySelector('input[type="checkbox"]').checked = false; // Снятие галочки с чекбокса
   });
 };
+
+
 
 
 
