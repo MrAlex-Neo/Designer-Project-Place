@@ -21,54 +21,6 @@ listItems.forEach((item) => {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //ИНПУТ С КАТЕГОРИЯМИ(всплывающий список)
-// let searchArray = []
-// document.querySelectorAll('.inputCheck p').forEach((elem) => {
-//   elem.addEventListener('click', (event) => {
-//     console.log(event)
-//     const dataIndex = elem.getAttribute('data-index');
-//     const suboptions = document.querySelector(`.suboptions[data-index="${dataIndex}"]`);
-
-//     if (suboptions) {
-//       suboptions.classList.toggle('none');
-//     }
-//   });
-// });
-// document.querySelectorAll('.liContent').forEach((elem) => {
-//   elem.addEventListener('click', (event) => {
-//     const text = elem.querySelector('h6').textContent;
-//     const img = elem.querySelector('img');
-//     if (searchArray.includes(text)) {
-//       searchArray = searchArray.filter(item => item !== text);
-//       img.classList.add('none');
-//     } else if (searchArray.length < 3) {
-//       img.classList.remove('none');
-//       searchArray.push(text);
-//     }
-//     const inputField = document.getElementById('multiselect-input');
-
-//     if (searchArray.length > 0) {
-//       const displayText = searchArray.slice(0, 3).join(', ');
-//       inputField.value = searchArray.length < 4 ? displayText + ` (${searchArray.length}/3)` : displayText;
-//     } else {
-//       inputField.value = '';
-//     }
-//     console.log(searchArray);
-//   });
-// });
-// document.addEventListener('click', function (event) {
-//   const multiselect = document.getElementById('multiselect');
-//   const multiselectOptions = document.querySelector('.multiselect-options');
-//   if (event.target !== multiselect && !multiselect.contains(event.target)) {
-//     multiselectOptions.classList.add('none');
-//   }
-// });
-// document.getElementById('multiselect-input').addEventListener('click', function (event) {
-//   document.querySelector('.multiselect-options').classList.toggle('none');
-//   document.querySelectorAll('.suboptions').forEach(elem => {
-//     elem.classList.add('none');
-//   });
-//   event.stopPropagation();
-// });
 const categories = [
   {
       name: "Ремонт и строительство",
@@ -181,7 +133,6 @@ document.querySelectorAll("#multiselectDaddy .inputCheck p").forEach(elem => {
         }
     });
 });
-
 document.querySelectorAll("#multiselectDaddy .liContent").forEach(elem => {
     elem.addEventListener("click", event => {
         const text = elem.querySelector("h6").textContent;
@@ -204,7 +155,6 @@ document.querySelectorAll("#multiselectDaddy .liContent").forEach(elem => {
         console.log(searchArray);
     });
 });
-
 document.addEventListener("click", event => {
     const multiselectDaddy = document.getElementById("multiselectDaddy");
     const multiselectOptions = document.querySelector("#multiselectDaddy .multiselect-options");
@@ -212,14 +162,12 @@ document.addEventListener("click", event => {
         multiselectOptions.classList.add("none");
     }
 });
-
 document.getElementById("multiselect-input").addEventListener("click", event => {
     document.querySelector("#multiselectDaddy .multiselect-options").classList.toggle("none");
     document.querySelectorAll("#multiselectDaddy .suboptions").forEach(elem => {
         elem.classList.add("none");
     });
 });
-// ________________________________________
 document.querySelector('.cleanAll').onclick = () => {
   document.getElementById('filterBoxChooseTown-input').value = '';
   document.getElementById('filterBoxChooseState-input').value = '';
@@ -227,13 +175,6 @@ document.querySelector('.cleanAll').onclick = () => {
     elem.querySelector('input[type="checkbox"]').checked = false; // Снятие галочки с чекбокса
   });
 };
-
-
-
-
-
-
-
 //ИНПУТ С КАТЕГОРИЯМИ(всплывающий список)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -287,8 +228,6 @@ document.addEventListener('click', function (event) {
         filterBoxChooseState.classList.add('none');
     }
 });
-
-
 document.getElementById('filterBoxChooseState-input').addEventListener('click', () => {
   document.querySelector('.filterBoxChooseState').classList.toggle('none')
 })
@@ -302,15 +241,43 @@ document.querySelectorAll('.liState').forEach(elem => {
     inputField.value = this.querySelector('p').textContent;
   });
 });
-
-
-
-
-
-
-
-
 //ФИЛЬТР(всплывающий список)
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// ПРОВАЙДЕР - основной бокс
+const text = document.getElementById('infoAboutProviderProduct');
+const buttonText = document.getElementById('readMore');
+const maxLength = 145;
+const ellipsis = '...';
+
+let isExpanded = false;
+let originalText = text.textContent;
+let truncatedText = originalText.substring(0, maxLength) + ellipsis;
+
+text.textContent = truncatedText;
+
+buttonText.addEventListener('click', function() {
+  isExpanded = !isExpanded;
+
+  if (isExpanded) {
+    text.textContent = originalText;
+    document.querySelector('.accordeonchikForText p').textContent = 'Свернуть';
+    document.querySelector('.readMore').classList.add('none')
+    document.querySelector('.readLess').classList.remove('none')
+  } else {
+    text.textContent = truncatedText;
+    document.querySelector('.accordeonchikForText p').textContent = 'Подробнее';
+    document.querySelector('.readMore').classList.remove('none')
+    document.querySelector('.readLess').classList.add('none')
+  }
+});
+
+document.querySelector('.btnLikeForProviderBoxFooter').addEventListener('click', () => {
+    document.querySelector('.passiveLike').classList.toggle('none')
+    document.querySelector('.activeLike').classList.toggle('none')
+})
+// ПРОВАЙДЕР - основной бокс
 
 
 
