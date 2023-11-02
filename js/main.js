@@ -245,44 +245,6 @@ document.querySelectorAll('.liState').forEach(elem => {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// ПРОВАЙДЕР - основной бокс
-// Получаем все контейнеры с классом "infoBodyForProviderCategory"
-// const infoContainers = document.querySelectorAll('.infoBodyForProviderCategory');
-
-// infoContainers.forEach(container => {
-//     const textElement = container.querySelector('.infoAboutProviderProduct');
-//     const buttonText = container.querySelector('.accordeonchikForText');
-
-//     const maxLength = 145;
-//     const ellipsis = '...';
-//     let originalText = textElement.textContent;
-//     let truncatedText = originalText.substring(0, maxLength) + ellipsis;
-//     let isExpanded = false;
-
-//     textElement.textContent = truncatedText;
-
-//     buttonText.addEventListener('click', function() {
-//         isExpanded = !isExpanded;
-
-//         if (isExpanded) {
-//             textElement.textContent = originalText;
-//             buttonText.querySelector('p').textContent = 'Свернуть';
-//             buttonText.querySelector('.readMore').classList.add('none');
-//             buttonText.querySelector('.readLess').classList.remove('none');
-//         } else {
-//             textElement.textContent = truncatedText;
-//             buttonText.querySelector('p').textContent = 'Подробнее';
-//             buttonText.querySelector('.readMore').classList.remove('none');
-//             buttonText.querySelector('.readLess').classList.add('none');
-//         }
-//     });
-
-//     const likeButton = container.querySelector('.btnLikeForProviderBoxFooter');
-//     likeButton.addEventListener('click', () => {
-//         container.querySelector('.passiveLike').classList.toggle('none');
-//         container.querySelector('.activeLike').classList.toggle('none');
-//     });
-// });
 // Пример данных из бэкенда
 const backendData = [
     {
@@ -309,16 +271,12 @@ const backendData = [
     // ... другие объекты
 ];
 
-// Получаем контейнер, в который будем добавлять данные
 const container = document.querySelector('.infoBodyForProviderCategory');
 
-// Создаем элементы для каждого объекта из данных бэкэнда
 backendData.forEach(data => {
-    // Создаем элементы для каждого объекта
     const providerCategoryBox = document.createElement('div');
     providerCategoryBox.classList.add('providerCategoryBox');
 
-    // Заполняем элемент информацией из данных
     providerCategoryBox.innerHTML = `
         <div class="providerCategoryBoxHeader">
             <div class="providerCategoryBoxHeaderLeft">
@@ -369,7 +327,6 @@ backendData.forEach(data => {
     // Добавляем элемент в контейнер
     container.appendChild(providerCategoryBox);
 });
-// Получаем все контейнеры с классом 'infoBodyForProviderCategory'
 const infoContainers = document.querySelectorAll('.providerCategoryBox');
 
 infoContainers.forEach(container => {
@@ -406,8 +363,6 @@ infoContainers.forEach(container => {
         container.querySelector('.activeLike').classList.toggle('none');
     });
 });
-
-
 
 // ПРОВАЙДЕР - основной бокс
 
