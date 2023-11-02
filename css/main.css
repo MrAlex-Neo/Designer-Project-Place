@@ -639,6 +639,7 @@ input:focus {
   font-size: 16px;
   font-weight: 500;
   line-height: 150%;
+  cursor: pointer;
 }
 .btnCallForProviderBoxFooter{
   background-color: var(--primary);
@@ -654,6 +655,9 @@ input:focus {
   background-color: var(--secondary);
   transition: all 0.5s;
 }
+.btnCatalogForProviderBoxFooter img{
+  width: 16px;
+}
 .btnCatalogForProviderBoxFooter:hover{
   background-color: var(--secondary-hover);
 }
@@ -667,6 +671,7 @@ input:focus {
   border: 1px solid var(--secondary);
   padding: 12px;
   transition: all 1s;
+  cursor: pointer;
 }
 .btnLikeForProviderBoxFooter img{
   width: 24px;
@@ -683,87 +688,34 @@ input:focus {
 /* контейнер провайдера /конец */
 
 /* _____________________________________________________________________________ */
-@media (min-width: 960px) {
+
+@media (min-width: 1200px) {
   #multiselect-input{
-    width: calc(49vw - 43px);
+    max-width: 684px;
   }
   .multiselect-options {
-    width: calc(49vw - 43px);
+    max-width: 684px;
   }
-}
-@media (min-width: 1200px) {
   .mainBoxInThisContainer{
     max-width: 900px;
   }
-}
-
-@media (max-width: 640px) {
-  #multiselectSonny-input {
-    padding: 12px 16px;
-    width: calc(97vw - 120px);
-    background-color: var(--secondary-click);
-  }
-  .multiselect-input{
-    border: 1px solid var(--text-prizrak);
-  }
-  #multiselectSonny-options li {
-    list-style: none;
-    padding: 5px;
-    z-index: 2;
-  }
-  #multiselectSonny-options li input[type="checkbox"] {
-    margin-right: 5px;
-  }
-  .multiselect.Sonny{
-    display: block;
-  }
-  .multiselect.Daddy{
-    display: none;
-  }
-  .searchCategory{
-    gap: 0;
+  .providerCategoryBox {
+    max-width: 922px;
   }
   .filterBtn{
-    width: calc(97vw - 100px);
+    max-width: 192px;
   }
-  .providerCategoryBox{
-    width: calc(97vw - 100px);
-  }
-  #filterBoxChooseTown-input {
-    width: calc(97vw - 120px);
-  }
-  #filterBoxChooseState-input {
-    width: calc(97vw - 120px);
-  }
-  .filterBoxChooseTown {
-    width: calc(97vw - 120px);
-  }
-  .filterBoxChooseState {
-    width: calc(97vw - 120px);
-  }
-  .filterBox .multiselect-options {
-    width: calc(98vw - 88px);
-  }
-  .multiselect-options.Sonny{
-    width: calc(97vw - 120px);
-  }
-  .filterBoxBody{
-    position: absolute;
-    left: 0;
-  }
-  #multiselect-input {
-    display: none;
-  }
-  .burger {
-    display: flex;
-  }
-  .unBurgerBox {
-    display: none;
-  }
+
 }
-@media (min-width: 645px) {
-  .unBurgerBox {
-    display: block;
+/* 1200___________________________________________________________________________960 */
+@media (min-width: 960px) {
+  #multiselect-input{
+    width: calc(49vw - 43px);
+    max-width: 684px;
+  }
+  .multiselect-options {
+    max-width: 684px;
+    width: calc(49vw - 43px);
   }
 }
 @media (min-width: 640px) and (max-width: 960px) {
@@ -865,7 +817,7 @@ input:focus {
     padding: 16px;
     margin-bottom: 25px;
   }
-
+  
   .unBurgerBox:hover .firstImgLable {
     display: none;
   }
@@ -892,5 +844,81 @@ input:focus {
     top: 20px;
     width: 156px;
     height: 17px;
+  }
+}
+/* 960___________________________________________________________________________640 */
+@media (min-width: 645px) {
+  .unBurgerBox {
+    display: block;
+  }
+}
+@media (max-width: 640px) {
+  .providerCategoryBoxFooter{
+    flex-wrap: wrap;
+  }
+  .prANDsub{
+    min-width: 100px;
+  }
+  #multiselectSonny-input {
+    padding: 12px 16px;
+    width: calc(97vw - 120px);
+    background-color: var(--secondary-click);
+  }
+  .multiselect-input{
+    border: 1px solid var(--text-prizrak);
+  }
+  #multiselectSonny-options li {
+    list-style: none;
+    padding: 5px;
+    z-index: 2;
+  }
+  #multiselectSonny-options li input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  .multiselect.Sonny{
+    display: block;
+  }
+  .multiselect.Daddy{
+    display: none;
+  }
+  .searchCategory{
+    gap: 0;
+  }
+  .filterBtn{
+    width: calc(97vw - 100px);
+  }
+  .providerCategoryBox{
+    width: calc(97vw - 100px);
+  }
+  #filterBoxChooseTown-input {
+    width: calc(97vw - 120px);
+  }
+  #filterBoxChooseState-input {
+    width: calc(97vw - 120px);
+  }
+  .filterBoxChooseTown {
+    width: calc(97vw - 120px);
+  }
+  .filterBoxChooseState {
+    width: calc(97vw - 120px);
+  }
+  .filterBox .multiselect-options {
+    width: calc(98vw - 88px);
+  }
+  .multiselect-options.Sonny{
+    width: calc(97vw - 120px);
+  }
+  .filterBoxBody{
+    position: absolute;
+    left: 0;
+  }
+  #multiselect-input {
+    display: none;
+  }
+  .burger {
+    display: flex;
+  }
+  .unBurgerBox {
+    display: none;
   }
 }
