@@ -245,6 +245,22 @@ document.querySelectorAll('.liState').forEach(elem => {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// ПЕРЕКЛЮЧАЛКА В МЕНЮ
+document.getElementById('providerCategory').onclick = () => {
+    document.querySelector('.providerPlace').classList.remove('none')
+    document.querySelector('.marketPlace').classList.add('none')
+    document.querySelector('.headerBoxH2andSpan h2').textContent = 'Поставщики'
+}
+document.getElementById('marketCategory').onclick = () => {
+    document.querySelector('.providerPlace').classList.add('none')
+    document.querySelector('.marketPlace').classList.remove('none')
+    document.querySelector('.headerBoxH2andSpan h2').textContent = 'Барахолка'
+}
+// ПЕРЕКЛЮЧАЛКА В МЕНЮ
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// ПРОВАЙДЕР - основной бокс
 // Пример данных из бэкенда
 const backendData = [
     {
@@ -363,10 +379,136 @@ infoContainers.forEach(container => {
         container.querySelector('.activeLike').classList.toggle('none');
     });
 });
-
 // ПРОВАЙДЕР - основной бокс
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// Барахолка - основной бокс
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const marketData = [
+        {
+            name: "Бензопила huter bs-40",
+            img: "./img/mainPage/marketThing.png",
+            cost: "Краски / мебель / отделочные материалы",
+            city: "г. Москва",
+        },
+        {
+            name: "Бензопила huter bs-40",
+            img: "./img/mainPage/marketThing.png",
+            cost: "Краски / мебель / отделочные материалы",
+            city: "г. Санкт-Петербург",
+        },
+        {
+            name: "Бензопила huter bs-40",
+            img: "./img/mainPage/marketThing.png",
+            cost: "Краски / мебель / отделочные материалы",
+            city: "г. Псков",
+        },
+        {
+            name: "Бензопила huter bs-40",
+            img: "./img/mainPage/marketThing.png",
+            cost: "Краски / мебель / отделочные материалы",
+            city: "г. Москва",
+        },
+        {
+            name: "Бензопила huter bs-40",
+            img: "./img/mainPage/marketThing.png",
+            cost: "Краски / мебель / отделочные материалы",
+            city: "г. Санкт-Петербург",
+        },
+        {
+            name: "Бензопила huter bs-40",
+            img: "./img/mainPage/marketThing.png",
+            cost: "Краски / мебель / отделочные материалы",
+            city: "г. Псков",
+        },
+        {
+            name: "Бензопила huter bs-40",
+            img: "./img/mainPage/marketThing.png",
+            cost: "Краски / мебель / отделочные материалы",
+            city: "г. Москва",
+        },
+        {
+            name: "Бензопила huter bs-40",
+            img: "./img/mainPage/marketThing.png",
+            cost: "Краски / мебель / отделочные материалы",
+            city: "г. Санкт-Петербург",
+        },
+        {
+            name: "Бензопила huter bs-40",
+            img: "./img/mainPage/marketThing.png",
+            cost: "Краски / мебель / отделочные материалы",
+            city: "г. Псков",
+        },
+        {
+            name: "Бензопила huter bs-40",
+            img: "./img/mainPage/marketThing.png",
+            cost: "Краски / мебель / отделочные материалы",
+            city: "г. Москва",
+        },
+        {
+            name: "Бензопила huter bs-40",
+            img: "./img/mainPage/marketThing.png",
+            cost: "Краски / мебель / отделочные материалы",
+            city: "г. Санкт-Петербург",
+        },
+        {
+            name: "Бензопила huter bs-40",
+            img: "./img/mainPage/marketThing.png",
+            cost: "Краски / мебель / отделочные материалы",
+            city: "г. Псков",
+        },
+    ];
+
+    const market = document.querySelector('.infoBodyForMarketCategory');
+
+    marketData.forEach(data => {
+        const marketCategoryBox = document.createElement('div');
+        marketCategoryBox.classList.add('marketCategoryBox');
+
+        marketCategoryBox.innerHTML = `
+            <div class="marketCategoryBox">
+                <div>
+                    <img src="${data.img}" alt="">
+                </div>
+                <div class="marketThingName">
+                    <p>${data.name}</p>
+                    <div class="btnLikeForMarket">
+                        <img src="./img/mainPage/heart (market-gray).svg" class="marketImgGray">
+                        <img src="./img/mainPage/heart (market-red).svg" class="marketimgRed none">
+                    </div>
+                </div>
+                <div class="marketThingCost">
+                    <p>${data.cost}</p>
+                </div>
+                <div class="marketThingCity">
+                    <p>${data.city}</p>
+                </div>
+            </div> 
+        `;
+
+        market.appendChild(marketCategoryBox);
+    });
+
+    market.addEventListener('click', function(event) {
+        const likeButton = event.target.closest('.btnLikeForMarket');
+        if (likeButton) {
+            const parent = likeButton.closest('.marketCategoryBox');
+            if (parent) {
+                parent.querySelector('.marketImgGray').classList.toggle('none');
+                parent.querySelector('.marketimgRed').classList.toggle('none');
+            }
+        }
+    });
+});
+
+
+// Барахолка - основной бокс
 
 
 

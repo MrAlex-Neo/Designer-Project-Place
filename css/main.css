@@ -685,8 +685,55 @@ input:focus {
   border: 1px solid var(--red)
 }
 /* контейнер провайдера - окорочка /конец */
-
 /* контейнер провайдера /конец */
+
+/* _____________________________________________________________________________ */
+
+/* контейнер барахолыча /начало */
+.infoBodyForMarketCategory{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 17px;
+  width: calc(61vw + 87px);
+}
+.marketCategoryBox{
+  display: flex;
+  flex-direction: column;
+  width: 272px;
+}
+.marketCategoryBox img{
+  border-radius: 8px;
+  width: 272px;
+  height: 196px;
+  margin-bottom: 16px;
+}
+.marketThingName{
+  display: flex;
+  justify-content: space-between;
+  color: var(--primary-click);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.marketThingName img{
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  cursor: pointer;
+}
+.marketThingCost{
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+  margin-bottom: 4px;
+}
+.marketThingCity{
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 114%;
+  color: var(--grayColor);
+}
+/* контейнер барахолыча /конец */
 
 /* _____________________________________________________________________________ */
 
