@@ -4,17 +4,17 @@
 let menuBtn = document.querySelector('.menu-btn');
 let menu = document.querySelector('.menu');
 menuBtn.addEventListener('click', function () {
-  menuBtn.classList.toggle('active');
-  menu.classList.toggle('active');
+    menuBtn.classList.toggle('active');
+    menu.classList.toggle('active');
 })
 const listItems = document.querySelectorAll('.activeLi');
 listItems.forEach((item) => {
-  item.addEventListener('click', () => {
-    listItems.forEach((el) => {
-      el.classList.remove('activeLiMenuBurger');
+    item.addEventListener('click', () => {
+        listItems.forEach((el) => {
+            el.classList.remove('activeLiMenuBurger');
+        });
+        item.classList.add('activeLiMenuBurger');
     });
-    item.classList.add('activeLiMenuBurger');
-  });
 });
 //БУРГЕР
 
@@ -22,65 +22,65 @@ listItems.forEach((item) => {
 
 //ИНПУТ С КАТЕГОРИЯМИ(всплывающий список)
 const categories = [
-  {
-      name: "Ремонт и строительство",
-      subcategories: [
-          "Стройматериалы",
-          "Инструменты",
-          "Сантехника, водоснабжение и сауна",
-          "Двери",
-          "Садовая техника",
-          "Окна и балконы",
-          "Камины и обогреватели",
-          "Готовые строения и срубы",
-          "Потолки"
-      ]
-  },
-  {
-      name: "Мебель и интерьер",
-      subcategories: [
-          "Кровати, диваны и кресла",
-          "Шкафы, комоды и стеллажи",
-          "Столы и стулья",
-          "Текстиль и ковры",
-          "Кухонные гарнитуры",
-          "Предметы интерьера, искусство",
-          "Освещение",
-          "Компьютерные столы и кресла",
-          "Подставки и тумбы",
-          "Другое"
-      ]
-  },
-  {
-      name: "Бытовая техника",
-      subcategories: [
-          "Для кухни",
-          "Для дома",
-          "Климатическое оборудование",
-          "Для индивидуального ухода",
-          "Другое"
-      ]
-  },
-  {
-      name: "Растения",
-      subcategories: [
-          "Живые растения",
-          "Вертикальные сады",
-          "Искусственные растения"
-      ]
-  },
-  {
-      name: "Посуда и товары для кухни",
-      subcategories: [
-          "Сервировка стола",
-          "Приготовление пищи",
-          "Хранение продуктов",
-          "Приготовление напитков",
-          "Хозяйственные товары",
-          "Кухонные аксессуары",
-          "Другое из категории «Посуда и товары для кухни»"
-      ]
-  }
+    {
+        name: "Ремонт и строительство",
+        subcategories: [
+            "Стройматериалы",
+            "Инструменты",
+            "Сантехника, водоснабжение и сауна",
+            "Двери",
+            "Садовая техника",
+            "Окна и балконы",
+            "Камины и обогреватели",
+            "Готовые строения и срубы",
+            "Потолки"
+        ]
+    },
+    {
+        name: "Мебель и интерьер",
+        subcategories: [
+            "Кровати, диваны и кресла",
+            "Шкафы, комоды и стеллажи",
+            "Столы и стулья",
+            "Текстиль и ковры",
+            "Кухонные гарнитуры",
+            "Предметы интерьера, искусство",
+            "Освещение",
+            "Компьютерные столы и кресла",
+            "Подставки и тумбы",
+            "Другое"
+        ]
+    },
+    {
+        name: "Бытовая техника",
+        subcategories: [
+            "Для кухни",
+            "Для дома",
+            "Климатическое оборудование",
+            "Для индивидуального ухода",
+            "Другое"
+        ]
+    },
+    {
+        name: "Растения",
+        subcategories: [
+            "Живые растения",
+            "Вертикальные сады",
+            "Искусственные растения"
+        ]
+    },
+    {
+        name: "Посуда и товары для кухни",
+        subcategories: [
+            "Сервировка стола",
+            "Приготовление пищи",
+            "Хранение продуктов",
+            "Приготовление напитков",
+            "Хозяйственные товары",
+            "Кухонные аксессуары",
+            "Другое из категории «Посуда и товары для кухни»"
+        ]
+    }
 ];
 let searchArray = [];
 
@@ -169,11 +169,11 @@ document.getElementById("multiselect-input").addEventListener("click", event => 
     });
 });
 document.querySelector('.cleanAll').onclick = () => {
-  document.getElementById('filterBoxChooseTown-input').value = '';
-  document.getElementById('filterBoxChooseState-input').value = '';
-  document.querySelectorAll('.checkShowRoom').forEach(elem => {
-    elem.querySelector('input[type="checkbox"]').checked = false; // Снятие галочки с чекбокса
-  });
+    document.getElementById('filterBoxChooseTown-input').value = '';
+    document.getElementById('filterBoxChooseState-input').value = '';
+    document.querySelectorAll('.checkShowRoom').forEach(elem => {
+        elem.querySelector('input[type="checkbox"]').checked = false; // Снятие галочки с чекбокса
+    });
 };
 //ИНПУТ С КАТЕГОРИЯМИ(всплывающий список)
 
@@ -229,54 +229,186 @@ document.addEventListener('click', function (event) {
     }
 });
 document.getElementById('filterBoxChooseState-input').addEventListener('click', () => {
-  document.querySelector('.filterBoxChooseState').classList.toggle('none')
+    document.querySelector('.filterBoxChooseState').classList.toggle('none')
 })
 document.querySelectorAll('.liState').forEach(elem => {
-  elem.addEventListener('click', function(event) {
-    const inputField = document.getElementById('filterBoxChooseState-input');
-    document.querySelectorAll('.liState img').forEach(img => {
-      img.classList.add('none');
+    elem.addEventListener('click', function (event) {
+        const inputField = document.getElementById('filterBoxChooseState-input');
+        document.querySelectorAll('.liState img').forEach(img => {
+            img.classList.add('none');
+        });
+        this.querySelector('img').classList.remove('none');
+        inputField.value = this.querySelector('p').textContent;
     });
-    this.querySelector('img').classList.remove('none');
-    inputField.value = this.querySelector('p').textContent;
-  });
 });
 //ФИЛЬТР(всплывающий список)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // ПРОВАЙДЕР - основной бокс
-const text = document.getElementById('infoAboutProviderProduct');
-const buttonText = document.getElementById('readMore');
-const maxLength = 145;
-const ellipsis = '...';
+// Получаем все контейнеры с классом "infoBodyForProviderCategory"
+// const infoContainers = document.querySelectorAll('.infoBodyForProviderCategory');
 
-let isExpanded = false;
-let originalText = text.textContent;
-let truncatedText = originalText.substring(0, maxLength) + ellipsis;
+// infoContainers.forEach(container => {
+//     const textElement = container.querySelector('.infoAboutProviderProduct');
+//     const buttonText = container.querySelector('.accordeonchikForText');
 
-text.textContent = truncatedText;
+//     const maxLength = 145;
+//     const ellipsis = '...';
+//     let originalText = textElement.textContent;
+//     let truncatedText = originalText.substring(0, maxLength) + ellipsis;
+//     let isExpanded = false;
 
-buttonText.addEventListener('click', function() {
-  isExpanded = !isExpanded;
+//     textElement.textContent = truncatedText;
 
-  if (isExpanded) {
-    text.textContent = originalText;
-    document.querySelector('.accordeonchikForText p').textContent = 'Свернуть';
-    document.querySelector('.readMore').classList.add('none')
-    document.querySelector('.readLess').classList.remove('none')
-  } else {
-    text.textContent = truncatedText;
-    document.querySelector('.accordeonchikForText p').textContent = 'Подробнее';
-    document.querySelector('.readMore').classList.remove('none')
-    document.querySelector('.readLess').classList.add('none')
-  }
+//     buttonText.addEventListener('click', function() {
+//         isExpanded = !isExpanded;
+
+//         if (isExpanded) {
+//             textElement.textContent = originalText;
+//             buttonText.querySelector('p').textContent = 'Свернуть';
+//             buttonText.querySelector('.readMore').classList.add('none');
+//             buttonText.querySelector('.readLess').classList.remove('none');
+//         } else {
+//             textElement.textContent = truncatedText;
+//             buttonText.querySelector('p').textContent = 'Подробнее';
+//             buttonText.querySelector('.readMore').classList.remove('none');
+//             buttonText.querySelector('.readLess').classList.add('none');
+//         }
+//     });
+
+//     const likeButton = container.querySelector('.btnLikeForProviderBoxFooter');
+//     likeButton.addEventListener('click', () => {
+//         container.querySelector('.passiveLike').classList.toggle('none');
+//         container.querySelector('.activeLike').classList.toggle('none');
+//     });
+// });
+// Пример данных из бэкенда
+const backendData = [
+    {
+        name: "ООО “СЕВЕР ТОРГПРО”",
+        category: "Краски / мебель / отделочные материалы",
+        discount: "5 - 15%",
+        discountConditions: "При покупке продукции на сумму от 5000 рублей и выше, дизайнеры могут воспользоваться следующими скидками: заказы на сумму от 5000 до 9999 рублей. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborumLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        showrooms: "Москва, Санкт-Петербург, Омск, Псков"
+    },
+    {
+        name: "ООО “СЕВЕР ТОРГПРО”",
+        category: "Краски / мебель / отделочные материалы",
+        discount: "5 - 15%",
+        discountConditions: "При покупке продукции на сумму от 5000 рублей и выше, дизайнеры могут воспользоваться следующими скидками: заказы на сумму от 5000 до 9999 рублей. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborumLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        showrooms: "Москва, Санкт-Петербург, Омск, Псков"
+    },
+    {
+        name: "ООО “СЕВЕР ТОРГПРО”",
+        category: "Краски / мебель / отделочные материалы",
+        discount: "5 - 15%",
+        discountConditions: "При покупке продукции на сумму от 5000 рублей и выше, дизайнеры могут воспользоваться следующими скидками: заказы на сумму от 5000 до 9999 рублей. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborumLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        showrooms: "Москва, Санкт-Петербург, Омск, Псков"
+    }
+    // ... другие объекты
+];
+
+// Получаем контейнер, в который будем добавлять данные
+const container = document.querySelector('.infoBodyForProviderCategory');
+
+// Создаем элементы для каждого объекта из данных бэкэнда
+backendData.forEach(data => {
+    // Создаем элементы для каждого объекта
+    const providerCategoryBox = document.createElement('div');
+    providerCategoryBox.classList.add('providerCategoryBox');
+
+    // Заполняем элемент информацией из данных
+    providerCategoryBox.innerHTML = `
+        <div class="providerCategoryBoxHeader">
+            <div class="providerCategoryBoxHeaderLeft">
+                <h3>${data.name}</h3>
+                <p>${data.category}</p>
+            </div>
+            <div class="providerCategoryBoxHeaderRight">
+                <h3>${data.discount}</h3>
+                <p>Комиссия</p>
+            </div>
+        </div>
+        <div class="providerCategoryBoxBody">
+            <div class="providerCategoryBoxBodyUp">
+                <div class="smallHeader">
+                    <img src="./img/mainPage/sale.svg" alt="">
+                    <h4>Условия скидок</h4>
+                </div>
+                <p class="infoAboutProviderProduct">${data.discountConditions}</p>
+                <div class="accordeonchikForText readMore">
+                    <p>Подробнее</p>
+                    <img src="./img/mainPage/down.svg" class="readMore" alt="">
+                    <img src="./img/mainPage/up.svg" class="readLess none" alt="">
+                </div>
+            </div>
+            <div class="providerCategoryBoxBodyDown">
+                <div class="smallHeader">
+                    <img src="./img/mainPage/geo.svg" alt="">
+                    <h4>Шоурумы</h4>
+                </div>
+                <p>${data.showrooms}</p>
+            </div>
+        </div>
+        <div class="providerCategoryBoxFooter">
+            <div class="btnCallForProviderBoxFooter prANDsub">
+                <p>Связаться</p>
+            </div>
+            <div class="btnCatalogForProviderBoxFooter prANDsub">
+                <p>Каталог товаров</p>
+                <img src="./img/mainPage/another site.svg" alt="">
+            </div>
+            <div class="btnLikeForProviderBoxFooter">
+                <img src="./img/mainPage/heart (active).svg" class="passiveLike" alt="">
+                <img src="./img/mainPage/heart.svg" class="activeLike none" alt="">
+            </div>
+        </div>
+    `;
+
+    // Добавляем элемент в контейнер
+    container.appendChild(providerCategoryBox);
+});
+// Получаем все контейнеры с классом 'infoBodyForProviderCategory'
+const infoContainers = document.querySelectorAll('.providerCategoryBox');
+
+infoContainers.forEach(container => {
+    const textElement = container.querySelector('.infoAboutProviderProduct');
+    const buttonText = container.querySelector('.accordeonchikForText');
+
+    const maxLength = 145;
+    const ellipsis = '...';
+    let originalText = textElement.textContent;
+    let truncatedText = originalText.substring(0, maxLength) + ellipsis;
+    let isExpanded = false;
+
+    textElement.textContent = truncatedText;
+
+    buttonText.addEventListener('click', function () {
+        isExpanded = !isExpanded;
+
+        if (isExpanded) {
+            textElement.textContent = originalText;
+            buttonText.querySelector('p').textContent = 'Свернуть';
+            buttonText.querySelector('.readMore').classList.add('none');
+            buttonText.querySelector('.readLess').classList.remove('none');
+        } else {
+            textElement.textContent = truncatedText;
+            buttonText.querySelector('p').textContent = 'Подробнее';
+            buttonText.querySelector('.readMore').classList.remove('none');
+            buttonText.querySelector('.readLess').classList.add('none');
+        }
+    });
+
+    const likeButton = container.querySelector('.btnLikeForProviderBoxFooter');
+    likeButton.addEventListener('click', () => {
+        container.querySelector('.passiveLike').classList.toggle('none');
+        container.querySelector('.activeLike').classList.toggle('none');
+    });
 });
 
-document.querySelector('.btnLikeForProviderBoxFooter').addEventListener('click', () => {
-    document.querySelector('.passiveLike').classList.toggle('none')
-    document.querySelector('.activeLike').classList.toggle('none')
-})
+
+
 // ПРОВАЙДЕР - основной бокс
 
 
