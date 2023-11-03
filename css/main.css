@@ -312,6 +312,7 @@ input:focus {
   font-weight: 400;
   line-height: 150%;
   cursor: pointer;
+  margin: 12px 0;
 }
 .suboptions {
   margin: 16px 0;
@@ -737,6 +738,71 @@ input:focus {
 
 /* _____________________________________________________________________________ */
 
+
+/* товар барахолыча /начало */
+.grid-container {
+  display: grid;
+  grid-template-columns: 5% 3% 71% 4% 17%;
+  grid-template-rows: 1fr 1fr;
+}
+
+.item:nth-child(1) {
+  grid-column-end: 2;
+}
+
+.item:nth-child(2) {
+  grid-column-start: 3;
+  grid-column-end: 4;
+}
+
+.item:nth-child(3) {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  justify-self: end;
+}
+
+.item:nth-child(4) {
+  grid-column-start: 1;
+  grid-column-end: 6;
+  grid-row-end: 2;
+  grid-row-end: 3;
+}
+.productBtnLeave {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  margin-bottom: 32px;
+  background-color: var(--secondary);
+  transition: background-color 0.5s;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 125%;
+  cursor: pointer;
+}
+.productBtnLeave:hover {
+  background-color: var(--secondary-hover);
+}
+.productBtnLeave:active {
+  background-color: var(--secondary-click);
+}
+.productBtnLeave img{
+  width: 22px;
+}
+.productName h3{
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 125%;
+}
+.productCost p{
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 125%;
+}
+/* товар барахолыча /конец */
+/* _____________________________________________________________________________ */
 @media (min-width: 1200px) {
   #multiselect-input{
     max-width: 684px;
@@ -896,6 +962,33 @@ input:focus {
     width: 156px;
     height: 17px;
   }
+  .grid-container {
+    display: grid;
+    grid-template-columns: 8% 5% 87%;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+
+  .item:nth-child(1) {
+    grid-column-end: 2;
+  }
+
+  .item:nth-child(2) {
+    grid-column-start: 3;
+    grid-column-end: 4;
+  }
+  
+  .item:nth-child(3) {
+    grid-column-start: 1;
+    grid-row-end: 3;
+    grid-row-end: 4;
+    justify-self: start;
+  }
+  
+  .item:nth-child(4) {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
 }
 /* 960___________________________________________________________________________640 */
 @media (min-width: 645px) {
@@ -980,5 +1073,49 @@ input:focus {
   }
   .unBurgerBox {
     display: none;
+  }
+  .productBtnLeave {
+    margin-bottom: 17px;
+  }
+  .productName h3{
+    font-size: 20px;
+  }
+  .productCost p{
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+  }
+
+  .item:nth-child(1) {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+
+  .item:nth-child(2) {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 4;
+    grid-row-end: 5;
+  }
+  
+  .item:nth-child(3) {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    justify-self: start;
+  }
+  
+  .item:nth-child(4) {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
   }
 }
