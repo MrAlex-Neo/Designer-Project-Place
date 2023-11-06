@@ -12,8 +12,8 @@
   --red: #db3138;
   --background: #060606;
   --BGselect: #212121;
-  --primary: #005BAE;
-  --primary-hover: #006FD7;
+  --primary: #005bae;
+  --primary-hover: #006fd7;
   --primary-click: #0084ff;
   --secondary: #373737;
   --secondary-hover: #303030;
@@ -167,7 +167,6 @@ input:focus {
   flex-direction: column;
   justify-content: space-between;
   margin-top: 50px;
-
 }
 /* burger /конец*/
 /* _____________________________________________________________________________ */
@@ -245,7 +244,7 @@ input:focus {
 /* main page burger /конец*/
 /* _____________________________________________________________________________ */
 /* category Box /начало*/
-.categoryBox{
+.categoryBox {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -278,7 +277,7 @@ input:focus {
   gap: 16px;
 }
 /* всплывающий список /начало*/
-.multiselect.Sonny{
+.multiselect.Sonny {
   display: none;
 }
 #multiselect-input {
@@ -338,7 +337,7 @@ input:focus {
   transition: all 0.5s;
 }
 
-.inputCheck .suboptions li:hover{
+.inputCheck .suboptions li:hover {
   border-left: 1px solid var(--white);
 }
 .suboptions li:hover {
@@ -362,7 +361,7 @@ input:focus {
 .filterBox {
   position: relative;
 }
-.filterBoxBody{
+.filterBoxBody {
   position: absolute;
   left: -47%;
 }
@@ -436,10 +435,10 @@ input:focus {
   width: 280px;
   background-color: var(--secondary-click);
 }
-.townInput{
+.townInput {
   border: 1px solid var(--text-prizrak);
 }
-.stateInput{
+.stateInput {
   border: 1px solid var(--text-prizrak);
 }
 .liStyle {
@@ -450,25 +449,24 @@ input:focus {
 }
 /* filterBox /конец*/
 /* checkBox /начало*/
-.threeBox{
+.threeBox {
   display: flex;
   gap: 16px;
-  
 }
-.threeBox input[type="checkbox"]{
+.threeBox input[type="checkbox"] {
   width: 20px;
   background: var(--secondary-click);
   border: 1px solid var(--text-prizrak);
   margin-left: 5px;
 }
-.filterBoxBody hr{
+.filterBoxBody hr {
   background-color: #373737;
 }
-.cleanAll img{
+.cleanAll img {
   width: 24px;
   height: 24px;
 }
-.cleanAll{
+.cleanAll {
   margin-bottom: 10px;
   cursor: pointer;
 }
@@ -487,7 +485,7 @@ input:focus {
   transition: all 0.5s;
 }
 .checkShowRoom input[type="checkbox"] + label::before {
-  content: '';
+  content: "";
   display: block;
   width: 4px;
   height: 8px;
@@ -513,12 +511,12 @@ input:focus {
 /* category Box /конец*/
 /* _____________________________________________________________________________ */
 /* контейнер провайдера /начало */
-.infoBodyForProviderCategory{
+.infoBodyForProviderCategory {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
-.providerCategoryBox{
+.providerCategoryBox {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -529,20 +527,20 @@ input:focus {
   background: var(--surface);
   transition: border 0.5s;
 }
-.providerCategoryBox:hover{
+.providerCategoryBox:hover {
   border: 1px solid var(--secondary-hover);
 }
 /* контейнер провайдера - шапка /начало */
-.providerCategoryBoxHeader{
+.providerCategoryBoxHeader {
   display: flex;
   justify-content: space-between;
 }
-.providerCategoryBoxHeader h3{
+.providerCategoryBoxHeader h3 {
   font-size: 24px;
   font-weight: 700;
   line-height: 100%;
 }
-.providerCategoryBoxHeaderLeft h3{
+.providerCategoryBoxHeaderLeft h3 {
   font-size: 20px;
 }
 .providerCategoryBoxHeaderLeft {
@@ -555,37 +553,37 @@ input:focus {
   flex-direction: column;
   align-items: end;
   gap: 4px;
-  color: #8FFF00;
+  color: #8fff00;
   background-color: #243909;
   border-radius: 8px;
   padding: 8px;
 }
-.providerCategoryBoxHeaderRight p{
+.providerCategoryBoxHeaderRight p {
   color: #91ff006a;
 }
-.providerCategoryBoxHeader p{
+.providerCategoryBoxHeader p {
   font-size: 14px;
   font-weight: 400;
   line-height: 16px;
 }
 /* контейнер провайдера - шапка /конец */
 /* контейнер провайдера - середина /начало */
-.providerCategoryBoxBody{
+.providerCategoryBoxBody {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
-.providerCategoryBoxBody h3{
+.providerCategoryBoxBody h3 {
   font-size: 16px;
   font-weight: 700;
   line-height: 150%;
 }
-.providerCategoryBoxBody p{
+.providerCategoryBoxBody p {
   font-size: 16px;
   font-weight: 400;
   line-height: 150%;
 }
-.providerCategoryBoxBody img{
+.providerCategoryBoxBody img {
   width: 24px;
 }
 .providerCategoryBoxBodyUp {
@@ -594,7 +592,7 @@ input:focus {
   justify-content: center;
   gap: 8px;
 }
-.smallHeader{
+.smallHeader {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -604,33 +602,33 @@ input:focus {
   flex-direction: column;
   justify-content: center;
 }
-.providerCategoryBoxBodyDown p{
+.providerCategoryBoxBodyDown p {
   font-weight: 500;
 }
-.accordeonchikForText{
+.accordeonchikForText {
   display: flex;
   align-items: center;
   gap: 2px;
   cursor: pointer;
 }
-.accordeonchikForText p{
+.accordeonchikForText p {
   font-size: 16px;
   font-weight: 400;
   line-height: 150%;
   color: var(--grayColor);
 }
-.accordeonchikForText img{
+.accordeonchikForText img {
   width: 16px;
 }
 /* контейнер провайдера - середина /конец */
 /* контейнер провайдера - окорочка /начало */
-.providerCategoryBoxFooter{
+.providerCategoryBoxFooter {
   display: flex;
   justify-content: space-between;
   gap: 16px;
   align-items: center;
 }
-.prANDsub{
+.prANDsub {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -642,30 +640,30 @@ input:focus {
   line-height: 150%;
   cursor: pointer;
 }
-.btnCallForProviderBoxFooter{
+.btnCallForProviderBoxFooter {
   background-color: var(--primary);
   transition: all 0.5s;
 }
-.btnCallForProviderBoxFooter:hover{
+.btnCallForProviderBoxFooter:hover {
   background-color: var(--primary-hover);
 }
-.btnCallForProviderBoxFooter:active{
+.btnCallForProviderBoxFooter:active {
   background-color: var(--primary-click);
 }
-.btnCatalogForProviderBoxFooter{
+.btnCatalogForProviderBoxFooter {
   background-color: var(--secondary);
   transition: all 0.5s;
 }
-.btnCatalogForProviderBoxFooter img{
+.btnCatalogForProviderBoxFooter img {
   width: 16px;
 }
-.btnCatalogForProviderBoxFooter:hover{
+.btnCatalogForProviderBoxFooter:hover {
   background-color: var(--secondary-hover);
 }
-.btnCatalogForProviderBoxFooter:active{
+.btnCatalogForProviderBoxFooter:active {
   background-color: var(--secondary-click);
 }
-.btnLikeForProviderBoxFooter{
+.btnLikeForProviderBoxFooter {
   width: 24px;
   height: 24px;
   border-radius: 8px;
@@ -674,15 +672,15 @@ input:focus {
   transition: all 1s;
   cursor: pointer;
 }
-.btnLikeForProviderBoxFooter img{
+.btnLikeForProviderBoxFooter img {
   width: 24px;
   height: 24px;
 }
-.btnLikeForProviderBoxFooter:hover{
-  border: 1px solid var(--red)
+.btnLikeForProviderBoxFooter:hover {
+  border: 1px solid var(--red);
 }
-.btnLikeForProviderBoxFooter:active{
-  border: 1px solid var(--red)
+.btnLikeForProviderBoxFooter:active {
+  border: 1px solid var(--red);
 }
 /* контейнер провайдера - окорочка /конец */
 /* контейнер провайдера /конец */
@@ -690,26 +688,26 @@ input:focus {
 /* _____________________________________________________________________________ */
 
 /* контейнер барахолыча /начало */
-.infoBodyForMarketCategory{
+.infoBodyForMarketCategory {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 17px;
   width: calc(61vw + 97px);
 }
-.marketCategoryBox{
+.marketCategoryBox {
   display: flex;
   flex-direction: column;
   max-width: 260px;
   flex-grow: 1;
 }
-.marketCategoryBox img{
+.marketCategoryBox img {
   border-radius: 8px;
   width: 260px;
   height: 196px;
   margin-bottom: 16px;
 }
-.marketThingName{
+.marketThingName {
   display: flex;
   justify-content: space-between;
   color: var(--primary-click);
@@ -717,33 +715,36 @@ input:focus {
   font-weight: 600;
   margin-bottom: 8px;
 }
-.marketThingName img{
+.marketThingName img {
   width: 24px;
   height: 24px;
   margin: 0;
   cursor: pointer;
 }
-.marketThingCost{
+.marketThingCost {
   font-size: 16px;
   font-weight: 500;
   line-height: 150%;
   margin-bottom: 4px;
 }
-.marketThingCity{
+.marketThingCity {
   font-size: 14px;
   font-weight: 400;
   line-height: 114%;
   color: var(--grayColor);
 }
-.marketName{
+.marketName {
   cursor: pointer;
 }
+
 /* контейнер барахолыча /конец */
 
 /* _____________________________________________________________________________ */
 
-
 /* товар барахолыча /начало */
+.productFromTheMarketBox {
+  margin-bottom: calc(0.9vw + 21px);
+}
 .grid-container {
   display: grid;
   grid-template-columns: 5% 3% 71% 4% 17%;
@@ -792,50 +793,108 @@ input:focus {
 .productBtnLeave:active {
   background-color: var(--secondary-click);
 }
-.productBtnLeave img{
+.productBtnLeave img {
   width: 22px;
 }
-.productName h3{
+.productName h3 {
   font-size: calc(0.9vw + 21px);
   font-weight: 600;
   line-height: 125%;
 }
-.productCost p{
+.productCost p {
   font-size: calc(0.9vw + 21px);
   font-weight: 600;
   line-height: 125%;
+}
+/* товар барахолыча Связь /начало */
+.developerUserBox {
+  display: flex;
+  justify-content: space-between;
+  gap: calc(0.9vw + 21px);
+  font-size: calc(0.16vw + 13.5px);
+  font-weight: 400;
+  line-height: 150%;
+  padding: calc(0.7vw + 14px);
+  border-radius: 16px;
+  border: 1px solid var(--secondary-click);
+  background: var(--surface);
+  margin-bottom: 32px;
+}
+.developerUserBoxLeft {
+  display: flex;
+  flex-direction: column;
+  width: 55%;
+  gap: calc(0.6vw + 14px);
+}
+.developerUserBoxLeftUp {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.developerUserBoxLeftDown {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
+.developerUserBoxRight {
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.6vw + 14px);
+  width: 40%;
+}
+.developerTilte {
+  color: var(--grayColor);
+}
+.aboutDeveloper{
+  display: flex;
+  gap: 12px;
+}
+.aboutDeveloperName .developerTilte {
+  font-size: 14px;
+}
+.contactTheSeller {
+  flex-grow: 0;
+  padding: 0 12px;
+  font-size: 14px;
+  line-height: 100%;
+  height: 48px;
+}
+.aboutDeveloperImg img{
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+/* товар барахолыча Связь /конец */
 
 /* товар барахолыча /конец */
 /* _____________________________________________________________________________ */
 @media (min-width: 1200px) {
-  #multiselect-input{
+  #multiselect-input {
     max-width: 684px;
   }
   .multiselect-options {
     max-width: 684px;
   }
-  .mainBoxInThisContainer{
+  .mainBoxInThisContainer {
     width: 900px;
   }
   .providerCategoryBox {
     max-width: 922px;
   }
-  .filterBtn{
+  .filterBtn {
     max-width: 192px;
   }
-
 }
 /* 1200___________________________________________________________________________960 */
-@media (min-width: 960px) and (max-width: 1200px){
+@media (min-width: 960px) and (max-width: 1200px) {
   .grid-container {
     grid-template-columns: 5% 3% 69% 1% 22%;
   }
-  .mainBoxInThisContainer{
+  .mainBoxInThisContainer {
     width: calc(92vw - 200px);
   }
-  #multiselect-input{
+  #multiselect-input {
     width: calc(49vw - 43px);
     max-width: 684px;
   }
@@ -845,7 +904,15 @@ input:focus {
   }
 }
 @media (min-width: 640px) and (max-width: 960px) {
-  
+  .developerUserBox {
+    flex-direction: column;
+  }
+  .developerUserBoxLeft {
+    width: 100%;
+  }
+  .developerUserBoxRight {
+    width: 100%;
+  }
   .mainBoxInThisContainer {
     margin-left: 100px;
     width: calc(62vw + 100px);
@@ -948,10 +1015,10 @@ input:focus {
     padding: 16px;
     margin-bottom: 25px;
   }
-  .categoryForMenuBurgerUp li{
+  .categoryForMenuBurgerUp li {
     margin-left: 5px;
   }
-  
+
   .unBurgerBox:hover .firstImgLable {
     display: none;
   }
@@ -994,15 +1061,16 @@ input:focus {
     grid-row-start: 1;
     grid-row-end: 2;
   }
-  
+
   .item:nth-child(3) {
+    margin-top: 20px;
     grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column-end: 4;
     grid-row-start: 4;
     grid-row-end: 5;
     justify-self: start;
   }
-  
+
   .item:nth-child(4) {
     grid-column-start: 1;
     grid-column-end: 5;
@@ -1017,10 +1085,19 @@ input:focus {
   }
 }
 @media (max-width: 640px) {
+  .developerUserBox {
+    flex-direction: column;
+  }
+  .developerUserBoxLeft {
+    width: 100%;
+  }
+  .developerUserBoxRight {
+    width: 100%;
+  }
   #thumbnail-carousel {
     display: none;
   }
-  .burger img{
+  .burger img {
     margin-left: 50px;
     position: fixed;
   }
@@ -1031,10 +1108,10 @@ input:focus {
     margin-left: 0;
     width: 100vw;
   }
-  .providerCategoryBoxFooter{
+  .providerCategoryBoxFooter {
     flex-wrap: wrap;
   }
-  .prANDsub{
+  .prANDsub {
     min-width: 100px;
   }
   #multiselectSonny-input {
@@ -1042,7 +1119,7 @@ input:focus {
     width: calc(97vw - 120px);
     background-color: var(--secondary-click);
   }
-  .multiselect-input{
+  .multiselect-input {
     border: 1px solid var(--text-prizrak);
   }
   #multiselectSonny-options li {
@@ -1052,19 +1129,19 @@ input:focus {
   #multiselectSonny-options li input[type="checkbox"] {
     margin-right: 5px;
   }
-  .multiselect.Sonny{
+  .multiselect.Sonny {
     display: block;
   }
-  .multiselect.Daddy{
+  .multiselect.Daddy {
     display: none;
   }
-  .searchCategory{
+  .searchCategory {
     gap: 0;
   }
-  .filterBtn{
+  .filterBtn {
     width: calc(97vw - 100px);
   }
-  .providerCategoryBox{
+  .providerCategoryBox {
     width: calc(97vw - 100px);
   }
   #filterBoxChooseTown-input {
@@ -1082,10 +1159,10 @@ input:focus {
   .filterBox .multiselect-options {
     width: calc(98vw - 88px);
   }
-  .multiselect-options.Sonny{
+  .multiselect-options.Sonny {
     width: calc(97vw - 120px);
   }
-  .filterBoxBody{
+  .filterBoxBody {
     position: absolute;
     left: 0;
   }
@@ -1101,10 +1178,10 @@ input:focus {
   .productBtnLeave {
     margin-bottom: 17px;
   }
-  .productName h3{
+  .productName h3 {
     font-size: 20px;
   }
-  .productCost p{
+  .productCost p {
     font-size: 24px;
     font-weight: 700;
   }
@@ -1144,8 +1221,4 @@ input:focus {
     grid-row-start: 4;
     grid-row-end: 5;
   }
-  
-  
-  
-  
 }
