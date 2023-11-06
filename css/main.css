@@ -178,6 +178,7 @@ input:focus {
   background-color: var(--background);
   margin-top: 10px;
   border-radius: 1px;
+  z-index: 5;
 }
 .unBurgerBox .categoryForMenuBurger {
   height: 98vh;
