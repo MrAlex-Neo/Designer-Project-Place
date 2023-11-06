@@ -7,50 +7,6 @@
   border: 3px solid #8f8f8f;
   opacity: 1;
 }
-/* .splide__arrow {
-  -ms-flex-align: center;
-  align-items: center;
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  cursor: pointer;
-  display: -ms-flexbox;
-  display: flex;
-  height: 2.5em;
-  -ms-flex-pack: center;
-  justify-content: center;
-  padding: 0;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 2.5em;
-  z-index: 1;
-}
-.splide__arrow svg {
-  fill: #00bfff;
-  height: 2.5em;
-  transition: fill 0.2s linear;
-  width: 2.5em;
-} */
-/* .splide__arrow:hover:not(:disabled) svg {
-  fill: #66d9ff;
-}
-.splide__arrow:disabled {
-  opacity: 0.3;
-}
-.splide__arrow:focus-visible {
-  outline: 3px solid #00bfff;
-  outline-offset: 3px;
-}
-.splide__arrow--prev {
-  left: 1em;
-}
-.splide__arrow--prev svg {
-  transform: scaleX(-1);
-}
-.splide__arrow--next {
-  right: 1em;
-} */
 .splide.is-focus-in .splide__arrow:focus {
   outline: 3px solid #00bfff;
   outline-offset: 3px;
@@ -212,7 +168,110 @@
   opacity: 0;
   z-index: 0;
 }
-.splide__track--fade > .splide__list > .splide__slide.is-active {
+
+.splide__pagination--ttb {
+  bottom: 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  left: auto;
+  padding: 1em 0;
+  right: 0.5em;
+  top: 0;
+}
+.mainSlider {
+  filter: blur(10px);
+  transition: filter 0.5s; /* Анимация при изменении размытия */
+}
+
+/* Сделайте активный слайд без размытия */
+.splide__slide.is-active {
+  filter: none; /* Очистите размытие для активного слайда */
+}
+
+#thumbnail-carousel {
+  margin-top: 16px;
+}
+#main-carousel .splide__list {
+  border-radius: 5% !important;
+}
+
+.childSlider img {
+  width: 105px;
+  height: 60px;
+}
+.mainSlider img {
+  width: 654px;
+  height: 503px;
+}
+@media (min-width: 960px) and (max-width: 1200px) {
+  .mainSlider img {
+    width: calc(42vw + 154px);
+    height: calc(35vw + 88px);
+  }
+}
+@media (min-width: 640px) and (max-width: 960px) {
+  .mainSlider img {
+    width: calc(6.2vw + 460px);
+    height: 420px;
+  }
+}
+@media (max-width: 640px) {
+  .mainSlider img {
+    width: 80vw;
+    /* 510/640 280/320 */
+    height: 59vw;
+    /* 380/640 190/320 */
+
+  }
+}
+
+/* .splide__arrow {
+  -ms-flex-align: center;
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  display: -ms-flexbox;
+  display: flex;
+  height: 2.5em;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.5em;
+  z-index: 1;
+}
+.splide__arrow svg {
+  fill: #00bfff;
+  height: 2.5em;
+  transition: fill 0.2s linear;
+  width: 2.5em;
+} */
+/* .splide__arrow:hover:not(:disabled) svg {
+  fill: #66d9ff;
+}
+.splide__arrow:disabled {
+  opacity: 0.3;
+}
+.splide__arrow:focus-visible {
+  outline: 3px solid #00bfff;
+  outline-offset: 3px;
+}
+.splide__arrow--prev {
+  left: 1em;
+}
+.splide__arrow--prev svg {
+  transform: scaleX(-1);
+}
+.splide__arrow--next {
+  right: 1em;
+} */
+/* .splide__track--fade > .splide__list > .splide__slide.is-active {
   opacity: 1;
   z-index: 1;
 }
@@ -298,55 +357,4 @@
 }
 .splide__arrows--ttb .splide__arrow--next svg {
   transform: rotate(90deg);
-}
-.splide__pagination--ttb {
-  bottom: 0;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  left: auto;
-  padding: 1em 0;
-  right: 0.5em;
-  top: 0;
-}
-.mainSlider {
-  filter: blur(10px);
-  transition: filter 0.5s; /* Анимация при изменении размытия */
-}
-
-/* Сделайте активный слайд без размытия */
-.splide__slide.is-active {
-  filter: none; /* Очистите размытие для активного слайда */
-}
-#main-carousel .splide {
-  overflow: hidden;
-  max-width: 654px; /* Устанавливаем максимальную ширину контейнера для обрезки изображений */
-}
-
-.splide__list {
-  display: flex;
-  transition: transform 0.5s;
-}
-.mainSlider img {
-  max-width: 654px; /* Устанавливаем максимальную ширину для изображений */
-}
-.childSlider img {
-  max-width: 105px; /* Устанавливаем максимальную ширину для изображений миниатюр */
-}
-
-#thumbnail-carousel {
-  margin-top: 16px;
-}
-#main-carousel .splide__list {
-  border-radius: 5% !important;
-}
-
-.mainSlider img {
-  width: 654px;
-  height: 503px;
-}
-.childSlider img {
-  width: 105px;
-  height: 60px;
-}
+} */

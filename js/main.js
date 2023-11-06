@@ -526,8 +526,22 @@ document.addEventListener('DOMContentLoaded', function () {
     var main = new Splide('#main-carousel', {
         type: 'loop',
         perPage: 1,
-        gap: 80,
-        padding: { left: '10rem', right: '10rem' },
+        gap: 60,
+        padding: { left: '8rem', right: '10rem' },
+        breakpoints: {
+            1200: {
+                gap: -40,
+                padding: { left: 'calc(25vw - 180px)', right: 'calc(21vw - 190px)' },
+            },
+            960: {
+                gap: "calc(12.5vw - 80px)",
+                padding: { left: 'calc(31.3vw - 200px)', right: 'calc(31.3vw - 200px)' },
+            },
+            640: {
+                gap: "calc(3vw - 5px)",
+                padding: { left: '10vw', right: 'calc(15.6vw - 20px)' },
+            },
+        },
         arrows: false, // Скрыть стрелки
         pagination: false, // Скрыть пагинацию
     });
@@ -540,12 +554,12 @@ document.addEventListener('DOMContentLoaded', function () {
         rewind: true,
         pagination: false,
         isNavigation: true,
-        // breakpoints: {
-        //     600: {
-        //         fixedWidth: 60,
-        //         fixedHeight: 44,
-        //     },
-        // },
+        breakpoints: {
+            600: {
+                fixedWidth: 60,
+                fixedHeight: 44,
+            },
+        },
         arrows: false, // Скрыть стрелки
         pagination: false, // Скрыть пагинацию
     });
