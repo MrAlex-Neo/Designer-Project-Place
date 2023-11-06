@@ -60,121 +60,123 @@
                 </nav>
             </div>
             <div class="mainBoxInThisContainer">
-                <div class="categoryBox">
-                    <div class="headerBoxH2andSpan">
-                        <h2>Поставщики</h2>
-                        <span>(13)</span>
-                    </div>
-                    <div class="searchCategory">
-                        <div class="multiselect Daddy" id="multiselectDaddy">
-                            <input type="text" id="multiselect-input" class="inputStyleForAll multiselect-input" placeholder="Выберите варианты" readonly>
-                            <ul class="multiselect-options none" id="multiselect-options">
-                                <!-- Другие категории -->
-                            </ul>
+                <div class="categoryWithoutFlex none">
+                    <div class="categoryBox ">
+                        <div class="headerBoxH2andSpan">
+                            <h2>Поставщики</h2>
+                            <span>(13)</span>
                         </div>
-                        
-                        <div class="filterBox" >
-                            <div class="filterBtn inputStyleForAll" tabindex="0">
-                                <p>Фильтры</p>
-                                <img src="./img/mainPage/filter.svg" alt="">
+                        <div class="searchCategory">
+                            <div class="multiselect Daddy" id="multiselectDaddy">
+                                <input type="text" id="multiselect-input" class="inputStyleForAll multiselect-input" placeholder="Выберите варианты" readonly>
+                                <ul class="multiselect-options none" id="multiselect-options">
+                                    <!-- Другие категории -->
+                                </ul>
                             </div>
-                            <div class="filterBoxBody none">
-                                <div class="multiselect-options">
-                                    <!-- <div class="multiselect Sonny" id="multiselectSonny">
-                                        <input type="text" id="multiselectSonny-input" class="inputStyleForAll multiselect-input" placeholder="Выберите варианты" readonly>
-                                        <ul class="multiselect-options Sonny none" id="multiselectSonny-options">
-                                        </ul>
-                                    </div> -->
-                                    <div class="multiselect">
-                                        <input type="text" id="filterBoxChooseTown-input" class="inputStyleForAll townInput" placeholder="Выберите варианты" readonly>
-                                        <ul class="filterBoxChooseTown suboptions none" id="filterBoxChooseTown">
-                                        </ul>
-                                    </div>
-                                    <div class="multiselect">
-                                        <input type="text" id="filterBoxChooseState-input" class="inputStyleForAll stateInput" placeholder="По умолчанию" readonly>
-                                        <ul class="filterBoxChooseState suboptions none" id="filterBoxChooseState">
-                                            <li class="inputCheck liState liStyle" data-index="1">
-                                                <p>По умолчанию</p><img class="none" src="./img/Ok.svg" alt="">
-                                            </li>
-                                            <li class="inputCheck liState liStyle" data-index="2">
-                                                <p>По добавлениям в избранное</p><img class="none" src="./img/Ok.svg" alt="">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="checkShowRoom threeBox">
-                                        <input id="check1" type="checkbox" name="check" value="check1">
-                                        <label for="check1"></label>
-                                        <p>Есть шоурум</p>
-                                    </div>
-                                    <div class="checkShowRoom threeBox">
-                                        <input id="check2" type="checkbox" name="check" value="check2">
-                                        <label for="check2"></label>
-                                        <p>Готов отправить образцы</p>
-                                    </div>
-                                    <div class="checkShowRoom threeBox">
-                                        <input id="check3" type="checkbox" name="check" value="check3">
-                                        <label for="check3"></label>
-                                        <p>Только избранные</p>
-                                    </div>
-                                    <hr>
-                                    <div class="threeBox cleanAll">
-                                        <img src="./img/mainPage/cleanAll.svg" alt="">
-                                        <p>Сбросить все</p>
+                            
+                            <div class="filterBox" >
+                                <div class="filterBtn inputStyleForAll" tabindex="0">
+                                    <p>Фильтры</p>
+                                    <img src="./img/mainPage/filter.svg" alt="">
+                                </div>
+                                <div class="filterBoxBody none">
+                                    <div class="multiselect-options">
+                                        <!-- <div class="multiselect Sonny" id="multiselectSonny">
+                                            <input type="text" id="multiselectSonny-input" class="inputStyleForAll multiselect-input" placeholder="Выберите варианты" readonly>
+                                            <ul class="multiselect-options Sonny none" id="multiselectSonny-options">
+                                            </ul>
+                                        </div> -->
+                                        <div class="multiselect">
+                                            <input type="text" id="filterBoxChooseTown-input" class="inputStyleForAll townInput" placeholder="Выберите варианты" readonly>
+                                            <ul class="filterBoxChooseTown suboptions none" id="filterBoxChooseTown">
+                                            </ul>
+                                        </div>
+                                        <div class="multiselect">
+                                            <input type="text" id="filterBoxChooseState-input" class="inputStyleForAll stateInput" placeholder="По умолчанию" readonly>
+                                            <ul class="filterBoxChooseState suboptions none" id="filterBoxChooseState">
+                                                <li class="inputCheck liState liStyle" data-index="1">
+                                                    <p>По умолчанию</p><img class="none" src="./img/Ok.svg" alt="">
+                                                </li>
+                                                <li class="inputCheck liState liStyle" data-index="2">
+                                                    <p>По добавлениям в избранное</p><img class="none" src="./img/Ok.svg" alt="">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="checkShowRoom threeBox">
+                                            <input id="check1" type="checkbox" name="check" value="check1">
+                                            <label for="check1"></label>
+                                            <p>Есть шоурум</p>
+                                        </div>
+                                        <div class="checkShowRoom threeBox">
+                                            <input id="check2" type="checkbox" name="check" value="check2">
+                                            <label for="check2"></label>
+                                            <p>Готов отправить образцы</p>
+                                        </div>
+                                        <div class="checkShowRoom threeBox">
+                                            <input id="check3" type="checkbox" name="check" value="check3">
+                                            <label for="check3"></label>
+                                            <p>Только избранные</p>
+                                        </div>
+                                        <hr>
+                                        <div class="threeBox cleanAll">
+                                            <img src="./img/mainPage/cleanAll.svg" alt="">
+                                            <p>Сбросить все</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+                        <div class="infoBodyForCategories">
+                            <div class="providerPlace none">
+                                <div class="infoBodyForProviderCategory ">
+                                    
+                                </div>
+                            </div>
+                            <div class="marketPlace none">
+                                <div class="infoBodyForMarketCategory ">
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
                     </div>
-                    <div class="infoBodyForCategories">
-                        <div class="providerPlace none">
-                            <div class="infoBodyForProviderCategory ">
-                                
-                            </div>
-                        </div>
-                        <div class="marketPlace none">
-                            <div class="infoBodyForMarketCategory ">
-                                
-                            </div>
-                        </div>
-                        <div class="productFromTheMarket">
-                            <div class="productFromTheMarketBox">
-                                <div class="productBoxGrid grid-container">
-                                    <div class="item productBtnLeave"><img src="./img/mainPage/Arrow.svg" alt=""></div>
-                                    <div class="item productName"><h3>Бензопила huter bs-40</h3></div>
-                                    <div class="item productCost"><p>56000 ₽</p></div>
-                                    <div class="item productImg">
-                                        <div id="main-carousel" class="splide" role="group" aria-label="Splide Basic HTML Example">
-                                            <div class="splide__track">
-                                                  <ul class="splide__list">
-                                                      <li class="splide__slide"><img src="./img/mainPage/slider/9adf4b4457f4abe4715c1ca6cb926621.jpg" alt=""></li>
-                                                      <li class="splide__slide"><img src="./img/mainPage/slider/resize_900_900_true_q90_5915951_11675a4743c281cea6252d421.jpeg" alt=""></li>
-                                                      <li class="splide__slide"><img src="./img/mainPage/slider/341_original.jpg" alt=""></li>
-                                                  </ul>
-                                            </div>
-                                        </div>
-                                        <section
-                                        id="thumbnail-carousel"
-                                        class="splide"
-                                        aria-label="The carousel with thumbnails. Selecting a thumbnail will change the Beautiful Gallery carousel."
-                                        >
-                                        <div class="splide__track">
-                                                <ul class="splide__list">
-                                                    <li class="splide__slide"><img src="./img/mainPage/slider/9adf4b4457f4abe4715c1ca6cb926621.jpg" alt=""></li>
-                                                    <li class="splide__slide"><img src="./img/mainPage/slider/resize_900_900_true_q90_5915951_11675a4743c281cea6252d421.jpeg" alt=""></li>
-                                                    <li class="splide__slide"><img src="./img/mainPage/slider/341_original.jpg" alt=""></li>
-                                                </ul>
-                                        </div>
-                                        </section>
-                                        
+                </div>
+                <div class="productFromTheMarket">
+                    <div class="productFromTheMarketBox">
+                        <div class="productBoxGrid grid-container">
+                            <div class="item productBtnLeave"><img src="./img/mainPage/Arrow.svg" alt=""></div>
+                            <div class="item productName"><h3>Бензопила huter bs-40</h3></div>
+                            <div class="item productCost"><p>56000 ₽</p></div>
+                            <div class="item productImg">
+                                <div id="main-carousel" class="splide" role="group" aria-label="Splide Basic HTML Example">
+                                    <div class="splide__track">
+                                          <ul class="splide__list">
+                                              <li class="splide__slide mainSlider"><img src="./img/mainPage/slider/9adf4b4457f4abe4715c1ca6cb926621.jpg" alt=""></li>
+                                              <li class="splide__slide mainSlider"><img src="./img/mainPage/slider/resize_900_900_true_q90_5915951_11675a4743c281cea6252d421.jpeg" alt=""></li>
+                                              <li class="splide__slide mainSlider"><img src="./img/mainPage/slider/341_original.jpg" alt=""></li>
+                                          </ul>
                                     </div>
                                 </div>
-                                <div class="productBoxBody">
+                                <section
+                                id="thumbnail-carousel"
+                                class="splide"
+                                aria-label="The carousel with thumbnails. Selecting a thumbnail will change the Beautiful Gallery carousel."
+                                >
+                                <div class="splide__track">
+                                        <ul class="splide__list">
+                                            <li class="splide__slide childSlider"><img src="./img/mainPage/slider/9adf4b4457f4abe4715c1ca6cb926621.jpg" alt=""></li>
+                                            <li class="splide__slide childSlider"><img src="./img/mainPage/slider/resize_900_900_true_q90_5915951_11675a4743c281cea6252d421.jpeg" alt=""></li>
+                                            <li class="splide__slide childSlider"><img src="./img/mainPage/slider/341_original.jpg" alt=""></li>
+                                        </ul>
+                                </div>
+                                </section>
+                                
+                            </div>
+                        </div>
+                        <div class="productBoxBody">
 
-                                </div>
-                                <div class="productBoxFooter"></div>
-                            </div>
                         </div>
+                        <div class="productBoxFooter"></div>
                     </div>
                 </div>
             </div>

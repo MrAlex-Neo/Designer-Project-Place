@@ -534,19 +534,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     var thumbnails = new Splide('#thumbnail-carousel', {
-        fixedWidth: 100,
-        fixedHeight: 60,
+        fixedWidth: 110,
+        fixedHeight: 65,
         gap: 10,
         rewind: true,
         pagination: false,
         isNavigation: true,
-        padding: { left: '10rem', right: '10rem' },
-        breakpoints: {
-            600: {
-                fixedWidth: 60,
-                fixedHeight: 44,
-            },
-        },
+        // breakpoints: {
+        //     600: {
+        //         fixedWidth: 60,
+        //         fixedHeight: 44,
+        //     },
+        // },
         arrows: false, // Скрыть стрелки
         pagination: false, // Скрыть пагинацию
     });

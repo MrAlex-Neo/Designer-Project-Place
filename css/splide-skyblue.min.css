@@ -4,10 +4,10 @@
   opacity: 0.7;
 }
 .splide__track--nav > .splide__list > .splide__slide.is-active {
-  border: 3px solid #00bfff;
+  border: 3px solid #8f8f8f;
   opacity: 1;
 }
-.splide__arrow {
+/* .splide__arrow {
   -ms-flex-align: center;
   align-items: center;
   background: transparent;
@@ -31,8 +31,8 @@
   height: 2.5em;
   transition: fill 0.2s linear;
   width: 2.5em;
-}
-.splide__arrow:hover:not(:disabled) svg {
+} */
+/* .splide__arrow:hover:not(:disabled) svg {
   fill: #66d9ff;
 }
 .splide__arrow:disabled {
@@ -50,7 +50,7 @@
 }
 .splide__arrow--next {
   right: 1em;
-}
+} */
 .splide.is-focus-in .splide__arrow:focus {
   outline: 3px solid #00bfff;
   outline-offset: 3px;
@@ -101,14 +101,12 @@
   backface-visibility: hidden;
   display: -ms-flexbox;
   display: flex;
+
   height: 100%;
   margin: 0 !important;
   padding: 0 !important;
 }
-.splide__slide img {
-  width: 654px;
-  height: 503px;
-}
+
 .splide.is-initialized:not(.is-active) .splide__list {
   display: block;
 }
@@ -152,11 +150,9 @@
   flex-shrink: 0;
   list-style-type: none !important;
   margin: 0;
-  filter: blur(10px);
-  transition: filter 0.5s;
   position: relative;
 }
-.splide__slide img {
+.mainSlider img {
   vertical-align: bottom;
 }
 .splide__spinner {
@@ -255,10 +251,10 @@
 }
 @media screen and (-ms-high-contrast: none) {
   .splide.is-focus-in .splide__slide:focus {
-    border: 3px solid #00bfff;
+    border: 1px solid #303030;
   }
   .splide.is-focus-in .splide__track > .splide__list > .splide__slide:focus {
-    border-color: #00bfff;
+    border-color: #303030;
   }
 }
 .splide__toggle {
@@ -314,7 +310,7 @@
   right: 0.5em;
   top: 0;
 }
-.splide__slide {
+.mainSlider {
   filter: blur(10px);
   transition: filter 0.5s; /* Анимация при изменении размытия */
 }
@@ -322,4 +318,35 @@
 /* Сделайте активный слайд без размытия */
 .splide__slide.is-active {
   filter: none; /* Очистите размытие для активного слайда */
+}
+#main-carousel .splide {
+  overflow: hidden;
+  max-width: 654px; /* Устанавливаем максимальную ширину контейнера для обрезки изображений */
+}
+
+.splide__list {
+  display: flex;
+  transition: transform 0.5s;
+}
+.mainSlider img {
+  max-width: 654px; /* Устанавливаем максимальную ширину для изображений */
+}
+.childSlider img {
+  max-width: 105px; /* Устанавливаем максимальную ширину для изображений миниатюр */
+}
+
+#thumbnail-carousel {
+  margin-top: 16px;
+}
+#main-carousel .splide__list {
+  border-radius: 5% !important;
+}
+
+.mainSlider img {
+  width: 654px;
+  height: 503px;
+}
+.childSlider img {
+  width: 105px;
+  height: 60px;
 }
