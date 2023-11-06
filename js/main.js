@@ -389,7 +389,7 @@ infoContainers.forEach(container => {
 
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const marketData = [
         {
             name: "Бензопила huter bs-40",
@@ -495,7 +495,7 @@ document.addEventListener('DOMContentLoaded', function() {
         market.appendChild(marketCategoryBox);
     });
 
-    market.addEventListener('click', function(event) {
+    market.addEventListener('click', function (event) {
         const likeButton = event.target.closest('.btnLikeForMarket');
         if (likeButton) {
             const parent = likeButton.closest('.marketCategoryBox');
@@ -509,6 +509,53 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // Барахолка - основной бокс
+// document.addEventListener('DOMContentLoaded', function () {
+//     var splide = new Splide('.splide', {
+//       type: 'loop',
+//       perPage: 1,
+//       gap: 80,
+//       padding: { left: '10rem', right: '10rem' },
+//       arrows: false, // Скрыть стрелки
+//       pagination: false, // Скрыть пагинацию
+//     });
+
+//     splide.mount();
+//   });
+
+document.addEventListener('DOMContentLoaded', function () {
+    var main = new Splide('#main-carousel', {
+        type: 'loop',
+        perPage: 1,
+        gap: 80,
+        padding: { left: '10rem', right: '10rem' },
+        arrows: false, // Скрыть стрелки
+        pagination: false, // Скрыть пагинацию
+    });
+
+
+    var thumbnails = new Splide('#thumbnail-carousel', {
+        fixedWidth: 100,
+        fixedHeight: 60,
+        gap: 10,
+        rewind: true,
+        pagination: false,
+        isNavigation: true,
+        padding: { left: '10rem', right: '10rem' },
+        breakpoints: {
+            600: {
+                fixedWidth: 60,
+                fixedHeight: 44,
+            },
+        },
+        arrows: false, // Скрыть стрелки
+        pagination: false, // Скрыть пагинацию
+    });
+
+
+    main.sync(thumbnails);
+    main.mount();
+    thumbnails.mount();
+});
 
 
 
