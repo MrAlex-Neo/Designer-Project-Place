@@ -249,11 +249,15 @@ document.querySelectorAll('.liState').forEach(elem => {
 document.getElementById('providerCategory').onclick = () => {
     document.querySelector('.providerPlace').classList.remove('none')
     document.querySelector('.marketPlace').classList.add('none')
+    document.querySelector('.categoryWithoutFlex').classList.remove('none')
+    document.querySelector('.productFromTheMarket').classList.add('none')
     document.querySelector('.headerBoxH2andSpan h2').textContent = 'Поставщики'
 }
 document.getElementById('marketCategory').onclick = () => {
     document.querySelector('.providerPlace').classList.add('none')
     document.querySelector('.marketPlace').classList.remove('none')
+    document.querySelector('.categoryWithoutFlex').classList.remove('none')
+    document.querySelector('.productFromTheMarket').classList.add('none')
     document.querySelector('.headerBoxH2andSpan h2').textContent = 'Барахолка'
 }
 // ПЕРЕКЛЮЧАЛКА В МЕНЮ
@@ -477,7 +481,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <img src="${data.img}" alt="">
                 </div>
                 <div class="marketThingName">
-                    <p>${data.name}</p>
+                    <p class="marketName">${data.name}</p>
                     <div class="btnLikeForMarket">
                         <img src="./img/mainPage/heart (market-gray).svg" class="marketImgGray">
                         <img src="./img/mainPage/heart (market-red).svg" class="marketimgRed none">
@@ -491,6 +495,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             </div> 
         `;
+        const marketName = document.querySelectorAll('.marketName')
+        marketName.forEach(elem => {
+            elem.addEventListener('click', () => {
+                document.querySelector('.categoryWithoutFlex').classList.add('none')
+                document.querySelector('.productFromTheMarket').classList.remove('none')
+            })
+        })
 
         market.appendChild(marketCategoryBox);
     });
@@ -505,23 +516,12 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
+
 });
 
 
 // Барахолка - основной бокс
-// document.addEventListener('DOMContentLoaded', function () {
-//     var splide = new Splide('.splide', {
-//       type: 'loop',
-//       perPage: 1,
-//       gap: 80,
-//       padding: { left: '10rem', right: '10rem' },
-//       arrows: false, // Скрыть стрелки
-//       pagination: false, // Скрыть пагинацию
-//     });
-
-//     splide.mount();
-//   });
-
+//СЛАЙДЕР
 document.addEventListener('DOMContentLoaded', function () {
     var main = new Splide('#main-carousel', {
         type: 'loop',
@@ -569,7 +569,7 @@ document.addEventListener('DOMContentLoaded', function () {
     main.mount();
     thumbnails.mount();
 });
-
+//СЛАЙДЕР
 
 
 

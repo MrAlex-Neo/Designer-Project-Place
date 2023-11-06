@@ -132,7 +132,6 @@
   border: 0;
   height: 1px;
   margin: -1px;
-  overflow: hidden;
   padding: 0;
   position: absolute;
   width: 1px;
@@ -223,7 +222,6 @@
     /* 510/640 280/320 */
     height: 59vw;
     /* 380/640 190/320 */
-
   }
 }
 
