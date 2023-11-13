@@ -477,7 +477,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         marketCategoryBox.innerHTML = `
             <div class="marketCategoryBox">
-                <div>
+                <div class="productImg">
                     <img src="${data.img}" alt="">
                 </div>
                 <div class="marketThingName">

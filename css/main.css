@@ -691,17 +691,17 @@ input:focus {
 /* контейнер барахолыча /начало */
 .infoBodyForMarketCategory {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  gap: 17px;
-  width: calc(61vw + 97px);
+  padding-left: 5px;
+  gap: 27px;
+  max-width: 1000px;
 }
 .marketCategoryBox {
   display: flex;
   flex-direction: column;
-  max-width: 260px;
   flex-grow: 1;
 }
+
 .marketCategoryBox img {
   border-radius: 8px;
   width: 260px;
@@ -871,13 +871,21 @@ input:focus {
 /* товар барахолыча /конец */
 /* _____________________________________________________________________________ */
 @media (min-width: 1200px) {
+  .marketCategoryBox {
+    max-width: 305px;
+    min-width: 260px;
+  }
+  .productImg img{
+    width: 305px;
+    height: 240px;
+  }
   #multiselect-input {
     max-width: 684px;
   }
   .multiselect-options {
     max-width: 684px;
   }
-  .mainBoxInThisContainer {
+  .productFromTheMarket {
     width: 900px;
   }
   .providerCategoryBox {
@@ -889,10 +897,23 @@ input:focus {
 }
 /* 1200___________________________________________________________________________960 */
 @media (min-width: 960px) and (max-width: 1200px) {
+  .infoBodyForMarketCategory {
+    gap: 17px;
+  }
+  .mainBoxInThisContainer {
+    margin-left: 240px;
+  }
+  .marketCategoryBox {
+    max-width: calc(18.7vw + 40px);
+  }
+  .productImg img{
+    width: calc(18.7vw + 40px);
+    height: 196px;
+  }
   .grid-container {
     grid-template-columns: 5% 3% 69% 1% 22%;
   }
-  .mainBoxInThisContainer {
+  .productFromTheMarket {
     width: calc(92vw - 200px);
   }
   #multiselect-input {
@@ -902,6 +923,32 @@ input:focus {
   .multiselect-options {
     max-width: 684px;
     width: calc(49vw - 43px);
+  }
+}
+@media (min-width: 790px) and (max-width: 960px) {
+  .marketCategoryBox {
+    max-width: calc(34vw - 70px);
+    /* 250 */
+  }
+  .productImg img{
+    width: calc(34vw - 70px);
+    height: calc(27vw - 64px);
+    /* 196 */
+  }
+}
+@media (min-width: 640px) and (max-width: 789px) {
+  .infoBodyForMarketCategory {
+    padding-left: calc(17vw - 102px);
+    gap: calc(15vw - 82px);
+  }
+  .marketCategoryBox {
+    max-width: calc(19vw + 132px);
+    /* 280 */
+  }
+  .productImg img{
+    width: calc(19vw + 132px);
+    height: calc(16vw + 93px);
+    /* 196 */
   }
 }
 @media (min-width: 640px) and (max-width: 960px) {
@@ -916,13 +963,16 @@ input:focus {
   }
   .mainBoxInThisContainer {
     margin-left: 100px;
+  }
+  .productFromTheMarket {
     width: calc(62vw + 100px);
   }
   #multiselect-input {
-    width: calc(47vw - 18px);
+    width: calc(90vw - 340px);
+    /* 530 */
   }
   .multiselect-options {
-    width: calc(47vw - 18px);
+    width: calc(90vw - 340px);
   }
   .firstImgLable {
     display: block;
@@ -1085,6 +1135,33 @@ input:focus {
     display: block;
   }
 }
+@media (min-width: 500px) and (max-width: 640px) {
+  .marketCategoryBox {
+    max-width: calc(50vw - 50px);
+    /* 280 */
+  }
+  .productImg img{
+    width: calc(50vw - 50px);
+    height: calc(36vw - 29px);
+    /* 196 */
+  }
+}
+@media (min-width: 200px) and (max-width: 500px) {
+  .infoBodyForMarketCategory {
+    padding-left: 0;
+  }
+  .marketCategoryBox {
+    width: calc(33vw + 153px);
+    margin: 0 calc(14vw - 44px);
+    /* 320 */
+  }
+  .productImg img{
+    width: calc(33vw + 153px);
+    height: calc(28vw + 111px);
+    /* 250 */
+  }
+}
+
 @media (max-width: 640px) {
   .developerUserBox {
     flex-direction: column;
@@ -1106,7 +1183,7 @@ input:focus {
     padding-top: 20px;
   }
   .mainBoxInThisContainer {
-    margin-left: 0;
+    margin: 40px 20px;
     width: 100vw;
   }
   .providerCategoryBoxFooter {
