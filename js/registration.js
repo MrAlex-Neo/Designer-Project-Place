@@ -505,53 +505,53 @@ document.getElementById('finishTwoPartProviderRegistr').onclick = () => {
 //ИНПУТ С КАТЕГОРИЯМИ
 let searchArray = []
 document.querySelectorAll('.inputCheck p').forEach((elem) => {
-  elem.addEventListener('click', (event) => {
-    console.log(event)
-    const dataIndex = elem.getAttribute('data-index');
-    const suboptions = document.querySelector(`.suboptions[data-index="${dataIndex}"]`);
+    elem.addEventListener('click', (event) => {
+        console.log(event)
+        const dataIndex = elem.getAttribute('data-index');
+        const suboptions = document.querySelector(`.suboptions[data-index="${dataIndex}"]`);
 
-    if (suboptions) {
-      suboptions.classList.toggle('none');
-    }
-  });
+        if (suboptions) {
+            suboptions.classList.toggle('none');
+        }
+    });
 });
 document.querySelectorAll('.liContent').forEach((elem) => {
-  elem.addEventListener('click', (event) => {
-    const text = elem.querySelector('h6').textContent;
-    const img = elem.querySelector('img');
-    if (searchArray.includes(text)) {
-      searchArray = searchArray.filter(item => item !== text);
-      img.classList.add('none');
-    } else if (searchArray.length < 3) {
-      img.classList.remove('none');
-      searchArray.push(text);
-    }
-    const inputField = document.getElementById('multiselect-input');
+    elem.addEventListener('click', (event) => {
+        const text = elem.querySelector('h6').textContent;
+        const img = elem.querySelector('img');
+        if (searchArray.includes(text)) {
+            searchArray = searchArray.filter(item => item !== text);
+            img.classList.add('none');
+        } else if (searchArray.length < 3) {
+            img.classList.remove('none');
+            searchArray.push(text);
+        }
+        const inputField = document.getElementById('multiselect-input');
 
-    if (searchArray.length > 0) {
-      const displayText = searchArray.slice(0, 3).join(', ');
-      inputField.value = searchArray.length < 4 ? displayText + ` (${searchArray.length}/3)` : displayText;
-    } else {
-      inputField.value = '';
-    }
-    console.log(searchArray);
-  });
+        if (searchArray.length > 0) {
+            const displayText = searchArray.slice(0, 3).join(', ');
+            inputField.value = searchArray.length < 4 ? displayText + ` (${searchArray.length}/3)` : displayText;
+        } else {
+            inputField.value = '';
+        }
+        console.log(searchArray);
+    });
 });
 document.addEventListener('click', function (event) {
-  const multiselect = document.getElementById('multiselect');
-  const multiselectOptions = document.querySelector('.multiselect-options');
+    const multiselect = document.getElementById('multiselect');
+    const multiselectOptions = document.querySelector('.multiselect-options');
 
-  if (event.target !== multiselect && !multiselect.contains(event.target)) {
-    multiselectOptions.classList.add('none');
-  }
+    if (event.target !== multiselect && !multiselect.contains(event.target)) {
+        multiselectOptions.classList.add('none');
+    }
 });
 
 document.getElementById('multiselect-input').addEventListener('click', function (event) {
-  document.querySelector('.multiselect-options').classList.remove('none');
-  document.querySelectorAll('.suboptions').forEach(elem => {
-    elem.classList.add('none');
-  });
-  event.stopPropagation();
+    document.querySelector('.multiselect-options').classList.remove('none');
+    document.querySelectorAll('.suboptions').forEach(elem => {
+        elem.classList.add('none');
+    });
+    event.stopPropagation();
 });
 //ИНПУТ С КАТЕГОРИЯМИ
 
@@ -635,17 +635,25 @@ phoneInputAuth.addEventListener('input', (event) => {
     }
 });
 
-document.getElementById('createPhoneBtnAuth').onclick = () => {
-    if (document.getElementById('createPhoneBtnAuth').textContent === 'Войти') {
-        // const user = {name: 'Alex', age: 29}
+document.getElementById('createPhoneBtnAuth').onclick = async () => {
+    if (document.getElementById('createPhoneBtnAuth').textContent === 'Продолжить') {
+        document.querySelector('.checkCodeTel').classList.remove('none')
+        phoneInputAuth.setAttribute('disabled', true);
+        document.getElementById('createPhoneBtnAuth').textContent = 'Войти'
+        let response = await sendRequestForPhone('se_phone', phoneInputAuth.value)
+        console.log(response)
+        // const user = { name: 'Alex', age: 29 }
+        // localStorage.setItem('user', JSON.stringify(user))
+    }
+    let response = await sendRequestForPhoneCode('se_phone_code', phoneInputAuth.value ,checkTelAuth.value)
+    console.log(response)
+    if (response) {
+        // const user = { name: 'Alex', age: 29 }
         // localStorage.setItem('user', JSON.stringify(user))
         location = './main.html'
+        userDataAuth.phone = phoneInputAuth.value
     }
-    userDataAuth.phone = phoneInputAuth.value
     // document.getElementById('regBoxOne').classList.add('none')
-    phoneInputAuth.setAttribute('disabled', true);
-    document.querySelector('.checkCodeTel').classList.remove('none')
-    document.getElementById('createPhoneBtnAuth').textContent = 'Войти'
     // LogData()
 }
 
@@ -737,3 +745,33 @@ fetch('https://raw.githubusercontent.com/russ666/all-countries-and-cities-json/m
     });
 
 
+async function sendRequestForPhone(url, data) {
+    url = `https://di.i-rs.ru/A285VOk/?${url}=${encodeURIComponent(data)}`;
+    let response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+
+    if (!response.ok) {
+        throw new Error(`Ошибка HTTP: ${response.status}`);
+    }
+    return await response.json();
+}
+async function sendRequestForPhoneCode(url, phone, code) {
+    url = `https://di.i-rs.ru/A285VOk/?se_phone=${encodeURIComponent(phone)}&${url}=${encodeURIComponent(code)}`
+    let response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+
+    if (!response.ok) {
+        throw new Error(`Ошибка HTTP: ${response.status}`);
+    }
+    return await response.json();
+}
