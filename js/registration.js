@@ -795,7 +795,7 @@ function startTimer(initialTime) {
 function updateTimerDisplay(timeInSeconds) {
     const minutes = Math.floor(timeInSeconds / 60);
     const seconds = timeInSeconds % 60;
-    timerBox.textContent = `Выслать код повторно через ${minutes}:${seconds < 10 ? '0' : ''}${seconds} минут`;
+    timerBox.textContent = `Выслать код повторно через ${minutes}:${seconds < 10 ? '0' : ''}${seconds} секунд`;
 }
 
 document.getElementById('getRegProcess').onclick = () => {

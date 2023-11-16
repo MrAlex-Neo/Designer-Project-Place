@@ -251,6 +251,9 @@ button:disabled {
   line-height: 150%;
   color: #8f8f8f;
 }
+#userNull{
+  cursor: auto;
+}
 /* Стили для select */
 select {
   margin: auto 0;
