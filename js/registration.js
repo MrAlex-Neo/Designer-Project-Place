@@ -597,10 +597,102 @@ document.getElementById('finishRegBoxThreeForProvider').onclick = () => {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Логика окна авторизации с вводом телефонного номера
+// const phoneInputAuth = document.getElementById('phoneAuth');
+// const labelAuth = document.getElementById('labelAuthTel');
+// const checkTelAuth = document.getElementById('checkTelAuth');
+// const labelCheckAuthTel = document.getElementById('labelCheckAuthTel');
+
+// phoneInputAuth.addEventListener('focus', () => {
+//     if (phoneInputAuth.value.length == 0) {
+//         phoneInputAuth.value = '+7';
+//     }
+//     labelAuth.style.top = '-25px';
+//     labelAuth.style.left = '-2px';
+//     labelAuth.style.fontSize = '14px';
+// });
+// phoneInputAuth.addEventListener('blur', () => {
+//     if (!phoneInputAuth.value) {
+//         if (phoneInputAuth.value.length == 0) {
+//             phoneInputAuth.value = '+7';
+//         }
+//         labelAuth.style.top = '20%';
+//         labelAuth.style.left = '2%';
+//         labelAuth.style.fontSize = '16px';
+//     }
+// });
+// checkTelAuth.addEventListener('focus', () => {
+//     labelCheckAuthTel.style.top = '-25px';
+//     labelCheckAuthTel.style.left = '-2px';
+//     labelCheckAuthTel.style.fontSize = '14px';
+// });
+
+// phoneInputAuth.addEventListener('input', (event) => {
+//     const value = event.target.value;
+//     if (phonePattern.test(value)) {
+//         document.getElementById('createPhoneBtnAuth').removeAttribute('disabled');
+//     } else {
+//         document.getElementById('createPhoneBtnAuth').setAttribute('disabled', 'disabled');
+//     }
+// });
+// document.getElementById('pencil').onclick = () => {
+//     phoneInputAuth.removeAttribute('disabled');
+// }
+// document.getElementById('createPhoneBtnAuth').onclick = async () => {
+//     if (document.getElementById('createPhoneBtnAuth').textContent === 'Продолжить') {
+//         let response = await sendRequestForPhone('se_phone', phoneInputAuth.value)
+//         console.log(response)
+//         if (response.is_new === true) {
+//             document.getElementById('userNull').classList.remove('none')
+//         } else {
+//             document.querySelector('.checkCodeTel').classList.remove('none')
+//             phoneInputAuth.setAttribute('disabled', true);
+//             document.getElementById('pencil').classList.remove('none')
+//             document.getElementById('createPhoneBtnAuth').textContent = 'Войти'
+//             document.getElementById('userNull').classList.add('none')
+//             // const user = { name: 'Alex', age: 29 }
+//             // localStorage.setItem('user', JSON.stringify(user))
+//         }
+
+
+//     }else{
+//         let response = await sendRequestForPhoneCode('se_phone_code', phoneInputAuth.value ,checkTelAuth.value)
+//         console.log(response)
+
+//         location = './main.html'
+//         if (response) {
+//             // const user = { name: 'Alex', age: 29 }
+//             // localStorage.setItem('user', JSON.stringify(user))
+//             userDataAuth.phone = phoneInputAuth.value
+//         }
+//         // document.getElementById('regBoxOne').classList.add('none')
+//         // LogData()
+//     }
+// }
+
+// document.getElementById('getRegProcess').onclick = () => {
+//     document.querySelector('.authorizationBox').classList.add('none')
+//     document.querySelector('.registrationRoles').classList.remove('none')
+
+// }
+// document.querySelectorAll('.getAuthProcess').forEach(input => {
+//     input.addEventListener('click', event => {
+//         document.querySelector('.registrationRoles').classList.add('none')
+//         document.querySelector('.registrationMain').classList.add('none')
+//         document.querySelector('.authorizationBox').classList.remove('none')
+//     });
+// });
 const phoneInputAuth = document.getElementById('phoneAuth');
 const labelAuth = document.getElementById('labelAuthTel');
 const checkTelAuth = document.getElementById('checkTelAuth');
 const labelCheckAuthTel = document.getElementById('labelCheckAuthTel');
+const createPhoneBtnAuth = document.getElementById('createPhoneBtnAuth');
+const userNull = document.getElementById('userNull');
+const checkCodeTel = document.querySelector('.checkCodeTel');
+const pencil = document.getElementById('pencil');
+const timerBox = document.querySelector('.timer');
+const tryAgainBox = document.querySelector('.tryAgain');
+
+let timerInterval;
 
 phoneInputAuth.addEventListener('focus', () => {
     if (phoneInputAuth.value.length == 0) {
@@ -610,6 +702,7 @@ phoneInputAuth.addEventListener('focus', () => {
     labelAuth.style.left = '-2px';
     labelAuth.style.fontSize = '14px';
 });
+
 phoneInputAuth.addEventListener('blur', () => {
     if (!phoneInputAuth.value) {
         if (phoneInputAuth.value.length == 0) {
@@ -620,6 +713,7 @@ phoneInputAuth.addEventListener('blur', () => {
         labelAuth.style.fontSize = '16px';
     }
 });
+
 checkTelAuth.addEventListener('focus', () => {
     labelCheckAuthTel.style.top = '-25px';
     labelCheckAuthTel.style.left = '-2px';
@@ -628,51 +722,93 @@ checkTelAuth.addEventListener('focus', () => {
 
 phoneInputAuth.addEventListener('input', (event) => {
     const value = event.target.value;
-    if (phonePattern.test(value)) {
-        document.getElementById('createPhoneBtnAuth').removeAttribute('disabled');
+    if (/^(\+7|8)\d{10}$/.test(value)) {
+        createPhoneBtnAuth.removeAttribute('disabled');
     } else {
-        document.getElementById('createPhoneBtnAuth').setAttribute('disabled', 'disabled');
+        createPhoneBtnAuth.setAttribute('disabled', 'disabled');
     }
 });
-document.getElementById('pencil').onclick = () => {
+
+
+
+tryAgainBox.onclick = async () => {
+    let response = await sendRequestForPhone('se_phone', phoneInputAuth.value);
+    console.log(response);
+    startTimer(response.tm);
+    tryAgainBox.classList.add('none')
+    timerBox.classList.remove('none');
+};
+
+pencil.onclick = () => {
     phoneInputAuth.removeAttribute('disabled');
-}
-document.getElementById('createPhoneBtnAuth').onclick = async () => {
-    if (document.getElementById('createPhoneBtnAuth').textContent === 'Продолжить') {
-        document.querySelector('.checkCodeTel').classList.remove('none')
-        phoneInputAuth.setAttribute('disabled', true);
-        document.getElementById('pencil').classList.remove('none')
-        document.getElementById('createPhoneBtnAuth').textContent = 'Войти'
-        let response = await sendRequestForPhone('se_phone', phoneInputAuth.value)
-        console.log(response)
-        // const user = { name: 'Alex', age: 29 }
-        // localStorage.setItem('user', JSON.stringify(user))
-    }else{
-        location = './main.html'
-        let response = await sendRequestForPhoneCode('se_phone_code', phoneInputAuth.value ,checkTelAuth.value)
-        console.log(response)
-        if (response) {
-            // const user = { name: 'Alex', age: 29 }
-            // localStorage.setItem('user', JSON.stringify(user))
-            userDataAuth.phone = phoneInputAuth.value
+    checkCodeTel.classList.add('none')
+    createPhoneBtnAuth.textContent = 'Продолжить'
+};
+
+createPhoneBtnAuth.onclick = async () => {
+    if (createPhoneBtnAuth.textContent === 'Продолжить') {
+        let response = await sendRequestForPhone('se_phone', phoneInputAuth.value);
+        console.log(response);
+
+        if (response.is_new === true) {
+            userNull.classList.remove('none');
+        } else {
+            checkCodeTel.classList.remove('none');
+            phoneInputAuth.setAttribute('disabled', true);
+            pencil.classList.remove('none');
+            createPhoneBtnAuth.textContent = 'Войти';
+            userNull.classList.add('none');
+
+            // Запуск таймера
+            startTimer(response.tm);
         }
-        // document.getElementById('regBoxOne').classList.add('none')
-        // LogData()
+    } else {
+        let response = await sendRequestForPhoneCode('se_phone_code', phoneInputAuth.value, checkTelAuth.value);
+        console.log(response);
+        if (response.token) {
+            const userToken = response.token
+            localStorage.setItem('userToken', JSON.stringify(userToken))
+            // userDataAuth.phone = phoneInputAuth.value;
+            location = './main.html';
+        }
     }
+};
+
+function startTimer(initialTime) {
+    let remainingTime = initialTime;
+
+    // Обновление таймера каждую секунду
+    timerInterval = setInterval(() => {
+        if (remainingTime <= 0) {
+            clearInterval(timerInterval);
+            timerBox.classList.add('none');
+            tryAgainBox.classList.remove('none');
+        } else {
+            updateTimerDisplay(remainingTime);
+            remainingTime -= 1;
+        }
+    }, 1000);
+}
+
+function updateTimerDisplay(timeInSeconds) {
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = timeInSeconds % 60;
+    timerBox.textContent = `Выслать код повторно через ${minutes}:${seconds < 10 ? '0' : ''}${seconds} минут`;
 }
 
 document.getElementById('getRegProcess').onclick = () => {
-    document.querySelector('.authorizationBox').classList.add('none')
-    document.querySelector('.registrationRoles').classList.remove('none')
+    document.querySelector('.authorizationBox').classList.add('none');
+    document.querySelector('.registrationRoles').classList.remove('none');
+};
 
-}
 document.querySelectorAll('.getAuthProcess').forEach(input => {
     input.addEventListener('click', event => {
-        document.querySelector('.registrationRoles').classList.add('none')
-        document.querySelector('.registrationMain').classList.add('none')
-        document.querySelector('.authorizationBox').classList.remove('none')
+        document.querySelector('.registrationRoles').classList.add('none');
+        document.querySelector('.registrationMain').classList.add('none');
+        document.querySelector('.authorizationBox').classList.remove('none');
     });
 });
+
 
 // Логика окна авторизации с вводом телефонного номера
 
@@ -684,7 +820,6 @@ fileInput.addEventListener('change', (event) => {
         // Отправка файла на сервер
         const formData = new FormData();
         formData.append('userAva', file);
-
 
 
         const userAva = document.getElementById('userAva');
@@ -711,26 +846,6 @@ fileInput.addEventListener('change', (event) => {
     }
 });
 
-
-
-//Other finctions
-// Функция для загрузки облика input в соответствии с згружаемым img ... input = input загрузки файла, boxId = img(на котором будет идти отображение файла)
-function readURL(input, boxId) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            boxId.src = e.target.result;
-        };
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-//Проверка собираемого объекта при регистрации
-function LogData() {
-    console.log(userDataReg)
-}
-
-
 //Логика для получения списка городов
 fetch('https://raw.githubusercontent.com/russ666/all-countries-and-cities-json/master/countries.json')
     .then(res => res.json())
@@ -752,13 +867,12 @@ fetch('https://raw.githubusercontent.com/russ666/all-countries-and-cities-json/m
 async function sendRequestForPhone(url, data) {
     url = `https://di.i-rs.ru/A285VOk/?${url}=${encodeURIComponent(data)}`;
     let response = await fetch(url, {
-            method: "GET",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        });
-
+        method: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    });
     if (!response.ok) {
         throw new Error(`Ошибка HTTP: ${response.status}`);
     }
@@ -767,15 +881,32 @@ async function sendRequestForPhone(url, data) {
 async function sendRequestForPhoneCode(url, phone, code) {
     url = `https://di.i-rs.ru/A285VOk/?se_phone=${encodeURIComponent(phone)}&${url}=${encodeURIComponent(code)}`
     let response = await fetch(url, {
-            method: "GET",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        });
+        method: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    });
 
     if (!response.ok) {
         throw new Error(`Ошибка HTTP: ${response.status}`);
     }
     return await response.json();
+}
+
+//Other finctions
+// Функция для загрузки облика input в соответствии с згружаемым img ... input = input загрузки файла, boxId = img(на котором будет идти отображение файла)
+function readURL(input, boxId) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            boxId.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+//Проверка собираемого объекта при регистрации
+function LogData() {
+    console.log(userDataReg)
 }

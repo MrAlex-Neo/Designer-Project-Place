@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Design Cloud</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <link rel="stylesheet" href="./css/registration.css">
     <link rel="stylesheet" href="./css/main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -568,14 +569,20 @@
             </div>
             <div class="input-container authorization">
                 <img id="pencil" class="none" src="./img/pencil.svg" alt="">
-                <input type="tel" id="phoneAuth" name="phoneAuth" maxlength="12" required>
+                <input type="tel" id="phoneAuth" name="phoneAuth" required>
                 <label id="labelAuthTel" for="phoneAuth">Телефон</label>
+                <div id="userNull" class="logIn getTheCodeAgain none">
+                    <p>Пользователь не зарегистрирован</p>
+                </div>
             </div>
             <div class="checkCodeTel none">
                 <div class="input-container">
                     <input type="password" id="checkTelAuth" name="checkTelAuth" required>
                     <label id="labelCheckAuthTel" for="checkTelAuth">Введите код</label>
-                    <div class="logIn getTheCodeAgain">
+                    <div class="logIn timer getTheCodeAgain">
+                        <p></p>
+                    </div>
+                    <div class="logIn tryAgain getTheCodeAgain none">
                         <p>Выслать код повторно</p>
                     </div>
                 </div>
@@ -592,6 +599,6 @@
         </div>
     </section>
 
-    
+
 </body>
 </html>

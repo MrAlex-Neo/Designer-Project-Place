@@ -1,5 +1,5 @@
-// const savedUser = JSON.parse(localStorage.getItem('user'));
-// console.log(savedUser)
+const savedUsertoken = JSON.parse(localStorage.getItem('userToken'));
+console.log(savedUsertoken)
 //БУРГЕР
 let menuBtn = document.querySelector('.menu-btn');
 let menu = document.querySelector('.menu');
