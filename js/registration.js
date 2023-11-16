@@ -734,6 +734,7 @@ phoneInputAuth.addEventListener('input', (event) => {
 tryAgainBox.onclick = async () => {
     let response = await sendRequestForPhone('se_phone', phoneInputAuth.value);
     console.log(response);
+    timerBox.textContent = ''
     startTimer(response.tm);
     tryAgainBox.classList.add('none')
     timerBox.classList.remove('none');
@@ -775,6 +776,7 @@ createPhoneBtnAuth.onclick = async () => {
 };
 
 function startTimer(initialTime) {
+    clearInterval(timerInterval);
     let remainingTime = initialTime;
 
     // Обновление таймера каждую секунду
