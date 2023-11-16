@@ -634,27 +634,31 @@ phoneInputAuth.addEventListener('input', (event) => {
         document.getElementById('createPhoneBtnAuth').setAttribute('disabled', 'disabled');
     }
 });
-
+document.getElementById('pencil').onclick = () => {
+    phoneInputAuth.removeAttribute('disabled');
+}
 document.getElementById('createPhoneBtnAuth').onclick = async () => {
     if (document.getElementById('createPhoneBtnAuth').textContent === 'Продолжить') {
         document.querySelector('.checkCodeTel').classList.remove('none')
         phoneInputAuth.setAttribute('disabled', true);
+        document.getElementById('pencil').classList.remove('none')
         document.getElementById('createPhoneBtnAuth').textContent = 'Войти'
         let response = await sendRequestForPhone('se_phone', phoneInputAuth.value)
         console.log(response)
         // const user = { name: 'Alex', age: 29 }
         // localStorage.setItem('user', JSON.stringify(user))
-    }
-    let response = await sendRequestForPhoneCode('se_phone_code', phoneInputAuth.value ,checkTelAuth.value)
-    console.log(response)
-    if (response) {
-        // const user = { name: 'Alex', age: 29 }
-        // localStorage.setItem('user', JSON.stringify(user))
+    }else{
         location = './main.html'
-        userDataAuth.phone = phoneInputAuth.value
+        let response = await sendRequestForPhoneCode('se_phone_code', phoneInputAuth.value ,checkTelAuth.value)
+        console.log(response)
+        if (response) {
+            // const user = { name: 'Alex', age: 29 }
+            // localStorage.setItem('user', JSON.stringify(user))
+            userDataAuth.phone = phoneInputAuth.value
+        }
+        // document.getElementById('regBoxOne').classList.add('none')
+        // LogData()
     }
-    // document.getElementById('regBoxOne').classList.add('none')
-    // LogData()
 }
 
 document.getElementById('getRegProcess').onclick = () => {

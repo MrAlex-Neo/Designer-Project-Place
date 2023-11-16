@@ -212,10 +212,13 @@ button:disabled {
   line-height: 150%;
   color: #8f8f8f;
 }
+.checkCodeTel .input-container label {
+  top: 13%;
+}
 .input-container input {
   margin: auto 0;
   width: 98%;
-  height: calc(1.4vw + 8.6px);
+  /* height: calc(1.4vw + 8.6px); */
   padding: 10px 0;
   padding-left: 2%;
   border-radius: 8px;
@@ -225,6 +228,9 @@ button:disabled {
   font-size: calc(0.4vw + 11px);
   font-weight: 400;
   line-height: 150%;
+  color: #ffffff;
+}
+.input-container input:disabled {
   color: #8f8f8f;
 }
 .input-container textarea {
@@ -663,6 +669,14 @@ select::-webkit-scrollbar-thumb {
   text-align: center;
 }
 /* Логика окна авторизации */
+#pencil{
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  cursor: pointer;
+}
 .getTheCodeAgain {
   margin-top: 16px;
   cursor: pointer;
