@@ -64,8 +64,24 @@
                         <h5>Подтверждение телефона</h5>
                     </div>
                     <div class="input-container registration">
+                        <img id="pencilReg" class="none" src="./img/pencil.svg" alt="">
                         <input type="tel" id="phone" name="phone" maxlength="12" required>
-                        <label for="phone">Телефон</label>
+                        <label id="labelRegTel" for="phone">Телефон</label>
+                        <div id="userNullReg" class="logIn getTheCodeAgain none">
+                            <p>Пользователь уже зарегистрирован</p>
+                        </div>
+                    </div>
+                    <div class="checkCodeTelReg none">
+                        <div class="input-container">
+                            <input type="password" id="checkTelReg" name="checkTelReg" required>
+                            <label id="labelCheckRegTel" for="checkTelReg">Введите код</label>
+                            <div class="logIn timerReg getTheCodeAgain">
+                                <p></p>
+                            </div>
+                            <div class="logIn tryAgainReg getTheCodeAgain none">
+                                <p>Выслать код повторно</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="joinButtons">
                         <div class="createBtn Btn">
@@ -399,7 +415,7 @@
                                 <img src="./img/avaDownload.svg" alt="">
                             </div>
                         </label>
-                        <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                        <input type="file" id="fileInput" class="uploadFile" accept="image/*" style="display: none;">
                     </div>
                     <div class="inputBox">
                         <h5>ФИО</h5>
