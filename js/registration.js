@@ -187,8 +187,13 @@ createPhoneBtnReg.onclick = async () => {
             userDataReg.phone = phoneInput.value;
             userDataReg.token = userToken;
             console.log(userDataReg)
-            document.getElementById('regBoxOne').classList.add('none')
-            document.getElementById('regBoxTwo').classList.remove('none')
+            if (userDataReg.provider) {
+                document.getElementById('regBoxOne').classList.add('none')
+                document.getElementById('regBoxTwoForProvider').classList.remove('none')
+            } else {
+                document.getElementById('regBoxOne').classList.add('none')
+                document.getElementById('regBoxTwo').classList.remove('none')
+            }
         }
     }
 };
@@ -287,74 +292,73 @@ document.getElementById('finishTwoPartPrivateRegistr').onclick = () => {
     document.getElementById('regBoxTwo').classList.add('none')
     document.getElementById('regBoxThree').classList.remove('none')
     LogData()
-    render()
-}
 
-// добавление организации в userdata при регистрации
-var token = "604ceb4b3fb376968d5303185e3a88cc503e5f08";
-function join(arr /*, separator */) {
-    var separator = arguments.length > 1 ? arguments[1] : ", ";
-    return arr.filter(function (n) { return n }).join(separator);
 }
-function showSuggestion(suggestion) {
-    userDataReg.organizationInfo = suggestion
-    document.querySelector('.checkBoxListForProviderTwoPartReg').classList.remove('none')
-    LogData()
-}
-$("#userNameCompany").suggestions({
-    token: token,
-    type: "PARTY",
-    count: 10,
-    /* Вызывается, когда пользователь выбирает одну из подсказок */
-    onSelect: showSuggestion
-});
-$("#userNameCompanyProvider").suggestions({
-    token: token,
-    type: "PARTY",
-    count: 10,
-    /* Вызывается, когда пользователь выбирает одну из подсказок */
-    onSelect: showSuggestion
-
-});
-// добавление организации в userdata при регистрации
 
 //Логика второй части регистрации с вводом данных о пользователе
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Логика третьей части регистрации с вводом данных о пользователе
-const typeProjectsArray = ['Простой', 'Кратко-срочный', 'Безде-фектный', 'Монопроект', 'Ресурсно сложный', 'Долгосрочный', 'Стандартный', 'Мультипроект',]
-function render() {
-    const typeArray = document.getElementById('typeProjects')
-    typeArray.innerHTML = ''
-    for (let i = 0; i < typeProjectsArray.length; i++) {
-        typeArray.insertAdjacentHTML("beforeend", TheyAreTypeProgectsFormToList(typeProjectsArray[i], i))
-        console.log(typeProjectsArray[i])
-    }
-}
+const typeProjectsArray = ['Простой', 'Кратко-срочный', 'Безде-фектный', 'Монопроект', 'Ресурсно сложный', 'Долгосрочный', 'Стандартный', 'Мультипроект'];
+const inputElement = document.getElementById('typeProjects');
+const suggestionsContainer = document.querySelector('.suggestions-suggestions');
 
-function TheyAreTypeProgectsFormToList(text, index) {
-    return `
-    <option selected data-index="${index}">${text}</option>`
-}
-document.getElementById('userName').addEventListener('input', (event) => {
-    const value = event.target.value;
-    if (value != '') {
-        document.getElementById('finishThreePartPrivateRegistr').removeAttribute('disabled');
-    } else {
-        document.getElementById('finishThreePartPrivateRegistr').setAttribute('disabled', 'disabled');
-    }
+// Устанавливаем начальное значение display: none
+suggestionsContainer.style.display = 'none';
+
+inputElement.addEventListener('click', function () {
+    suggestionsContainer.innerHTML = '';
+    typeProjectsArray.forEach(type => {
+        const suggestionElement = document.createElement('div');
+        suggestionElement.className = 'suggestions-suggestion';
+        suggestionElement.textContent = type;
+        suggestionElement.addEventListener('click', function () {
+            inputElement.value = type;
+            suggestionsContainer.style.display = 'none';
+        });
+        suggestionsContainer.appendChild(suggestionElement);
+    });
+
+    suggestionsContainer.style.display = 'block';
 });
 
-document.getElementById('finishThreePartPrivateRegistr').onclick = () => {
-    userDataReg.userName = document.getElementById('userName').value
-    userDataReg.userCity = document.getElementById('userCity').value
-    userDataReg.typeProjects = document.getElementById('typeProjects').value
-    document.getElementById('regBoxThree').classList.add('none')
-    document.getElementById('regBoxFour').classList.remove('none')
-    LogData()
+document.addEventListener('click', function (event) {
+    const isClickInside = inputElement.contains(event.target) || suggestionsContainer.contains(event.target);
+    if (!isClickInside) {
+        suggestionsContainer.style.display = 'none';
+    }
+});
+// проверка на заполнением всех полей перед переходом к следующему этапу
+const userNameInput = document.getElementById('userName');
+const addressPrivateInput = document.getElementById('addressPrivate');
+const typeProjectsInput = document.getElementById('typeProjects');
+const finishButton = document.getElementById('finishThreePartPrivateRegistr');
+
+function updateButtonState() {
+    const userNameValue = userNameInput.value;
+    const addressPrivateValue = addressPrivateInput.value;
+    const typeProjectsValue = typeProjectsInput.value;
+
+    if (userNameValue !== '' && addressPrivateValue !== '' && typeProjectsValue !== '') {
+        finishButton.removeAttribute('disabled');
+    } else {
+        finishButton.setAttribute('disabled', 'disabled');
+    }
 }
 
+userNameInput.addEventListener('input', updateButtonState);
+addressPrivateInput.addEventListener('input', updateButtonState);
+document.querySelector('.RegThirthPart').addEventListener('click', updateButtonState);
+
+finishButton.addEventListener('click', () => {
+    userDataReg.userName = userNameInput.value;
+    userDataReg.userCity = addressPrivateInput.value;
+    userDataReg.typeProjects = typeProjectsInput.value;
+    document.getElementById('regBoxThree').classList.add('none');
+    document.getElementById('regBoxFour').classList.remove('none');
+    LogData();
+});
 //Логика третьей части регистрации с вводом данных о пользователе
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -377,7 +381,6 @@ document.getElementById('createLinkRegBoxFour').onclick = () => {
 
     linkBox.appendChild(newLinkElement);
     linkBoxArray = document.querySelectorAll('.link'); // Обновляем массив linkBoxArray
-    console.log(linkBoxArray);
 
     // Добавляем обработчик клика на .imgDeleteLink в новом элементе
     const deleteLinkButton = newLinkElement.querySelector('.imgDeleteLink');
@@ -386,37 +389,42 @@ document.getElementById('createLinkRegBoxFour').onclick = () => {
         linkBoxArray = document.querySelectorAll('.link'); // Обновляем массив linkBoxArray
         console.log(linkBoxArray);
     });
+
+    let myArrayUrl = []
+    for (let i = 0; i < linkBoxArray.length; i++) {
+        let inputElement = linkBoxArray[i].querySelector('input');
+        let inputValue = inputElement.value;
+        console.log(`inputValue = ${inputValue}`);
+        if (inputValue !== '') {
+            myArrayUrl.push(inputValue);
+        }
+    }
+    userDataReg.workingPage = myArrayUrl
 };
 
-document.querySelectorAll('input[type="radio"][name="education"]').forEach(input => {
-    input.addEventListener('change', event => {
-        input.value === '1' ? document.querySelector('.educationRadioAssent').classList.remove('none') :
-            document.querySelector('.educationRadioAssent').classList.add('none')
+function toggleAssentClass(inputName, assentClass) {
+    document.querySelectorAll(`input[type="radio"][name="${inputName}"]`).forEach(input => {
+        input.addEventListener('change', event => {
+            const assentElement = document.querySelector(`.${assentClass}`);
+            assentElement.classList.toggle('none', input.value !== '1');
+        });
     });
-});
-document.querySelectorAll('input[type="radio"][name="partfolio"]').forEach(input => {
-    input.addEventListener('change', event => {
-        input.value === '1' ? document.querySelector('.projectsRadioAssent').classList.remove('none') :
-            document.querySelector('.projectsRadioAssent').classList.add('none')
-    });
-});
-document.querySelectorAll('input[type="radio"][name="showrooms"]').forEach(input => {
-    input.addEventListener('change', event => {
-        input.value === '1' ? document.querySelector('.thingsRadioAssent').classList.remove('none') :
-            document.querySelector('.thingsRadioAssent').classList.add('none')
-    });
-});
-document.querySelectorAll('input[type="radio"][name="things"]').forEach(input => {
-    input.addEventListener('change', event => {
-        input.value === '1' ? document.querySelector('.linksRadioAssent').classList.remove('none') :
-            document.querySelector('.linksRadioAssent').classList.add('none')
-    });
-});
+}
+
+toggleAssentClass('education', 'educationRadioAssent');
+toggleAssentClass('partfolio', 'projectsRadioAssent');
+toggleAssentClass('showrooms', 'thingsRadioAssent');
+toggleAssentClass('things', 'linksRadioAssent');
+
 
 
 // Функция для обработки загрузки файлов и создания элементов
+// Перед вызовом функции handleFileUpload добавьте объявление массива
+let uploadedImageUrls = [];
+let uploadedImageProgectUrls = []
+
 function handleFileUpload(userEducationInput, educationFilesContainer) {
-    userEducationInput.addEventListener('change', function (event) {
+    userEducationInput.addEventListener('change', async function (event) {
         const files = event.target.files;
         const maxFiles = 8; // Максимальное количество файлов
         const existingImages = educationFilesContainer.querySelectorAll('.userDoc');
@@ -435,11 +443,17 @@ function handleFileUpload(userEducationInput, educationFilesContainer) {
 
             newImgContainer.className = 'userDocContainer';
             newImg.className = 'userDoc';
+            
             deleteIcon.className = 'deleteIcon';
             deleteIcon.textContent = '✖'; // Иконка крестика (белый)
 
-            reader.onload = function (e) {
+            reader.onload = async function (e) {
                 newImg.src = e.target.result;
+
+                // Отправляем изображение на сервер и обрабатываем полученную ссылку
+                const imageUrl = await uploadImageToServer(file);
+                console.log(imageUrl)
+                newImgContainer.id = imageUrl
             };
             reader.readAsDataURL(file);
 
@@ -448,15 +462,77 @@ function handleFileUpload(userEducationInput, educationFilesContainer) {
             educationFilesContainer.appendChild(newImgContainer);
 
             // Добавляем обработчик события для удаления элемента при клике на крестик
-            deleteIcon.addEventListener('click', function () {
-                newImgContainer.remove(); // Удаляем родительский контейнер с изображением
+            deleteIcon.addEventListener('click', async function () {
+                const parentContainerInfo = {
+                    className: newImgContainer.className,
+                    id: newImgContainer.id,
+                    // Добавьте другие необходимые свойства родительского контейнера
+                };
+                console.log('Информация о родительском контейнере:', parentContainerInfo);
+                // Удаляем ссылку на изображение из массива
+                const imageUrl = newImg.src;
+                console.log('я тут')
+                console.log(uploadedImageUrls)
+                const index = uploadedImageUrls.indexOf(imageUrl);
+                if (index !== -1) {
+                    uploadedImageUrls.splice(index, 1);
+                }
+
+                // Отправляем запрос на сервер для удаления изображения
+                await deleteImageFromServer(parentContainerInfo.id);
+                // Удаляем родительский контейнер с изображением
+                newImgContainer.remove();
             });
         }
 
         // Очищаем значение <input> для возможности выбора других файлов
+        userDataReg.educations = uploadedImageUrls
         userEducationInput.value = '';
+        console.log('объект', userDataReg)
     });
 }
+
+// Функция для отправки изображения на сервер
+async function uploadImageToServer(file) {
+    const formData = new FormData();
+    formData.append('education', file);
+
+    try {
+        const uploadResponse = await fetch(`https://di.i-rs.ru/G285VOk/upload/?token=${userDataReg.token}`, {
+            method: 'POST',
+            body: formData,
+        });
+        const data = await uploadResponse.json()
+        console.log(data.files[0])
+        // `https://di.i-rs.ru/gallery/G/G285VOk/ff1eef1a1f0395e1-bb746898d2b.jpeg`;
+        if (!uploadResponse.ok) {
+            throw new Error(`HTTP error! Status: ${uploadResponse.status}`);
+        }
+        uploadedImageUrls.push(data.files[0])
+        console.log(uploadedImageUrls)
+        
+        return data.files[0]
+
+    } catch (error) {
+        console.error('Error during image upload:', error);
+    }
+}
+
+// Функция для отправки запроса на сервер для удаления изображения
+async function deleteImageFromServer(imageUrl) {
+    try {
+        await fetch(`https://di.i-rs.ru/G285VOk/remove/?token=${userDataReg.token}&filename=${imageUrl}`, {
+            method: 'GET',
+        });
+        // console.log('Изображение удалено с сервера:', imageUrl);
+        uploadedImageUrls = uploadedImageUrls.filter(item => !item.includes(imageUrl))
+        userDataReg.educations = uploadedImageUrls
+        console.log('объект', userDataReg)
+    } catch (error) {
+        // console.error('Error during image deletion:', error);
+    }
+}
+
 
 // Получите ссылки на input и контейнеры для обоих частей
 const userEducationInput1 = document.getElementById('userEducation');
@@ -534,9 +610,9 @@ function createAccordElemForRegPgoject(sum) {
 }
 
 document.getElementById('finishFourPartPrivateRegistr').onclick = () => {
-    // userDataReg.userName = document.getElementById('userName').value
-    // userDataReg.userCity = document.getElementById('userCity').value
-    // userDataReg.typeProjects = document.getElementById('typeProjects').value
+    userDataReg.userName = document.getElementById('userName').value
+    userDataReg.userCity = document.getElementById('userCity').value
+    userDataReg.typeProjects = document.getElementById('typeProjects').value
     document.getElementById('regBoxFour').classList.add('none')
     document.getElementById('regBoxFIve').classList.remove('none')
     LogData()
@@ -563,7 +639,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const userNameCompanyProvider = document.getElementById('userNameCompanyProvider');
-    const cityDepartments = document.getElementById('cityDepartments');
+    // const cityDepartments = document.getElementById('cityDepartments');
     const userPosition = document.getElementById('userPosition');
     const userFullName = document.getElementById('userFullName');
 
@@ -579,7 +655,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     userNameCompanyProvider.addEventListener('input', checkInputs);
-    cityDepartments.addEventListener('input', checkInputs);
+    // cityDepartments.addEventListener('input', checkInputs);
     userPosition.addEventListener('input', checkInputs);
     userFullName.addEventListener('input', checkInputs);
 });
@@ -863,22 +939,63 @@ document.querySelectorAll('.uploadFile').forEach(elem => {
 });
 
 
-//Логика для получения списка городов
-fetch('https://raw.githubusercontent.com/russ666/all-countries-and-cities-json/master/countries.json')
-    .then(res => res.json())
-    .then(json => {
-        let jsObj = json;
-        let cities = jsObj['Russia']; // Города России
+// выбор города при регистрации
+// Заменить на свой API-ключ
+var token = "604ceb4b3fb376968d5303185e3a88cc503e5f08";
+var defaultFormatResult = $.Suggestions.prototype.formatResult;
 
-        let citySelect = document.getElementById('cityDepartments');
+function formatResult(value, currentValue, suggestion, options) {
+    var newValue = suggestion.data.city;
+    suggestion.value = newValue;
+    return defaultFormatResult.call(this, newValue, currentValue, suggestion, options);
+}
 
-        cities.forEach(city => {
-            let cityOption = document.createElement('option');
-            cityOption.value = city; // Устанавливаем значение для каждой опции
-            cityOption.text = city; // Устанавливаем отображаемый текст для опции
-            citySelect.appendChild(cityOption);
-        });
-    });
+function formatSelected(suggestion) {
+    console.log(suggestion)
+    return suggestion.data.city;
+}
+
+$(".address").suggestions({
+    token: token,
+    type: "ADDRESS",
+    hint: false,
+    bounds: "city",
+    constraints: {
+        locations: { city_type_full: "город" }
+    },
+    formatResult: formatResult,
+    formatSelected: formatSelected,
+    // onSelect: function (suggestion) {
+    // }
+});
+// выбор города при регистрации
+// добавление организации в userdata при регистрации
+var token = "604ceb4b3fb376968d5303185e3a88cc503e5f08";
+function join(arr /*, separator */) {
+    var separator = arguments.length > 1 ? arguments[1] : ", ";
+    return arr.filter(function (n) { return n }).join(separator);
+}
+function showSuggestion(suggestion) {
+    userDataReg.organizationInfo = suggestion
+    document.querySelector('.checkBoxListForProviderTwoPartReg').classList.remove('none')
+    LogData()
+}
+$("#userNameCompany").suggestions({
+    token: token,
+    type: "PARTY",
+    count: 10,
+    /* Вызывается, когда пользователь выбирает одну из подсказок */
+    onSelect: showSuggestion
+});
+$("#userNameCompanyProvider").suggestions({
+    token: token,
+    type: "PARTY",
+    count: 10,
+    /* Вызывается, когда пользователь выбирает одну из подсказок */
+    onSelect: showSuggestion
+
+});
+// добавление организации в userdata при регистрации
 
 
 async function sendRequestForPhone(url, data) {

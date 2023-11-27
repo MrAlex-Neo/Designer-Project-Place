@@ -173,12 +173,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="inputBox">
-                        <h5>Город нахождения главного офиса</h5>
-                        <div class="input-container">
-                            <div class="input-container">
-                                <select name="typeProjects" id="cityDepartments">
-                                </select>
+                    <div class="joinBox">
+                        <div class="inputBox">
+                            <h5>Город нахождения главного офиса</h5>
+                            <div class="input-container userNameCompanyProvider">
+                                <input type="text" name="address" class="address"  required>
                             </div>
                         </div>
                     </div>
@@ -423,18 +422,22 @@
                             <input type="text" id="userName" name="userName" required>
                         </div>
                     </div>
-                    <div class="inputBox">
-                        <h5>Город</h5>
-                        <div class="input-container">
-                            <input type="text" id="userCity" name="userCity" required>
+                    <div class="joinBox">
+                        <div class="inputBox">
+                            <h5>Город нахождения главного офиса</h5>
+                            <div class="input-container userNameCompanyProvider">
+                                <input type="text" name="address" class="address" id="addressPrivate"  required>
+                            </div>
                         </div>
                     </div>
-                    <div class="inputBox">
-                        <h5>Типы проектов</h5>
-                        <div class="input-container">
-                            <select name="typeProjects" id="typeProjects">
-                                <option disabled selected>Выберите тип проекта:</option>
-                            </select>
+                    <div class="joinBox">
+                        <div class="inputBox render">
+                            <h5>Типы проектов</h5>
+                            <div class="input-container userNameCompanyProvider">
+                                <input type="text" name="address" id="typeProjects"  required readonly>
+                                <div class="suggestions-suggestions"></div>
+                                
+                            </div>
                         </div>
                     </div>
                     <div class="joinButtons">
