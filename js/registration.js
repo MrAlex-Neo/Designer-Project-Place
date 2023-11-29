@@ -165,8 +165,15 @@ createPhoneBtnReg.onclick = async () => {
     if (!userDataReg.is_new) {
         let response = await sendRequestForPhone('se_phone', phoneInput.value);
         console.log(response);
-
-        if (response.is_new === false) {
+        console.log(response.code === 408)
+        console.log('is_Nonew')
+        
+        if (response.code === 408) {
+            userNullReg.classList.add('none');
+            document.getElementById('errorReg').classList.remove('none');
+            createPhoneBtnReg.setAttribute('disabled', 'disabled');
+        }else if (response.is_new === false) {
+            document.getElementById('errorReg').classList.add('none');
             userNullReg.classList.remove('none');
             createPhoneBtnReg.setAttribute('disabled', 'disabled');
         } else {
@@ -175,6 +182,7 @@ createPhoneBtnReg.onclick = async () => {
             userDataReg.is_new = response.is_new
             pencilReg.classList.remove('none');
             userNullReg.classList.add('none');
+            document.getElementById('errorReg').classList.add('none');
             // Запуск таймера
             console.log(response)
             startTimerReg(response.tm);
@@ -183,6 +191,7 @@ createPhoneBtnReg.onclick = async () => {
         let response = await sendRequestForPhoneCode('se_phone_code', phoneInput.value, checkTelReg.value);
         console.log(response);
         if (response.token) {
+            console.log('is_new')
             const userToken = response.token
             userDataReg.phone = phoneInput.value;
             userDataReg.token = userToken;
@@ -831,10 +840,17 @@ createPhoneBtnAuth.onclick = async () => {
         try {
             const response = await sendRequestForPhone('se_phone', phoneInputAuth.value);
             console.log(response);
-
-            if (response.is_new === true) {
+            if (response.code === 408) {
+                userNull.classList.add('none');
+                document.getElementById('errorAuth').classList.remove('none');
+                createPhoneBtnReg.setAttribute('disabled', 'disabled');
+            }else if (response.is_new === true) {
+                document.getElementById('errorAuth').classList.add('none');
                 userNull.classList.remove('none');
-            } else {
+                createPhoneBtnReg.setAttribute('disabled', 'disabled');
+            }else {
+                userNull.classList.add('none');
+                document.getElementById('errorReg').classList.add('none');
                 checkCodeTel.classList.remove('none');
                 phoneInputAuth.setAttribute('disabled', true);
                 pencil.classList.remove('none');
