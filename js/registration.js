@@ -167,12 +167,12 @@ createPhoneBtnReg.onclick = async () => {
         console.log(response);
         console.log(response.code === 408)
         console.log('is_Nonew')
-        
+
         if (response.code === 408) {
             userNullReg.classList.add('none');
             document.getElementById('errorReg').classList.remove('none');
             createPhoneBtnReg.setAttribute('disabled', 'disabled');
-        }else if (response.is_new === false) {
+        } else if (response.is_new === false) {
             document.getElementById('errorReg').classList.add('none');
             userNullReg.classList.remove('none');
             createPhoneBtnReg.setAttribute('disabled', 'disabled');
@@ -454,10 +454,15 @@ function handleFileUpload(userInput, filesContainer, existingImages, key, projec
     userInput.addEventListener('change', async function (event) {
         const files = event.target.files;
         const maxFiles = 18; // Максимальное количество файлов
-        
-        if (existingImages.length + files.length > maxFiles) {
+
+        if (filesContainer.children.length + files.length > maxFiles) {
             alert('Вы превысили максимальное количество файлов.');
             return;
+        }
+
+        // Создайте новый массив, если проекта с этим индексом еще нет
+        if (!uploadedImageProgectUrls[projectIndex]) {
+            uploadedImageProgectUrls[projectIndex] = { images: [] };
         }
 
         for (let i = 0; i < files.length; i++) {
@@ -475,15 +480,12 @@ function handleFileUpload(userInput, filesContainer, existingImages, key, projec
                 newImg.src = e.target.result;
 
                 // Отправляем изображение на сервер и обрабатываем полученную ссылку
-                const imageUrl = await uploadImageToServer(file, key);
-                console.log(imageUrl);
+                const imageUrl = await uploadImageToServer(file, key, projectIndex);
+                // console.log(imageUrl);
                 newImgContainer.id = imageUrl;
 
                 // Сохраняем ссылку в массиве uploadedImageProgectUrls
-                if (!uploadedImageProgectUrls[projectIndex]) {
-                    uploadedImageProgectUrls[projectIndex] = { images: [] };
-                }
-                uploadedImageProgectUrls[projectIndex].images.push(imageUrl);
+                // uploadedImageProgectUrls[projectIndex].images.push(imageUrl);
             };
             reader.readAsDataURL(file);
 
@@ -508,7 +510,7 @@ function handleFileUpload(userInput, filesContainer, existingImages, key, projec
                     }
                 }
                 // Отправляем запрос на сервер для удаления изображения
-                await deleteImageFromServer(parentContainerInfo.id, key);
+                await deleteImageFromServer(parentContainerInfo.id, key, projectIndex);
                 // Удаляем родительский контейнер с изображением
                 newImgContainer.remove();
             });
@@ -528,7 +530,7 @@ function handleFileUpload(userInput, filesContainer, existingImages, key, projec
             };
             uploadedImageProgectUrls[projectIndex] = {
                 info: projectInfo,
-                images: uploadedImageProgectUrls[projectIndex] ? uploadedImageProgectUrls[projectIndex].images : [],
+                images: uploadedImageProgectUrls[projectIndex].images,
             };
 
             userDataReg.projectsImg = uploadedImageProgectUrls;
@@ -538,10 +540,11 @@ function handleFileUpload(userInput, filesContainer, existingImages, key, projec
     });
 }
 
-// Функция для отправки изображения на сервер
-async function uploadImageToServer(file, key) {
-    console.log(file, key);
 
+// Функция для отправки изображения на сервер
+async function uploadImageToServer(file, key, projectIndex) {
+    console.log(projectIndex)
+    console.log(file, key);
     // Declare formData here
     const formData = new FormData();
 
@@ -557,7 +560,7 @@ async function uploadImageToServer(file, key) {
             body: formData,
         });
         const data = await uploadResponse.json();
-        console.log(data.files[0]);
+        // console.log(data.files[0]);
 
         if (!uploadResponse.ok) {
             throw new Error(`HTTP error! Status: ${uploadResponse.status}`);
@@ -565,10 +568,10 @@ async function uploadImageToServer(file, key) {
 
         if (key === 'education') {
             uploadedImageUrls.push(data.files[0]);
-            console.log(uploadedImageUrls);
+            // console.log(uploadedImageUrls);
         } else {
-            uploadedImageProgectUrls.push(data.files[0]);
-            console.log(uploadedImageProgectUrls);
+            uploadedImageProgectUrls[projectIndex].images.push(data.files[0]);
+            // console.log(uploadedImageProgectUrls);
         }
 
         return data.files[0];
@@ -579,7 +582,8 @@ async function uploadImageToServer(file, key) {
 
 
 // Функция для отправки запроса на сервер для удаления изображения
-async function deleteImageFromServer(imageUrl, key) {
+async function deleteImageFromServer(imageUrl, key, projectIndex) {
+    console.log(projectIndex)
     try {
         await fetch(`https://di.i-rs.ru/G285VOk/remove/?token=${userDataReg.token}&filename=${imageUrl}`, {
             method: 'GET',
@@ -589,8 +593,9 @@ async function deleteImageFromServer(imageUrl, key) {
             uploadedImageUrls = uploadedImageUrls.filter(item => !item.includes(imageUrl))
             userDataReg.educations = uploadedImageUrls
         } else {
-            uploadedImageProgectUrls = uploadedImageUrls.filter(item => !item.includes(imageUrl))
-            userDataReg.projectsImg = uploadedImageProgectUrls
+            uploadedImageProgectUrls[projectIndex].images = uploadedImageProgectUrls[projectIndex].images.filter(item => !item.includes(imageUrl));
+            userDataReg.projectsImg = uploadedImageProgectUrls;
+
         }
         console.log('объект', userDataReg)
     } catch (error) {
@@ -921,11 +926,11 @@ createPhoneBtnAuth.onclick = async () => {
                 userNull.classList.add('none');
                 document.getElementById('errorAuth').classList.remove('none');
                 createPhoneBtnReg.setAttribute('disabled', 'disabled');
-            }else if (response.is_new === true) {
+            } else if (response.is_new === true) {
                 document.getElementById('errorAuth').classList.add('none');
                 userNull.classList.remove('none');
                 createPhoneBtnReg.setAttribute('disabled', 'disabled');
-            }else {
+            } else {
                 userNull.classList.add('none');
                 document.getElementById('errorReg').classList.add('none');
                 checkCodeTel.classList.remove('none');
