@@ -513,8 +513,39 @@ function handleFileUpload(userInput, filesContainer, existingImages, key, projec
                 await deleteImageFromServer(parentContainerInfo.id, key, projectIndex);
                 // Удаляем родительский контейнер с изображением
                 newImgContainer.remove();
+                
+                // Захватываем текущее значение projectIndex
+                const currentProjectIndex = projectIndex;
+                const projectInfo = {
+                    type: document.getElementById(`type${currentProjectIndex}`).value,
+                    style: document.getElementById(`style${currentProjectIndex}`).value,
+                    space: document.getElementById(`space${currentProjectIndex}`).value,
+                    cost: document.getElementById(`cost${currentProjectIndex}`).value,
+                    aboutProject: document.getElementById(`aboutProject${currentProjectIndex}`).value,
+                };
+
+                uploadedImageProgectUrls[currentProjectIndex] = {
+                    info: projectInfo,
+                    images: uploadedImageProgectUrls[currentProjectIndex] ? uploadedImageProgectUrls[currentProjectIndex].images : [],
+                };
             });
         }
+
+        // Захватываем текущее значение projectIndex
+        const currentProjectIndex = projectIndex;
+        const inputs = document.querySelectorAll(`#type${currentProjectIndex}, #style${currentProjectIndex}, #space${currentProjectIndex}, #cost${currentProjectIndex}, #aboutProject${currentProjectIndex}`);
+        inputs.forEach(elem => {
+            elem.addEventListener('input', () => {
+                uploadedImageProgectUrls[currentProjectIndex].info = {
+                    type: document.getElementById(`type${currentProjectIndex}`).value,
+                    style: document.getElementById(`style${currentProjectIndex}`).value,
+                    space: document.getElementById(`space${currentProjectIndex}`).value,
+                    cost: document.getElementById(`cost${currentProjectIndex}`).value,
+                    aboutProject: document.getElementById(`aboutProject${currentProjectIndex}`).value,
+                };
+                console.log('объект', userDataReg);
+            });
+        });
 
         // Очищаем значение <input> для возможности выбора других файлов
         if (key === 'education') {
@@ -523,19 +554,18 @@ function handleFileUpload(userInput, filesContainer, existingImages, key, projec
             console.log('объект', userDataReg);
         } else {
             // Сохраняем текстовую информацию в uploadedImageProgectUrls
-            const projectInfo = {
-                type: document.getElementById(`type${projectIndex}`).value,
-                style: document.getElementById(`style${projectIndex}`).value,
-                space: document.getElementById(`space${projectIndex}`).value,
-                cost: document.getElementById(`cost${projectIndex}`).value,
-                aboutProject: document.getElementById(`aboutProject${projectIndex}`).value,
-
-                // Добавьте другие свойства проекта
-            };
-            uploadedImageProgectUrls[projectIndex] = {
-                info: projectInfo,
-                images: uploadedImageProgectUrls[projectIndex].images,
-            };
+            // const projectInfo = {
+            //     type: document.getElementById(`type${currentProjectIndex}`).value,
+            //     style: document.getElementById(`style${currentProjectIndex}`).value,
+            //     space: document.getElementById(`space${currentProjectIndex}`).value,
+            //     cost: document.getElementById(`cost${currentProjectIndex}`).value,
+            //     aboutProject: document.getElementById(`aboutProject${currentProjectIndex}`).value,
+            //     // Добавьте другие свойства проекта
+            // };
+            // uploadedImageProgectUrls[currentProjectIndex] = {
+            //     info: projectInfo,
+            //     images: uploadedImageProgectUrls[currentProjectIndex].images,
+            // };
 
             userDataReg.projectsImg = uploadedImageProgectUrls;
             userInput.value = '';
@@ -543,6 +573,7 @@ function handleFileUpload(userInput, filesContainer, existingImages, key, projec
         }
     });
 }
+
 
 
 // Функция для отправки изображения на сервер
@@ -705,9 +736,9 @@ function createAccordElemForRegPgoject(sum) {
 }
 
 document.getElementById('finishFourPartPrivateRegistr').onclick = () => {
-    userDataReg.userName = document.getElementById('userName').value
-    userDataReg.userCity = document.getElementById('userCity').value
-    userDataReg.typeProjects = document.getElementById('typeProjects').value
+    // userDataReg.userName = document.getElementById('userName').value
+    // userDataReg.userCity = document.getElementById('userCity').value
+    // userDataReg.typeProjects = document.getElementById('typeProjects').value
     document.getElementById('regBoxFour').classList.add('none')
     document.getElementById('regBoxFIve').classList.remove('none')
     LogData()
