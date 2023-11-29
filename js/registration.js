@@ -430,14 +430,31 @@ toggleAssentClass('things', 'linksRadioAssent');
 // Функция для обработки загрузки файлов и создания элементов
 // Перед вызовом функции handleFileUpload добавьте объявление массива
 let uploadedImageUrls = [];
-let uploadedImageProgectUrls = []
+let uploadedImageProgectUrls = [];
+let sum = 0;
 
-function handleFileUpload(userEducationInput, educationFilesContainer) {
-    userEducationInput.addEventListener('change', async function (event) {
+// Функция для обновления обработчиков событий при изменении sum
+function updateHandlers() {
+    for (let i = 0; i <= sum; i++) {
+        const userProjectInput = document.getElementById(`userProject${i}`);
+        const projectFilesContainer = document.getElementById(`projectFiles${i}`);
+        const existingImagesProj = document.getElementById(`userDoc${i}`);
+        handleFileUpload(userProjectInput, projectFilesContainer, existingImagesProj, 'project', i);
+    }
+}
+
+const userEducationInput1 = document.getElementById('userEducation');
+const educationFilesContainer1 = document.querySelector('.educationFiles');
+const existingImagesEduc = document.getElementById('userDoc');
+
+// Вызовите функцию для каждой части, передав соответствующие элементы
+handleFileUpload(userEducationInput1, educationFilesContainer1, existingImagesEduc, 'education');
+
+function handleFileUpload(userInput, filesContainer, existingImages, key, projectIndex) {
+    userInput.addEventListener('change', async function (event) {
         const files = event.target.files;
-        const maxFiles = 8; // Максимальное количество файлов
-        const existingImages = educationFilesContainer.querySelectorAll('.userDoc');
-
+        const maxFiles = 18; // Максимальное количество файлов
+        
         if (existingImages.length + files.length > maxFiles) {
             alert('Вы превысили максимальное количество файлов.');
             return;
@@ -449,10 +466,8 @@ function handleFileUpload(userEducationInput, educationFilesContainer) {
             const newImgContainer = document.createElement('div');
             const newImg = document.createElement('img');
             const deleteIcon = document.createElement('span');
-
             newImgContainer.className = 'userDocContainer';
             newImg.className = 'userDoc';
-            
             deleteIcon.className = 'deleteIcon';
             deleteIcon.textContent = '✖'; // Иконка крестика (белый)
 
@@ -460,15 +475,21 @@ function handleFileUpload(userEducationInput, educationFilesContainer) {
                 newImg.src = e.target.result;
 
                 // Отправляем изображение на сервер и обрабатываем полученную ссылку
-                const imageUrl = await uploadImageToServer(file);
-                console.log(imageUrl)
-                newImgContainer.id = imageUrl
+                const imageUrl = await uploadImageToServer(file, key);
+                console.log(imageUrl);
+                newImgContainer.id = imageUrl;
+
+                // Сохраняем ссылку в массиве uploadedImageProgectUrls
+                if (!uploadedImageProgectUrls[projectIndex]) {
+                    uploadedImageProgectUrls[projectIndex] = { images: [] };
+                }
+                uploadedImageProgectUrls[projectIndex].images.push(imageUrl);
             };
             reader.readAsDataURL(file);
 
             newImgContainer.appendChild(newImg);
             newImgContainer.appendChild(deleteIcon); // Добавляем крестик
-            educationFilesContainer.appendChild(newImgContainer);
+            filesContainer.appendChild(newImgContainer);
 
             // Добавляем обработчик события для удаления элемента при клике на крестик
             deleteIcon.addEventListener('click', async function () {
@@ -480,79 +501,107 @@ function handleFileUpload(userEducationInput, educationFilesContainer) {
                 console.log('Информация о родительском контейнере:', parentContainerInfo);
                 // Удаляем ссылку на изображение из массива
                 const imageUrl = newImg.src;
-                console.log('я тут')
-                console.log(uploadedImageUrls)
-                const index = uploadedImageUrls.indexOf(imageUrl);
-                if (index !== -1) {
-                    uploadedImageUrls.splice(index, 1);
+                if (key === 'education') {
+                    const index = uploadedImageUrls.indexOf(imageUrl);
+                    if (index !== -1) {
+                        uploadedImageUrls.splice(index, 1);
+                    }
                 }
-
                 // Отправляем запрос на сервер для удаления изображения
-                await deleteImageFromServer(parentContainerInfo.id);
+                await deleteImageFromServer(parentContainerInfo.id, key);
                 // Удаляем родительский контейнер с изображением
                 newImgContainer.remove();
             });
         }
 
         // Очищаем значение <input> для возможности выбора других файлов
-        userDataReg.educations = uploadedImageUrls
-        userEducationInput.value = '';
-        console.log('объект', userDataReg)
+        if (key === 'education') {
+            userDataReg.educations = uploadedImageUrls;
+            userInput.value = '';
+            console.log('объект', userDataReg);
+        } else {
+            // Сохраняем текстовую информацию в uploadedImageProgectUrls
+            const projectInfo = {
+                type: document.getElementById(`type${projectIndex}`).value,
+                style: document.getElementById(`style${projectIndex}`).value,
+                // Добавьте другие свойства проекта
+            };
+            uploadedImageProgectUrls[projectIndex] = {
+                info: projectInfo,
+                images: uploadedImageProgectUrls[projectIndex] ? uploadedImageProgectUrls[projectIndex].images : [],
+            };
+
+            userDataReg.projectsImg = uploadedImageProgectUrls;
+            userInput.value = '';
+            console.log('объект', userDataReg);
+        }
     });
 }
 
 // Функция для отправки изображения на сервер
-async function uploadImageToServer(file) {
+async function uploadImageToServer(file, key) {
+    console.log(file, key);
+
+    // Declare formData here
     const formData = new FormData();
-    formData.append('education', file);
+
+    if (key === 'education') {
+        formData.append('education', file);
+    } else {
+        formData.append('projects', file);
+    }
 
     try {
         const uploadResponse = await fetch(`https://di.i-rs.ru/G285VOk/upload/?token=${userDataReg.token}`, {
             method: 'POST',
             body: formData,
         });
-        const data = await uploadResponse.json()
-        console.log(data.files[0])
-        // `https://di.i-rs.ru/gallery/G/G285VOk/ff1eef1a1f0395e1-bb746898d2b.jpeg`;
+        const data = await uploadResponse.json();
+        console.log(data.files[0]);
+
         if (!uploadResponse.ok) {
             throw new Error(`HTTP error! Status: ${uploadResponse.status}`);
         }
-        uploadedImageUrls.push(data.files[0])
-        console.log(uploadedImageUrls)
-        
-        return data.files[0]
 
+        if (key === 'education') {
+            uploadedImageUrls.push(data.files[0]);
+            console.log(uploadedImageUrls);
+        } else {
+            uploadedImageProgectUrls.push(data.files[0]);
+            console.log(uploadedImageProgectUrls);
+        }
+
+        return data.files[0];
     } catch (error) {
         console.error('Error during image upload:', error);
     }
 }
 
+
 // Функция для отправки запроса на сервер для удаления изображения
-async function deleteImageFromServer(imageUrl) {
+async function deleteImageFromServer(imageUrl, key) {
     try {
         await fetch(`https://di.i-rs.ru/G285VOk/remove/?token=${userDataReg.token}&filename=${imageUrl}`, {
             method: 'GET',
         });
         // console.log('Изображение удалено с сервера:', imageUrl);
-        uploadedImageUrls = uploadedImageUrls.filter(item => !item.includes(imageUrl))
-        userDataReg.educations = uploadedImageUrls
+        if (key === 'education') {
+            uploadedImageUrls = uploadedImageUrls.filter(item => !item.includes(imageUrl))
+            userDataReg.educations = uploadedImageUrls
+        } else {
+            uploadedImageProgectUrls = uploadedImageUrls.filter(item => !item.includes(imageUrl))
+            userDataReg.projectsImg = uploadedImageProgectUrls
+        }
         console.log('объект', userDataReg)
     } catch (error) {
-        // console.error('Error during image deletion:', error);
+        console.error('Error during image deletion:', error);
     }
 }
 
 
 // Получите ссылки на input и контейнеры для обоих частей
-const userEducationInput1 = document.getElementById('userEducation');
-const educationFilesContainer1 = document.querySelector('.educationFiles');
 
-const userEducationInput2 = document.getElementById('userProject'); // Уникальный ID для второй части
-const educationFilesContainer2 = document.querySelector('.projectFiles'); // Уникальный класс для второй части
 
-// Вызовите функцию для каждой части, передав соответствующие элементы
-handleFileUpload(userEducationInput1, educationFilesContainer1);
-handleFileUpload(userEducationInput2, educationFilesContainer2);
 
 
 // Добавьте делегирование событий для аккордеона
@@ -566,7 +615,6 @@ $(document).ready(function () {
 //добавление элементов в аккордеон
 const createProgectRegBoxFourButton = document.getElementById("createProgectRegBoxFour");
 const projectsBoxArray = document.getElementById("projectsBoxArray");
-let sum = 1
 
 createProgectRegBoxFourButton.addEventListener("click", function () {
     sum = sum + 1
@@ -577,45 +625,74 @@ createProgectRegBoxFourButton.addEventListener("click", function () {
     newElem.innerHTML = newAccordElem;
 
     accordion.appendChild(newElem);
+    $(document).ready(function () {
+        $(".accordion-content").hide();
+    });
+
+    updateHandlers();
 });
 
+function startProjectList() {
+    const newAccordElem = createAccordElemForRegPgoject(sum);
+    const accordion = document.querySelector(".accordion");
+    const newElem = document.createElement("div");
+    newElem.classList.add("accordion-item");
+    newElem.innerHTML = newAccordElem;
+
+    accordion.appendChild(newElem);
+    $(document).ready(function () {
+        $(".accordion-content").hide();
+    });
+    updateHandlers();
+}
+startProjectList();
 
 function createAccordElemForRegPgoject(sum) {
+    const fileInputId = `userProject${sum}`;
+    const projectsImgLabelId = `projectsImgLabel${sum}`;
+    const accordionItemId = `accordionItem${sum}`;
+    const projectFilesId = `projectFiles${sum}`;
+    const userDoc = `userDoc${sum}`;
+    const typeInput = `type${sum}`;
+    const styleInput = `style${sum}`;
+    const squareInput = `square${sum}`;
+    const costInput = `cost${sum}`;
+    const aboutProjectInput = `aboutProject${sum}`;
     return `
-    <div class="accordion-item">
+    <div class="accordion-item" id="${accordionItemId}">
         <div class="accordion-title">Проект №${sum}</div>
         <div class="accordion-content">
-            <p class="regBoxFourLinksWords">Загрузите фотографии проекта</p>
-            <div class="projectFiles avaDefault">
-                <label for="userProject" class="projectsImgLabel">
-                    <img class="userDoc downloadProjectImg" src="./img/downloadFile.svg" alt="">
+        <p class="regBoxFourLinksWords">Загрузите фотографии проекта</p>
+            <div class="projectFiles avaDefault" id="${projectFilesId}">
+                <label for="${fileInputId}" class="projectsImgLabel" id="${projectsImgLabelId}">
+                    <img class="userDoc downloadProjectImg" id="${userDoc}" src="./img/downloadFile.svg" alt="">
                 </label>
-                <input type="file" id="userProject" accept="image/*" style="display: none" multiple>
+                <input type="file" id="${fileInputId}" accept="image/*" style="display: none" multiple>
             </div>
             <div class="inputBox aboutUserProject">
                 <div class="input-container aboutUserProjectChild">
                     <h5>Тип объекта</h5>
-                    <input type="text">
+                    <input type="text" id="${typeInput}">
                 </div>
                 <div class="input-container aboutUserProjectChild">
                     <h5>Стиль</h5>
-                    <input type="text">
+                    <input type="text" id="${styleInput}">
                 </div>
                 <div class="input-container aboutUserProjectChild">
                     <h5>Площадь объекта, кв.м.</h5>
-                    <input type="text">
-                </div>
-                <div class="input-container aboutUserProjectChild">
+                    <input type="text" id="${squareInput}">
+                    </div>
+                    <div class="input-container aboutUserProjectChild">
                     <h5>Стоимость дизайн-проекта, ₽</h5>
-                    <input type="text">
+                    <input type="text" id="${costInput}">
                 </div>
             </div>
             <div class="input-container aboutUserProjectChild">
                 <h5>Описание проекта</h5>
-                <textarea type="text"></textarea> 
+                <textarea type="text" id="${aboutProjectInput}"></textarea> 
             </div>
         </div>
-    `
+    `;
 }
 
 document.getElementById('finishFourPartPrivateRegistr').onclick = () => {

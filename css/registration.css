@@ -509,6 +509,24 @@ select::-webkit-scrollbar-thumb {
     360deg
   ); /* При наведении поворачиваем картинку на 360 градусов */
 }
+.accordion-item{
+  position: relative;
+}
+.imgDeleteLinkProject{
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+.imgDeleteLinkProject img{
+  width: 20px;
+  cursor: pointer;
+  transition: transform 2.5s;
+}
+.imgDeleteLinkProject:hover img{
+  transform: rotate(
+    360deg
+  ); /* При наведении поворачиваем картинку на 360 градусов */
+}
 
 .form_radio {
   margin-bottom: 10px;
