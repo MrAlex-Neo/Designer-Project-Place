@@ -871,6 +871,10 @@ select::-webkit-scrollbar-thumb {
 /* Логика третьей части регистрации с вводом данных о поставщике */
 
 @media (max-width: 800px) {
+  .aboutUserProject{
+    display: flex;
+    flex-direction: column;
+  }
   .userSelection {
     flex-wrap: wrap;
   }

@@ -526,6 +526,10 @@ function handleFileUpload(userInput, filesContainer, existingImages, key, projec
             const projectInfo = {
                 type: document.getElementById(`type${projectIndex}`).value,
                 style: document.getElementById(`style${projectIndex}`).value,
+                space: document.getElementById(`space${projectIndex}`).value,
+                cost: document.getElementById(`cost${projectIndex}`).value,
+                aboutProject: document.getElementById(`aboutProject${projectIndex}`).value,
+
                 // Добавьте другие свойства проекта
             };
             uploadedImageProgectUrls[projectIndex] = {
@@ -660,12 +664,12 @@ function createAccordElemForRegPgoject(sum) {
     const userDoc = `userDoc${sum}`;
     const typeInput = `type${sum}`;
     const styleInput = `style${sum}`;
-    const squareInput = `square${sum}`;
+    const spaceInput = `space${sum}`;
     const costInput = `cost${sum}`;
     const aboutProjectInput = `aboutProject${sum}`;
     return `
     <div class="accordion-item" id="${accordionItemId}">
-        <div class="accordion-title">Проект №${sum}</div>
+        <div class="accordion-title">Проект №${sum + 1}</div>
         <div class="accordion-content">
         <p class="regBoxFourLinksWords">Загрузите фотографии проекта</p>
             <div class="projectFiles avaDefault" id="${projectFilesId}">
@@ -685,7 +689,7 @@ function createAccordElemForRegPgoject(sum) {
                 </div>
                 <div class="input-container aboutUserProjectChild">
                     <h5>Площадь объекта, кв.м.</h5>
-                    <input type="text" id="${squareInput}">
+                    <input type="text" id="${spaceInput}">
                     </div>
                     <div class="input-container aboutUserProjectChild">
                     <h5>Стоимость дизайн-проекта, ₽</h5>
