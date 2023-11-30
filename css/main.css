@@ -49,6 +49,13 @@ input:active,
 input:focus {
   outline: none;
 }
+textarea::-webkit-scrollbar {
+  width: 3px; /* Ширина полосы прокрутки */
+  height: 56px;
+}
+textarea::-webkit-scrollbar-thumb {
+  background: #8f8f8f; /* Цвет бегунка прокрутки */
+}
 .inputStyleForAll {
   border-radius: 8px;
   border: 1px solid var(--secondary-click);

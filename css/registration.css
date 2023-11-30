@@ -7,6 +7,11 @@ body {
   background-color: #060606;
   color: #fff;
 }
+input:hover,
+input:active,
+input:focus {
+  outline: none;
+}
 .contentBlock {
   margin: calc(2vw + 87px) calc(24vw - 60px);
   /* margin-top: calc(2vw + 87px); */
@@ -538,6 +543,7 @@ select::-webkit-scrollbar-thumb {
   display: inline-block;
   cursor: pointer;
   position: relative;
+  z-index: 2;
   padding-left: 35px;
   margin-right: 0;
   font-size: 16px;
@@ -775,62 +781,83 @@ select::-webkit-scrollbar-thumb {
 }
 
 /* ЧЕКБОКС */
-.multiselect {
+.regBoxThreeForProvider .multiselect {
   position: relative;
+  width: calc(45.6vw + 84px);
 }
-#multiselect-input {
-  padding: 12px 16px;
-  width: 688px;
+#multiselectInput {
+  padding: calc(0.13vw + 9.5px) calc(0.4vw + 8.5px);
+  width: 100%;
   border-radius: 8px;
-  border: 1px solid var(--grayColor-dark);
-  background-color: var(--background);
-  color: var(--white);
+  border: 1px solid #292929;
+  background-color: #111;
+  color: #fff;
   transition: border 0.5s;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 150%;
-}
-#multiselect-input:hover {
-  border: 1px solid var(--inputfocus);
-}
-#multiselect-input:focus {
-  border: 1px solid var(--btnBlue);
-}
-#multiselect-input::placeholder {
-  color: var(--grayColor);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 150%;
-}
-#multiselect-input::content {
-  border: 1px solid var(--btnBlue);
-}
-#multiselect-options {
-  padding: 12px 16px;
-  width: 688px;
-  border-radius: 8px;
-  border: 1px solid var(--grayColor-dark);
-}
-
-#multiselect-options li {
-  list-style: none;
-  padding: 5px;
-}
-
-#multiselect-options li input[type="checkbox"] {
-  margin-right: 5px;
-}
-
-/*чекбокс */
-.inputCheck p {
-  color: var(--grayColor);
   font-size: 16px;
   font-weight: 400;
   line-height: 150%;
   cursor: pointer;
 }
-.multiselect-options {
-  background-color: var(--BGselect);
+#multiselectInput:hover {
+  border: 1px solid #636363;
+}
+#multiselectInput:focus {
+  border: 1px solid #005bae;
+}
+#multiselectInput::placeholder {
+  color: #8f8f8f;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+}
+#multiselectInput::content {
+  border: 1px solid #005bae;
+}
+#multiselectOptions {
+  position: absolute;
+  z-index: 4;
+  padding: calc(0.13vw + 9.5px) calc(0.4vw + 8.5px);
+  margin-top: 2px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #414141;
+  max-height: 250px !important; /* Максимальная высота списка */
+  overflow-y: auto !important; 
+}
+#multiselectOptions::-webkit-scrollbar {
+  width: 3px; /* Ширина полосы прокрутки */
+  height: 56px;
+}
+#multiselectOptions::-webkit-scrollbar-thumb {
+  background: #8f8f8f; /* Цвет бегунка прокрутки */
+}
+textarea::-webkit-scrollbar {
+  width: 3px; /* Ширина полосы прокрутки */
+  height: 56px;
+}
+textarea::-webkit-scrollbar-thumb {
+  background: #8f8f8f; /* Цвет бегунка прокрутки */
+}
+
+#multiselectOptions li {
+  list-style: none;
+}
+
+
+#multiselectOptions li input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+/*чекбокс */
+.inputCheck p {
+  color: #8f8f8f;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  cursor: pointer;
+}
+.multiselectOptions {
+  background-color: #212121;
 }
 /* Скрываем стандартный чекбокс */
 /* .multiselect-options input[type="checkbox"] {
@@ -838,7 +865,6 @@ select::-webkit-scrollbar-thumb {
 } */
 .suboptions {
   padding-left: 5px;
-  margin: 16px 0;
 }
 .suboptions h6 {
   font-size: 16px;
@@ -855,17 +881,20 @@ select::-webkit-scrollbar-thumb {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-left: 1px solid var(--BGselectLI);
+  border-left: 1px solid #414141;
   transition: all 0.5s;
 }
 .suboptions li:hover {
-  background-color: var(--BGselectLI);
+  background-color: #414141;
   cursor: pointer;
-  border-left: 1px solid var(--white);
+  border-left: 1px solid #fff;
 }
 /* Создаем стилизованный кастомный чекбокс */
 .inputCheck input[type="checkbox"] {
   display: none;
+}
+.textAreaBox h5{
+  margin-bottom: 5px;
 }
 /* ЧЕКБОКС */
 /* Логика третьей части регистрации с вводом данных о поставщике */

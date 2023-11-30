@@ -385,7 +385,7 @@ document.getElementById('createLinkRegBoxFour').onclick = () => {
             <h5>Ссылка:</h5>
             <div class="imgDeleteLink"><img src="./img/icons8-delete.svg"></div>
         </div>
-        <input type="text" data-index="${linkBoxArray.length}"  required>
+        <input type="text" data-index="${linkBoxArray.length}" class="workPagesLink" required>
     `;
 
     linkBox.appendChild(newLinkElement);
@@ -399,21 +399,18 @@ document.getElementById('createLinkRegBoxFour').onclick = () => {
         console.log(linkBoxArray);
     });
 
-    let myArrayUrl = []
-    for (let i = 0; i < linkBoxArray.length; i++) {
-        let inputElement = linkBoxArray[i].querySelector('input');
-        let inputValue = inputElement.value;
-        console.log(`inputValue = ${inputValue}`);
-        if (inputValue !== '') {
-            myArrayUrl.push(inputValue);
-        }
-    }
-    userDataReg.workingPage = myArrayUrl
+    
 };
 
 function toggleAssentClass(inputName, assentClass) {
     document.querySelectorAll(`input[type="radio"][name="${inputName}"]`).forEach(input => {
         input.addEventListener('change', event => {
+            if (inputName === 'showrooms') {
+                userDataReg.showrooms = input.value === '1'
+            }
+            if (inputName === 'things') {
+                userDataReg.productSample = input.value === '1'
+            }
             const assentElement = document.querySelector(`.${assentClass}`);
             assentElement.classList.toggle('none', input.value !== '1');
         });
@@ -736,9 +733,16 @@ function createAccordElemForRegPgoject(sum) {
 }
 
 document.getElementById('finishFourPartPrivateRegistr').onclick = () => {
-    // userDataReg.userName = document.getElementById('userName').value
-    // userDataReg.userCity = document.getElementById('userCity').value
-    // userDataReg.typeProjects = document.getElementById('typeProjects').value
+    let myArrayUrl = []
+    for (let i = 0; i < linkBoxArray.length; i++) {
+        let inputElement = linkBoxArray[i].querySelector('input');
+        let inputValue = inputElement.value;
+        console.log(`inputValue = ${inputValue}`);
+        if (inputValue !== '') {
+            myArrayUrl.push(inputValue);
+        }
+    }
+    userDataReg.workingPage = myArrayUrl
     document.getElementById('regBoxFour').classList.add('none')
     document.getElementById('regBoxFIve').classList.remove('none')
     LogData()
@@ -760,12 +764,14 @@ document.addEventListener('DOMContentLoaded', function () {
             chooseInputs.forEach(input => input.classList.remove('chooseInputActive'));
             chooseInput.classList.add('chooseInputActive');
             lastBoxForTwoPartRegistrationProvider.classList.remove('none');
+            userDataReg.positionInTheLastTeam = chooseInput.querySelector('p').textContent
+            LogData()
             checkInputs();
         });
     });
 
     const userNameCompanyProvider = document.getElementById('userNameCompanyProvider');
-    // const cityDepartments = document.getElementById('cityDepartments');
+    const cityDepartments = document.getElementById('cityDepartments');
     const userPosition = document.getElementById('userPosition');
     const userFullName = document.getElementById('userFullName');
 
@@ -781,16 +787,16 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     userNameCompanyProvider.addEventListener('input', checkInputs);
-    // cityDepartments.addEventListener('input', checkInputs);
+    cityDepartments.addEventListener('input', checkInputs);
     userPosition.addEventListener('input', checkInputs);
     userFullName.addEventListener('input', checkInputs);
 });
 
 
 document.getElementById('finishTwoPartProviderRegistr').onclick = () => {
-    // userDataReg.userName = document.getElementById('userName').value
-    // userDataReg.userCity = document.getElementById('userCity').value
-    // userDataReg.typeProjects = document.getElementById('typeProjects').value
+    userDataReg.userName = document.getElementById('userFullName').value
+    userDataReg.userCity = document.getElementById('cityDepartments').value
+    userDataReg.userPosition = document.getElementById('userPosition').value
     document.getElementById('regBoxTwoForProvider').classList.add('none')
     document.getElementById('regBoxThreeForProvider').classList.remove('none')
     LogData()
@@ -803,54 +809,151 @@ document.getElementById('finishTwoPartProviderRegistr').onclick = () => {
 //Логика третьего окна дополнительной ветки регистрации для постовщика
 //ИНПУТ С КАТЕГОРИЯМИ
 let searchArray = []
-document.querySelectorAll('.inputCheck p').forEach((elem) => {
-    elem.addEventListener('click', (event) => {
-        console.log(event)
-        const dataIndex = elem.getAttribute('data-index');
-        const suboptions = document.querySelector(`.suboptions[data-index="${dataIndex}"]`);
+const categories = [
+    {
+        name: "Ремонт и строительство",
+        subcategories: [
+            "Стройматериалы",
+            "Инструменты",
+            "Сантехника, водоснабжение и сауна",
+            "Двери",
+            "Садовая техника",
+            "Окна и балконы",
+            "Камины и обогреватели",
+            "Готовые строения и срубы",
+            "Потолки"
+        ]
+    },
+    {
+        name: "Мебель и интерьер",
+        subcategories: [
+            "Кровати, диваны и кресла",
+            "Шкафы, комоды и стеллажи",
+            "Столы и стулья",
+            "Текстиль и ковры",
+            "Кухонные гарнитуры",
+            "Предметы интерьера, искусство",
+            "Освещение",
+            "Компьютерные столы и кресла",
+            "Подставки и тумбы",
+            "Другое"
+        ]
+    },
+    {
+        name: "Бытовая техника",
+        subcategories: [
+            "Для кухни",
+            "Для дома",
+            "Климатическое оборудование",
+            "Для индивидуального ухода",
+            "Другое"
+        ]
+    },
+    {
+        name: "Растения",
+        subcategories: [
+            "Живые растения",
+            "Вертикальные сады",
+            "Искусственные растения"
+        ]
+    },
+    {
+        name: "Посуда и товары для кухни",
+        subcategories: [
+            "Сервировка стола",
+            "Приготовление пищи",
+            "Хранение продуктов",
+            "Приготовление напитков",
+            "Хозяйственные товары",
+            "Кухонные аксессуары",
+            "Другое из категории «Посуда и товары для кухни»"
+        ]
+    }
+];
+// let searchArray = [];
 
+// Генерация категорий и подкатегорий
+const multiselectOptions = document.getElementById("multiselectOptions");
+categories.forEach((category, index) => {
+    const liCategory = document.createElement("li");
+    liCategory.classList.add("inputCheck");
+    liCategory.setAttribute("data-index", index);
+
+    const pCategory = document.createElement("p");
+    pCategory.setAttribute("data-index", index);
+    pCategory.textContent = category.name;
+
+    const ulSuboptions = document.createElement("ul");
+    ulSuboptions.classList.add("suboptions", "none");
+    ulSuboptions.setAttribute("data-index", index);
+
+    category.subcategories.forEach((subCategory, subIndex) => {
+        const liSubCategory = document.createElement("li");
+        const divLiContent = document.createElement("div");
+        divLiContent.classList.add("liContent");
+
+        const h6SubCategory = document.createElement("h6");
+        h6SubCategory.textContent = subCategory;
+
+        const imgSubCategory = document.createElement("img");
+        imgSubCategory.classList.add("none");
+        imgSubCategory.setAttribute("src", "./img/Ok.svg");
+        imgSubCategory.setAttribute("alt", "");
+
+        divLiContent.appendChild(h6SubCategory);
+        divLiContent.appendChild(imgSubCategory);
+        liSubCategory.appendChild(divLiContent);
+        ulSuboptions.appendChild(liSubCategory);
+    });
+
+    liCategory.appendChild(pCategory);
+    liCategory.appendChild(ulSuboptions);
+    multiselectOptions.appendChild(liCategory);
+});
+document.querySelectorAll("#multiselect .inputCheck p").forEach(elem => {
+    elem.addEventListener("click", event => {
+        const dataIndex = elem.getAttribute("data-index");
+        const suboptions = document.querySelector(`.suboptions[data-index="${dataIndex}"]`);
         if (suboptions) {
-            suboptions.classList.toggle('none');
+            suboptions.classList.toggle("none");
         }
     });
 });
-document.querySelectorAll('.liContent').forEach((elem) => {
-    elem.addEventListener('click', (event) => {
-        const text = elem.querySelector('h6').textContent;
-        const img = elem.querySelector('img');
+document.querySelectorAll("#multiselect .liContent").forEach(elem => {
+    elem.addEventListener("click", event => {
+        const text = elem.querySelector("h6").textContent;
+        const img = elem.querySelector("img");
         if (searchArray.includes(text)) {
             searchArray = searchArray.filter(item => item !== text);
-            img.classList.add('none');
+            img.classList.add("none");
         } else if (searchArray.length < 3) {
-            img.classList.remove('none');
+            img.classList.remove("none");
             searchArray.push(text);
         }
-        const inputField = document.getElementById('multiselect-input');
-
+        const inputField = document.getElementById("multiselectInput");
         if (searchArray.length > 0) {
-            const displayText = searchArray.slice(0, 3).join(', ');
+            const displayText = searchArray.slice(0, 3).join(", ");
             inputField.value = searchArray.length < 4 ? displayText + ` (${searchArray.length}/3)` : displayText;
         } else {
-            inputField.value = '';
+            inputField.value = "";
         }
-        console.log(searchArray);
+        userDataReg.productСategory = searchArray
     });
 });
-document.addEventListener('click', function (event) {
-    const multiselect = document.getElementById('multiselect');
-    const multiselectOptions = document.querySelector('.multiselect-options');
-
-    if (event.target !== multiselect && !multiselect.contains(event.target)) {
-        multiselectOptions.classList.add('none');
-    }
-});
-
-document.getElementById('multiselect-input').addEventListener('click', function (event) {
-    document.querySelector('.multiselect-options').classList.remove('none');
+document.getElementById('multiselectInput').addEventListener('click', function (event) {
+    document.querySelector('.multiselectOptions').classList.remove('none');
     document.querySelectorAll('.suboptions').forEach(elem => {
         elem.classList.add('none');
     });
     event.stopPropagation();
+});
+document.addEventListener('click', function (event) {
+    const multiselect = document.getElementById('multiselect');
+    const multiselectOptions = document.querySelector('.multiselectOptions');
+
+    if (event.target !== multiselect && !multiselect.contains(event.target)) {
+        multiselectOptions.classList.add('none');
+    }
 });
 //ИНПУТ С КАТЕГОРИЯМИ
 
@@ -866,7 +969,7 @@ document.getElementById('createLinkShowroomsBox').onclick = () => {
             <h5>Ссылка:</h5>
             <div class="imgDeleteLink"><img src="./img/icons8-delete.svg"></div>
         </div>
-        <input type="text" data-index="${linkShow.length}"  required>
+        <input type="text" data-index="${linkShow.length}" class="showroomLink"  required>
     `;
 
     linkShowrooms.appendChild(newLinkElement);
@@ -883,13 +986,26 @@ document.getElementById('createLinkShowroomsBox').onclick = () => {
 };
 
 document.getElementById('finishRegBoxThreeForProvider').onclick = () => {
-    // userDataReg.userName = document.getElementById('userName').value
-    // userDataReg.userCity = document.getElementById('userCity').value
-    // userDataReg.typeProjects = document.getElementById('typeProjects').value
-    document.getElementById('regBoxThreeForProvider').classList.add('none')
-    document.getElementById('regBoxFIve').classList.remove('none')
-    LogData()
-}
+    let showroomLinks = [];
+    document.querySelectorAll('.showroomLink').forEach(elem => {
+        showroomLinks.push(elem.value);
+    });
+
+    if (userDataReg.showrooms && userDataReg.productSample) {
+        let showroom = {
+            minDiscount: document.getElementById('minDiscount').value,
+            maxDiscount: document.getElementById('maxDiscount').value,
+            toGetADiscount: document.getElementById('getDiscount').value,
+            infoAboutMe: document.getElementById('infoAboutMe').value,
+            showroomLinks: showroomLinks
+        };
+        userDataReg.showroomData = showroom;
+    }
+    document.getElementById('regBoxThreeForProvider').classList.add('none');
+    document.getElementById('regBoxFIve').classList.remove('none');
+    LogData();
+};
+
 
 //Логика третьего окна дополнительной ветки регистрации для постовщика
 
