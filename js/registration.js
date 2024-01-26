@@ -732,8 +732,8 @@ function createAccordElemForRegPgoject(sum) {
     `;
 }
 
-document.getElementById('finishFourPartPrivateRegistr').onclick = () => {
-    let myArrayUrl = []
+document.getElementById('finishFourPartPrivateRegistr').onclick = async () => {
+    let myArrayUrl = [];
     for (let i = 0; i < linkBoxArray.length; i++) {
         let inputElement = linkBoxArray[i].querySelector('input');
         let inputValue = inputElement.value;
@@ -742,11 +742,17 @@ document.getElementById('finishFourPartPrivateRegistr').onclick = () => {
             myArrayUrl.push(inputValue);
         }
     }
-    userDataReg.workingPage = myArrayUrl
-    document.getElementById('regBoxFour').classList.add('none')
-    document.getElementById('regBoxFIve').classList.remove('none')
-    LogData()
-}
+    userDataReg.workingPage = myArrayUrl;
+   
+    let response = await sendRegistrationData(userDataReg, userDataReg.token);
+    if (response) {
+        console.log(response);
+        document.getElementById('regBoxFour').classList.add('none');
+        document.getElementById('regBoxFIve').classList.remove('none');
+        LogData();
+    }
+};
+
 //Логика четвертой части регистрации с вводом данных о пользователе
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1276,6 +1282,23 @@ async function sendRequestForPhoneCode(url, phone, code) {
     }
     return await response.json();
 }
+async function sendRegistrationData(data, token) {
+    const url = `https://di.i-rs.ru/O386prm/?token=${token}`;
+    let response = await fetch(url, {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data) // Добавляем данные в тело запроса
+    });
+
+    if (!response.ok) {
+        throw new Error(`Ошибка HTTP: ${response.status}`);
+    }
+    return await response.json();
+}
+
 
 //Other finctions
 //Проверка собираемого объекта при регистрации
