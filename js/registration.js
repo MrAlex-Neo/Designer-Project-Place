@@ -991,7 +991,7 @@ document.getElementById('createLinkShowroomsBox').onclick = () => {
     });
 };
 
-document.getElementById('finishRegBoxThreeForProvider').onclick = () => {
+document.getElementById('finishRegBoxThreeForProvider').onclick = async () => {
     let showroomLinks = [];
     document.querySelectorAll('.showroomLink').forEach(elem => {
         showroomLinks.push(elem.value);
@@ -1007,9 +1007,13 @@ document.getElementById('finishRegBoxThreeForProvider').onclick = () => {
         };
         userDataReg.showroomData = showroom;
     }
-    document.getElementById('regBoxThreeForProvider').classList.add('none');
-    document.getElementById('regBoxFIve').classList.remove('none');
-    LogData();
+    let response = await sendRegistrationData(userDataReg, userDataReg.token);
+    if (response) {
+        console.log(response);
+        document.getElementById('regBoxThreeForProvider').classList.add('none');
+        document.getElementById('regBoxFIve').classList.remove('none');
+        LogData();
+    }
 };
 
 
