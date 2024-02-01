@@ -943,7 +943,7 @@ document.querySelectorAll("#multiselect .liContent").forEach(elem => {
         } else {
             inputField.value = "";
         }
-        userDataReg.productСategory = searchArray
+        userDataReg.productCategory = searchArray
     });
 });
 document.getElementById('multiselectInput').addEventListener('click', function (event) {
