@@ -72,6 +72,7 @@
                                 <ul class="multiselect-options none" id="multiselect-options">
                                     <!-- Другие категории -->
                                 </ul>
+                                
                             </div>
                             
                             <div class="filterBox" >
@@ -87,34 +88,35 @@
                                             </ul>
                                         </div> -->
                                         <div class="multiselect">
-                                            <input type="text" id="filterBoxChooseTown-input" class="inputStyleForAll townInput" placeholder="Выберите варианты" readonly>
+                                                <input type="text" name="address" class="address inputStyleForAll stateInput" id="filterBoxChooseTown" placeholder="Выберите варианты"  required>
+                                            <!-- <input type="text" id="filterBoxChooseTown-input" class="inputStyleForAll townInput" placeholder="Выберите варианты" readonly>
                                             <ul class="filterBoxChooseTown suboptions none" id="filterBoxChooseTown">
-                                            </ul>
+                                            </ul> -->
                                         </div>
                                         <div class="multiselect">
                                             <input type="text" id="filterBoxChooseState-input" class="inputStyleForAll stateInput" placeholder="По умолчанию" readonly>
                                             <ul class="filterBoxChooseState suboptions none" id="filterBoxChooseState">
                                                 <li class="inputCheck liState liStyle" data-index="1">
-                                                    <p>По умолчанию</p><img class="none" src="./img/Ok.svg" alt="">
+                                                    <p data-index="0">По умолчанию</p><img class="none" src="./img/Ok.svg" alt="">
                                                 </li>
                                                 <li class="inputCheck liState liStyle" data-index="2">
-                                                    <p>По добавлениям в избранное</p><img class="none" src="./img/Ok.svg" alt="">
+                                                    <p data-index="1">По добавлениям в избранное</p><img class="none" src="./img/Ok.svg" alt="">
                                                 </li>
                                             </ul>
                                         </div>
                                         <div class="checkShowRoom threeBox">
-                                            <input id="check1" type="checkbox" name="check" value="check1">
-                                            <label for="check1"></label>
+                                            <input id="showrooms" type="checkbox" name="check" value="check1">
+                                            <label for="showrooms"></label>
                                             <p>Есть шоурум</p>
                                         </div>
                                         <div class="checkShowRoom threeBox">
-                                            <input id="check2" type="checkbox" name="check" value="check2">
-                                            <label for="check2"></label>
+                                            <input id="productSample" type="checkbox" name="check" value="check2">
+                                            <label for="productSample"></label>
                                             <p>Готов отправить образцы</p>
                                         </div>
                                         <div class="checkShowRoom threeBox">
-                                            <input id="check3" type="checkbox" name="check" value="check3">
-                                            <label for="check3"></label>
+                                            <input id="favorite" type="checkbox" name="check" value="check3">
+                                            <label for="favorite"></label>
                                             <p>Только избранные</p>
                                         </div>
                                         <hr>

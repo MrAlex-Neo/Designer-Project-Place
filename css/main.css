@@ -394,8 +394,8 @@ textarea::-webkit-scrollbar-thumb {
   margin-top: 2px;
   position: absolute;
   padding: 12px 16px;
-  width: 280px;
-  max-height: 200px;
+  /* width: 280px;
+  max-height: 200px; */
   overflow-y: auto;
   border-radius: 8px;
   border: 1px solid var(--secondary-click);
@@ -416,9 +416,9 @@ textarea::-webkit-scrollbar-thumb {
 #filterBoxChooseTown li input[type="checkbox"] {
   margin-right: 5px;
 }
-#filterBoxChooseTown-input {
+#filterBoxChooseTown {
   padding: 12px 16px;
-  width: 280px;
+  width: 98.5%;
   background-color: var(--secondary-click);
 }
 .filterBoxChooseState {
@@ -433,7 +433,8 @@ textarea::-webkit-scrollbar-thumb {
 }
 #filterBoxChooseState li {
   list-style: none;
-  padding: 5px;
+  padding: 0 15px ;
+  border-radius: 8px;
 }
 #filterBoxChooseState li input[type="checkbox"] {
   margin-right: 5px;
@@ -455,6 +456,77 @@ textarea::-webkit-scrollbar-thumb {
   align-items: center;
   transition: all 0.5s;
 }
+.suggestions-input {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+}
+#typeProjects{
+  cursor: pointer;
+}
+.suggestions-wrapper {
+  padding: 12px 16px;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 98.5%;
+  vertical-align: top;
+  -webkit-text-size-adjust: 100%;
+}
+.suggestions-suggestions {
+  position: absolute;
+  z-index: 1;
+  padding: 10px;
+  background: #212121;
+  box-sizing: border-box;
+  cursor: pointer;
+  width: 100%;
+  max-height: 250px;
+  overflow-y: auto;
+  border-radius: 8px;
+  border: 1px solid #303030;
+}
+
+.suggestions-suggestions::-webkit-scrollbar {
+  width: 3px; /* Ширина полосы прокрутки */
+  height: 56px;
+}
+
+/* Стилизация бегунка прокрутки */
+.suggestions-suggestions::-webkit-scrollbar-thumb {
+  background: #8f8f8f; /* Цвет бегунка прокрутки */
+}
+
+/* .suggestions-suggestions strong {
+  font-weight: 400;
+  color: #39f;
+}
+.suggestions-suggestions.suggestions-mobile .suggestions-suggestion {
+  border-bottom: 1px solid #ddd;
+} */
+.suggestions-suggestion {
+  padding: 8px 8px;
+  overflow: hidden;
+  color: var(--grayColor)
+}
+.suggestions-suggestion:hover {
+  background: #303030;
+  border-radius: 8px;
+  transition: background 1s;
+}
+/* .suggestions-hint {
+  padding: 4px 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #777;
+  font-size: 85%;
+  line-height: 20px;
+}
+.suggestions-subtext {
+  color: #777;
+} */
 /* filterBox /конец*/
 /* checkBox /начало*/
 .threeBox {
@@ -900,6 +972,11 @@ textarea::-webkit-scrollbar-thumb {
   }
   .filterBtn {
     max-width: 192px;
+  }
+}
+@media (max-width: 960px){
+  .providerCategoryBox{
+    width: calc(88.75vw - 88px);
   }
 }
 /* 1200___________________________________________________________________________960 */

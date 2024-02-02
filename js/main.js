@@ -1,3 +1,12 @@
+let filterArray = {
+    city: '',
+    // default: true,
+    showrooms: false,
+    favorite: false,
+    productSample: false
+}
+let searchArray = [];
+
 const savedUsertoken = JSON.parse(localStorage.getItem('userToken'));
 console.log(savedUsertoken)
 //БУРГЕР
@@ -82,8 +91,6 @@ const categories = [
         ]
     }
 ];
-let searchArray = [];
-
 // Генерация категорий и подкатегорий
 const multiselectOptions = document.getElementById("multiselect-options");
 categories.forEach((category, index) => {
@@ -153,6 +160,7 @@ document.querySelectorAll("#multiselectDaddy .liContent").forEach(elem => {
             inputField.value = "";
         }
         console.log(searchArray);
+        renderMainList(searchArray, filterArray)
     });
 });
 document.addEventListener("click", event => {
@@ -169,7 +177,7 @@ document.getElementById("multiselect-input").addEventListener("click", event => 
     });
 });
 document.querySelector('.cleanAll').onclick = () => {
-    document.getElementById('filterBoxChooseTown-input').value = '';
+    document.getElementById('filterBoxChooseTown').value = '';
     document.getElementById('filterBoxChooseState-input').value = '';
     document.querySelectorAll('.checkShowRoom').forEach(elem => {
         elem.querySelector('input[type="checkbox"]').checked = false; // Снятие галочки с чекбокса
@@ -185,42 +193,11 @@ let searchTownArray = [];
 document.querySelector('.filterBtn').addEventListener('click', () => {
     document.querySelector('.filterBoxBody').classList.toggle('none');
 });
-document.getElementById('filterBoxChooseTown-input').addEventListener('click', () => {
-    fetch('https://raw.githubusercontent.com/russ666/all-countries-and-cities-json/master/countries.json')
-        .then(res => res.json())
-        .then(json => {
-            render(json.Russia, document.getElementById('filterBoxChooseTown'));
-            document.querySelector('.filterBoxChooseTown').classList.toggle('none');
-            attachEventListenersToTowns();
-        });
-});
-function render(cities, listElement) {
-    listElement.innerHTML = cities.map((city, index) => createTownElemForTownList(city, index)).join('');
-}
 
-function createTownElemForTownList(city, index) {
-    return `
-        <li class="inputCheck liTown liStyle" data-index="${index}">
-            <p data-index="${index}">${city}</p><img class="${searchTownArray.includes(city) ? '' : 'none'}" src="./img/Ok.svg" alt="">
-        </li>
-    `;
-}
-function attachEventListenersToTowns() {
-    document.querySelectorAll('.liTown').forEach((elem) => {
-        elem.addEventListener('click', (event) => {
-            const text = elem.querySelector('p').textContent;
-            const img = elem.querySelector('img');
-            searchTownArray.includes(text) ? searchTownArray = searchTownArray.filter(item => item !== text) : searchTownArray.push(text);
-            img.classList.toggle('none', !searchTownArray.includes(text));
-            document.getElementById('filterBoxChooseTown-input').value = searchTownArray.join(', '); // Вывод выбранных городов через запятую
-            console.log(searchTownArray);
-        });
-    });
-}
 document.addEventListener('click', function (event) {
     const filterBox = document.querySelector('.filterBox');
     const filterBoxBody = document.querySelector('.filterBoxBody');
-    const filterBoxChooseTown = document.querySelector('.filterBoxChooseTown');
+    const filterBoxChooseTown = document.getElementById('filterBoxChooseTown');
     const filterBoxChooseState = document.querySelector('.filterBoxChooseState');
     if (event.target !== filterBox && !filterBox.contains(event.target)) {
         filterBoxBody.classList.add('none');
@@ -228,6 +205,9 @@ document.addEventListener('click', function (event) {
         filterBoxChooseState.classList.add('none');
     }
 });
+document.getElementById('filterBoxChooseState').addEventListener('click', () => {
+    document.querySelector('.filterBoxChooseState').classList.add('none');
+})
 document.getElementById('filterBoxChooseState-input').addEventListener('click', () => {
     document.querySelector('.filterBoxChooseState').classList.toggle('none')
 })
@@ -241,6 +221,27 @@ document.querySelectorAll('.liState').forEach(elem => {
         inputField.value = this.querySelector('p').textContent;
     });
 });
+
+document.querySelector('.filterBoxChooseState').addEventListener('click', (e) => {
+    let i = e.target.dataset.index
+    if (i !== undefined) {
+        // Получаем значение атрибута data-index элемента
+        i === '0' ? filterArray.default = false : filterArray.default = true
+        renderMainList(searchArray, filterArray)
+    }
+})
+document.querySelectorAll('.checkShowRoom input[type="checkbox"]').forEach(checkbox => {
+    checkbox.addEventListener('change', function () {
+        if (this.checked) {
+            filterArray[this.id] = true
+            renderMainList(searchArray, filterArray)
+        } else {
+            filterArray[this.id] = false
+            renderMainList(searchArray, filterArray)
+        }
+    });
+});
+
 //ФИЛЬТР(всплывающий список)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -266,6 +267,7 @@ document.getElementById('marketCategory').onclick = () => {
 
 // ПРОВАЙДЕР - основной бокс
 // Пример данных из бэкенда
+
 const backendData = [
     {
         name: "ООО “СЕВЕР ТОРГПРО”",
@@ -292,61 +294,70 @@ const backendData = [
 ];
 
 const container = document.querySelector('.infoBodyForProviderCategory');
-
-backendData.forEach(data => {
-    const providerCategoryBox = document.createElement('div');
-    providerCategoryBox.classList.add('providerCategoryBox');
-
-    providerCategoryBox.innerHTML = `
-        <div class="providerCategoryBoxHeader">
-            <div class="providerCategoryBoxHeaderLeft">
-                <h3>${data.name}</h3>
-                <p>${data.category}</p>
-            </div>
-            <div class="providerCategoryBoxHeaderRight">
-                <h3>${data.discount}</h3>
-                <p>Комиссия</p>
-            </div>
-        </div>
-        <div class="providerCategoryBoxBody">
-            <div class="providerCategoryBoxBodyUp">
-                <div class="smallHeader">
-                    <img src="./img/mainPage/sale.svg" alt="">
-                    <h4>Условия скидок</h4>
+renderMainList(searchArray, filterArray)
+async function renderMainList(search, filter) {
+    let response = await sendFilterParams(search, filter)
+    console.log(response.posts)
+    console.log(backendData)
+    container.innerHTML = ''
+    response.posts.forEach(data => {
+        const providerCategoryBox = document.createElement('div');
+        providerCategoryBox.classList.add('providerCategoryBox');
+    
+        providerCategoryBox.innerHTML = `
+            <div class="providerCategoryBoxHeader">
+                <div class="providerCategoryBoxHeaderLeft">
+                    <h3>${data.organizationInfo.value}</h3>
+                    <p>${data.productCategory}</p>
                 </div>
-                <p class="infoAboutProviderProduct">${data.discountConditions}</p>
-                <div class="accordeonchikForText readMore">
-                    <p>Подробнее</p>
-                    <img src="./img/mainPage/down.svg" class="readMore" alt="">
-                    <img src="./img/mainPage/up.svg" class="readLess none" alt="">
+                <div class="providerCategoryBoxHeaderRight">
+                    <h3>${data.showroomData.minDiscount} - ${data.showroomData.maxDiscount} %</h3>
+                    <p>Комиссия</p>
                 </div>
             </div>
-            <div class="providerCategoryBoxBodyDown">
-                <div class="smallHeader">
-                    <img src="./img/mainPage/geo.svg" alt="">
-                    <h4>Шоурумы</h4>
+            <div class="providerCategoryBoxBody">
+                <div class="providerCategoryBoxBodyUp">
+                    <div class="smallHeader">
+                        <img src="./img/mainPage/sale.svg" alt="">
+                        <h4>Условия скидок</h4>
+                    </div>
+                    <p class="infoAboutProviderProduct">${data.showroomData.infoAboutMe}</p>
+                    <div class="accordeonchikForText readMore">
+                        <p>Подробнее</p>
+                        <img src="./img/mainPage/down.svg" class="readMore" alt="">
+                        <img src="./img/mainPage/up.svg" class="readLess none" alt="">
+                    </div>
                 </div>
-                <p>${data.showrooms}</p>
+                <div class="providerCategoryBoxBodyDown">
+                    <div class="smallHeader">
+                        <img src="./img/mainPage/geo.svg" alt="">
+                        <h4>Шоурумы</h4>
+                    </div>
+                    <p>${data.showroomData.showroomLinks[0]}</p>
+                </div>
             </div>
-        </div>
-        <div class="providerCategoryBoxFooter">
-            <div class="btnCallForProviderBoxFooter prANDsub">
-                <p>Связаться</p>
+            <div class="providerCategoryBoxFooter">
+                <div class="btnCallForProviderBoxFooter prANDsub">
+                    <p>Связаться</p>
+                </div>
+                <div class="btnCatalogForProviderBoxFooter prANDsub">
+                    <p>Каталог товаров</p>
+                    <img src="./img/mainPage/another site.svg" alt="">
+                </div>
+                <div class="btnLikeForProviderBoxFooter">
+                    <img src="./img/mainPage/heart (active).svg" class="passiveLike" alt="">
+                    <img src="./img/mainPage/heart.svg" class="activeLike none" alt="">
+                </div>
             </div>
-            <div class="btnCatalogForProviderBoxFooter prANDsub">
-                <p>Каталог товаров</p>
-                <img src="./img/mainPage/another site.svg" alt="">
-            </div>
-            <div class="btnLikeForProviderBoxFooter">
-                <img src="./img/mainPage/heart (active).svg" class="passiveLike" alt="">
-                <img src="./img/mainPage/heart.svg" class="activeLike none" alt="">
-            </div>
-        </div>
-    `;
+        `;
+    
+        // Добавляем элемент в контейнер
+        container.appendChild(providerCategoryBox);
+    });
 
-    // Добавляем элемент в контейнер
-    container.appendChild(providerCategoryBox);
-});
+}
+// renderMainList(searchArray, filterArray)
+
 const infoContainers = document.querySelectorAll('.providerCategoryBox');
 
 infoContainers.forEach(container => {
@@ -572,4 +583,56 @@ document.addEventListener('DOMContentLoaded', function () {
 //СЛАЙДЕР
 
 
+// выбор города при регистрации
+// Заменить на свой API-ключ
+var token = "604ceb4b3fb376968d5303185e3a88cc503e5f08";
+var defaultFormatResult = $.Suggestions.prototype.formatResult;
+
+function formatResult(value, currentValue, suggestion, options) {
+    var newValue = suggestion.data.city;
+    suggestion.value = newValue;
+    return defaultFormatResult.call(this, newValue, currentValue, suggestion, options);
+}
+
+function formatSelected(suggestion) {
+    filterArray.city = suggestion.data.city
+    renderMainList(searchArray, filterArray)
+
+    return suggestion.data.city;
+}
+
+$(".address").suggestions({
+    token: token,
+    type: "ADDRESS",
+    hint: false,
+    bounds: "city",
+    constraints: {
+        locations: { city_type_full: "город" }
+    },
+    formatResult: formatResult,
+    formatSelected: formatSelected,
+    // onSelect: function (suggestion) {
+    // }
+    
+});
+// выбор города при регистрации
+async function sendFilterParams(search, filter) {
+    let searchUrl = ''
+    for (let i = 0; i < search.length; i++) {
+        searchUrl = searchUrl + `&productСategory[${i}]=` + search[i]
+    }
+    const url = `https://di.i-rs.ru/O386prm/?token=${savedUsertoken}${searchUrl}&showrooms(${filter.showrooms})&favorite(${filter.favorite})&productSample(${filter.productSample})&cyty=${filter.cyty}`;
+    let response = await fetch(url, {
+        method: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error(`Ошибка HTTP: ${response.status}`);
+    }
+    return await response.json();
+}
 
