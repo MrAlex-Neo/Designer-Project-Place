@@ -144,6 +144,10 @@ phoneInput.addEventListener('input', (event) => {
     }
 });
 
+document.getElementById('multiselectInput').addEventListener('input', (e) => {
+    console.log(e.target.textContent)
+})
+
 
 
 tryAgainBoxReg.onclick = async () => {
@@ -821,7 +825,7 @@ const categories = [
         subcategories: [
             "Стройматериалы",
             "Инструменты",
-            "Сантехника, водоснабжение и сауна",
+            "Сантехника; водоснабжение и сауна",
             "Двери",
             "Садовая техника",
             "Окна и балконы",
@@ -833,12 +837,12 @@ const categories = [
     {
         name: "Мебель и интерьер",
         subcategories: [
-            "Кровати, диваны и кресла",
-            "Шкафы, комоды и стеллажи",
+            "Кровати; диваны и кресла",
+            "Шкафы; комоды и стеллажи",
             "Столы и стулья",
             "Текстиль и ковры",
             "Кухонные гарнитуры",
-            "Предметы интерьера, искусство",
+            "Предметы интерьера; искусство",
             "Освещение",
             "Компьютерные столы и кресла",
             "Подставки и тумбы",
@@ -938,10 +942,13 @@ document.querySelectorAll("#multiselect .liContent").forEach(elem => {
         }
         const inputField = document.getElementById("multiselectInput");
         if (searchArray.length > 0) {
-            const displayText = searchArray.slice(0, 3).join(", ");
-            inputField.value = searchArray.length < 4 ? displayText + ` (${searchArray.length}/3)` : displayText;
+            inputField.value = new Intl.ListFormat("ru").format(
+                searchArray 
+            )
+            document.getElementById('finishRegBoxThreeForProvider').removeAttribute('disabled');
         } else {
             inputField.value = "";
+            document.getElementById('finishRegBoxThreeForProvider').setAttribute('disabled', true);
         }
         userDataReg.productCategory = searchArray
     });
