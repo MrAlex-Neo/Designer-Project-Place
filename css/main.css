@@ -663,6 +663,9 @@ textarea::-webkit-scrollbar-thumb {
   font-weight: 400;
   line-height: 150%;
 }
+.providerCategoryBoxBody .infoAboutProviderProduct {
+  word-wrap: break-word;
+}
 .providerCategoryBoxBody img {
   width: 24px;
 }

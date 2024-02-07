@@ -1,9 +1,9 @@
 let filterArray = {
     city: '',
-    // default: true,
-    showrooms: false,
-    favorite: false,
-    productSample: false
+    default: true,
+    showrooms: 0,
+    favorite: 0,
+    productSample: 0
 }
 let searchArray = [];
 
@@ -233,10 +233,12 @@ document.querySelector('.filterBoxChooseState').addEventListener('click', (e) =>
 document.querySelectorAll('.checkShowRoom input[type="checkbox"]').forEach(checkbox => {
     checkbox.addEventListener('change', function () {
         if (this.checked) {
-            filterArray[this.id] = true
+            filterArray[this.id] = 1
+            console.log(filterArray)
             renderMainList(searchArray, filterArray)
         } else {
-            filterArray[this.id] = false
+            filterArray[this.id] = 0
+            console.log(filterArray)
             renderMainList(searchArray, filterArray)
         }
     });
@@ -293,6 +295,13 @@ const backendData = [
     // ... другие объекты
 ];
 
+async function likeClickHandler(e) {
+    console.log( e.dataset.index);
+    console.log( e.dataset.state);
+    let response = await sendLikeElemChange(e.dataset.state ? 'addFavorite' : 'removeFavorite', e.dataset.index)
+    
+    renderMainList(searchArray, filterArray)
+}
 const container = document.querySelector('.infoBodyForProviderCategory');
 renderMainList(searchArray, filterArray)
 async function renderMainList(search, filter) {
@@ -303,9 +312,9 @@ async function renderMainList(search, filter) {
     response.posts.forEach(data => {
         const providerCategoryBox = document.createElement('div');
         providerCategoryBox.classList.add('providerCategoryBox');
-    
+
         providerCategoryBox.innerHTML = `
-            <div class="providerCategoryBoxHeader">
+            <div class="providerCategoryBoxHeader" >
                 <div class="providerCategoryBoxHeaderLeft">
                     <h3>${data.organizationInfo.value}</h3>
                     <p>${data.productCategory}</p>
@@ -344,13 +353,12 @@ async function renderMainList(search, filter) {
                     <p>Каталог товаров</p>
                     <img src="./img/mainPage/another site.svg" alt="">
                 </div>
-                <div class="btnLikeForProviderBoxFooter">
-                    <img src="./img/mainPage/heart (active).svg" class="passiveLike" alt="">
-                    <img src="./img/mainPage/heart.svg" class="activeLike none" alt="">
+                <div class="btnLikeForProviderBoxFooter" data-state=${data.is_favorite} data-index=${data.post_id} onclick={likeClickHandler(this)}>
+                    <img src="${data.is_favorite ? './img/mainPage/heart.svg' : './img/mainPage/heart (active).svg'}" class="passiveLike" alt="">
                 </div>
             </div>
         `;
-    
+
         // Добавляем элемент в контейнер
         container.appendChild(providerCategoryBox);
     });
@@ -613,7 +621,7 @@ $(".address").suggestions({
     formatSelected: formatSelected,
     // onSelect: function (suggestion) {
     // }
-    
+
 });
 // выбор города при регистрации
 async function sendFilterParams(search, filter) {
@@ -621,7 +629,22 @@ async function sendFilterParams(search, filter) {
     for (let i = 0; i < search.length; i++) {
         searchUrl = searchUrl + `&productСategory[${i}]=` + search[i]
     }
-    const url = `https://di.i-rs.ru/O386prm/?token=${savedUsertoken}${searchUrl}&showrooms(${filter.showrooms})&favorite(${filter.favorite})&productSample(${filter.productSample})&cyty=${filter.cyty}`;
+    const url = `https://di.i-rs.ru/O386prm/?token=${savedUsertoken}${searchUrl}&showrooms=${filter.showrooms}&favorite=${filter.favorite}&productSample=${filter.productSample}&cyty=${filter.city}`;
+    let response = await fetch(url, {
+        method: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error(`Ошибка HTTP: ${response.status}`);
+    }
+    return await response.json();
+}
+async function sendLikeElemChange(action, postId) {
+    const url = `https://di.i-rs.ru/O386prm/?token=${savedUsertoken}&action=${action}&post_id=${postId}`;
     let response = await fetch(url, {
         method: "GET",
         headers: {
