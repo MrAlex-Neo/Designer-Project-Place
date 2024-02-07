@@ -201,7 +201,7 @@ document.addEventListener('click', function (event) {
     const filterBoxChooseState = document.querySelector('.filterBoxChooseState');
     if (event.target !== filterBox && !filterBox.contains(event.target)) {
         filterBoxBody.classList.add('none');
-        filterBoxChooseTown.classList.add('none');
+        // filterBoxChooseTown.classList.add('none');
         filterBoxChooseState.classList.add('none');
     }
 });
