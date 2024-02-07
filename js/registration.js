@@ -825,7 +825,7 @@ const categories = [
         subcategories: [
             "Стройматериалы",
             "Инструменты",
-            "Сантехника; водоснабжение и сауна",
+            "Сантехника, водоснабжение и сауна",
             "Двери",
             "Садовая техника",
             "Окна и балконы",
@@ -837,12 +837,12 @@ const categories = [
     {
         name: "Мебель и интерьер",
         subcategories: [
-            "Кровати; диваны и кресла",
-            "Шкафы; комоды и стеллажи",
+            "Кровати, диваны и кресла",
+            "Шкафы, комоды и стеллажи",
             "Столы и стулья",
             "Текстиль и ковры",
             "Кухонные гарнитуры",
-            "Предметы интерьера; искусство",
+            "Предметы интерьера, искусство",
             "Освещение",
             "Компьютерные столы и кресла",
             "Подставки и тумбы",
@@ -933,12 +933,12 @@ document.querySelectorAll("#multiselect .liContent").forEach(elem => {
     elem.addEventListener("click", event => {
         const text = elem.querySelector("h6").textContent;
         const img = elem.querySelector("img");
-        if (searchArray.includes(text)) {
-            searchArray = searchArray.filter(item => item !== text);
+        if (searchArray.includes(`"${text}"`)) {
+            searchArray = searchArray.filter(item => item !== (`"${text}"`));
             img.classList.add("none");
         } else if (searchArray.length < 3) {
             img.classList.remove("none");
-            searchArray.push(text);
+            searchArray.push(`"${text}"`);
         }
         const inputField = document.getElementById("multiselectInput");
         if (searchArray.length > 0) {
