@@ -297,8 +297,8 @@ const backendData = [
 
 async function likeClickHandler(e) {
     console.log( e.dataset.index);
-    console.log( e.dataset.state);
-    let response = await sendLikeElemChange(e.dataset.state ? 'removeFavorite' : 'addFavorite', e.dataset.index)
+    console.log(typeof e.dataset.state);
+    let response = await sendLikeElemChange(e.dataset.state === 'true' ? 'removeFavorite' : 'addFavorite', e.dataset.index)
     
     renderMainList(searchArray, filterArray)
 }
@@ -644,6 +644,7 @@ async function sendFilterParams(search, filter) {
     return await response.json();
 }
 async function sendLikeElemChange(action, postId) {
+    console.log(action)
     const url = `https://di.i-rs.ru/O386prm/?token=${savedUsertoken}&action=${action}&post_id=${postId}`;
     let response = await fetch(url, {
         method: "GET",
