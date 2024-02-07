@@ -299,7 +299,6 @@ async function likeClickHandler(e) {
     console.log( e.dataset.index);
     console.log(typeof e.dataset.state);
     let response = await sendLikeElemChange(e.dataset.state === 'true' ? 'removeFavorite' : 'addFavorite', e.dataset.index)
-    
     renderMainList(searchArray, filterArray)
 }
 const container = document.querySelector('.infoBodyForProviderCategory');
@@ -309,6 +308,7 @@ async function renderMainList(search, filter) {
     console.log(response.posts)
     console.log(backendData)
     container.innerHTML = ''
+    console.log(response)
     response.posts.forEach(data => {
         const providerCategoryBox = document.createElement('div');
         providerCategoryBox.classList.add('providerCategoryBox');
@@ -342,7 +342,7 @@ async function renderMainList(search, filter) {
                         <img src="./img/mainPage/geo.svg" alt="">
                         <h4>Шоурумы</h4>
                     </div>
-                    <p>${data.showroomData.showroomLinks[0]}</p>
+                    <p>${data.userCity}</p>
                 </div>
             </div>
             <div class="providerCategoryBoxFooter">
@@ -627,7 +627,7 @@ $(".address").suggestions({
 async function sendFilterParams(search, filter) {
     let searchUrl = ''
     for (let i = 0; i < search.length; i++) {
-        searchUrl = searchUrl + `&productСategory[${i}]=` + search[i]
+        searchUrl = searchUrl + `&productCategory[${i}]=` + search[i]
     }
     const url = `https://di.i-rs.ru/O386prm/?token=${savedUsertoken}${searchUrl}&showrooms=${filter.showrooms}&favorite=${filter.favorite}&productSample=${filter.productSample}&cyty=${filter.city}`;
     let response = await fetch(url, {
