@@ -298,7 +298,7 @@ const backendData = [
 async function likeClickHandler(e) {
     console.log( e.dataset.index);
     console.log( e.dataset.state);
-    let response = await sendLikeElemChange(e.dataset.state ? 'addFavorite' : 'removeFavorite', e.dataset.index)
+    let response = await sendLikeElemChange(e.dataset.state ? 'removeFavorite' : 'addFavorite', e.dataset.index)
     
     renderMainList(searchArray, filterArray)
 }
