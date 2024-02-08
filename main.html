@@ -20,15 +20,20 @@
     
 </head>
 <body>
-    <header class="burger">
-        <div class="menu-btn">
-            <span></span>
-            <span class="hat"></span>
-            <span></span>
-        </div>
+    <div class="headerBurgAndImg">
+        <header class="burger">
+            <div class="menu-btn">
+                <span></span>
+                <span class="hat"></span>
+                <span></span>
+            </div>
+        </header>
         <img src="./img/Design Cloud.svg" alt="">
-    </header>
+    </div>
     <div class="menu">
+        <div class="labelImgForMenuActive">
+            <img src="./img/Design Cloud.svg" alt="">
+        </div>
         <nav class="categoryForMenuBurger">
             <ul class="categoryForMenuBurgerUp">
                 <li class="activeLi"><img src="./img/burgerIcons/provider.svg" alt=""><p>Поставщики</p></li>
@@ -88,7 +93,7 @@
                                             </ul>
                                         </div> -->
                                         <div class="multiselect">
-                                                <input type="text" name="address" class="address inputStyleForAll stateInput" id="filterBoxChooseTown" placeholder="Выберите город"  required>
+                                                <input type="text" name="address" class="address inputStyleForAll stateInput" id="filterBoxChooseTown" placeholder="Введите название города"  required>
                                             <!-- <input type="text" id="filterBoxChooseTown-input" class="inputStyleForAll townInput" placeholder="Выберите варианты" readonly>
                                             <ul class="filterBoxChooseTown suboptions none" id="filterBoxChooseTown">
                                             </ul> -->

@@ -154,8 +154,11 @@ document.querySelectorAll("#multiselectDaddy .liContent").forEach(elem => {
         const inputField = document.getElementById("multiselect-input");
 
         if (searchArray.length > 0) {
-            const displayText = searchArray.slice(0, 3).join(", ");
-            inputField.value = searchArray.length < 4 ? displayText + ` (${searchArray.length}/3)` : displayText;
+            // const displayText = searchArray.slice(0, 3).join(", ");
+            // inputField.value = searchArray.length < 4 ? displayText + ` (${searchArray.length}/3)` : displayText;
+            inputField.value = new Intl.ListFormat("ru").format(
+                searchArray 
+            )
         } else {
             inputField.value = "";
         }
@@ -201,7 +204,6 @@ document.addEventListener('click', function (event) {
     const filterBoxChooseState = document.querySelector('.filterBoxChooseState');
     if (event.target !== filterBox && !filterBox.contains(event.target)) {
         filterBoxBody.classList.add('none');
-        // filterBoxChooseTown.classList.add('none');
         filterBoxChooseState.classList.add('none');
     }
 });
