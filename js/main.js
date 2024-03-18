@@ -144,12 +144,12 @@ document.querySelectorAll("#multiselectDaddy .liContent").forEach(elem => {
     elem.addEventListener("click", event => {
         const text = elem.querySelector("h6").textContent;
         const img = elem.querySelector("img");
-        if (searchArray.includes(text)) {
-            searchArray = searchArray.filter(item => item !== text);
+        if (searchArray.includes(`"${text}"`)) {
+            searchArray = searchArray.filter(item => item !== (`"${text}"`));
             img.classList.add("none");
         } else if (searchArray.length < 3) {
             img.classList.remove("none");
-            searchArray.push(text);
+            searchArray.push((`"${text}"`));
         }
         const inputField = document.getElementById("multiselect-input");
 

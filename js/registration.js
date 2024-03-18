@@ -1293,6 +1293,14 @@ async function sendRequestForPhoneCode(url, phone, code) {
     }
     return await response.json();
 }
+
+
+const button = document.querySelector('.button')
+
+
+// button.
+
+
 async function sendRegistrationData(data, token) {
     const url = `https://di.i-rs.ru/O386prm/?token=${token}`;
     let response = await fetch(url, {
