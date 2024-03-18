@@ -195,7 +195,7 @@ textarea::-webkit-scrollbar-thumb {
 /* _____________________________________________________________________________ */
 /* main page burger /начало*/
 .unBurgerBox {
-  position: absolute;
+  position: fixed;
   left: 0;
   border-right: 1px double var(--secondary-click);
   max-width: 250px;
