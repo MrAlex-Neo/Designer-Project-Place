@@ -85,6 +85,8 @@ textarea::-webkit-scrollbar-thumb {
   display: flex;
   align-items: flex-end;
   gap: 2em;
+  position: fixed;
+  z-index: 1000;
 }
 .burger {
   margin: 16px;
@@ -308,7 +310,7 @@ textarea::-webkit-scrollbar-thumb {
   display: none;
 }
 #multiselect-input {
-  width: 684px;
+  width: 682px;
   padding: 12px 16px;
   z-index: 1;
 }
@@ -632,20 +634,28 @@ textarea::-webkit-scrollbar-thumb {
 /* контейнер провайдера - шапка /начало */
 .providerCategoryBoxHeader {
   display: flex;
+  gap: 1em;
   justify-content: space-between;
 }
+
 .providerCategoryBoxHeader h3 {
   font-size: 24px;
   font-weight: 700;
   line-height: 100%;
 }
 .providerCategoryBoxHeaderLeft h3 {
-  font-size: 20px;
+  font-size: calc(0.5vw + 18.3px);
+}
+@media (min-width: 1200px) {
+  .providerCategoryBoxHeaderLeft h3 {
+    font-size: 24px;
+  }
 }
 .providerCategoryBoxHeaderLeft {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 70%;
 }
 .providerCategoryBoxHeaderRight {
   display: flex;
@@ -656,6 +666,7 @@ textarea::-webkit-scrollbar-thumb {
   background-color: #243909;
   border-radius: 8px;
   padding: 8px;
+  width: max-content;
 }
 .providerCategoryBoxHeaderRight p {
   color: #91ff006a;
@@ -971,6 +982,12 @@ textarea::-webkit-scrollbar-thumb {
 
 /* товар барахолыча /конец */
 /* _____________________________________________________________________________ */
+@media (max-width: 1500px) {
+  #multiselect-input {
+    /* width: 545px; */
+    width: calc(45.3vw + 2px);
+  }
+}
 @media (min-width: 1200px) {
   .marketCategoryBox {
     max-width: 305px;
@@ -1270,6 +1287,24 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 @media (max-width: 640px) {
+  .headerBoxH2andSpan{
+    margin-left: 50px;
+    margin-top: 0;
+  }
+  .searchCategory{
+    display: flex;
+    justify-content: center;
+  }
+  .infoBodyForProviderCategory {
+    align-items: center;
+  }
+  .providerCategoryBoxHeaderRight {
+    width: max-content;
+  }
+  .providerCategoryBoxHeader{
+    flex-direction: column;
+    gap: 1em;
+  }
   .developerUserBox {
     flex-direction: column;
   }
@@ -1290,7 +1325,7 @@ textarea::-webkit-scrollbar-thumb {
     padding-top: 20px;
   }
   .mainBoxInThisContainer {
-    margin: 40px 20px;
+    margin: 15px 20px;
     width: 100%;
   }
   .providerCategoryBoxFooter {
