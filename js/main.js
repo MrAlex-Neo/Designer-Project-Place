@@ -308,6 +308,7 @@ renderMainList(searchArray, filterArray)
 async function renderMainList(search, filter) {
     let response = await sendFilterParams(search, filter)
     console.log(response.posts)
+    document.querySelector('.providerSumHead').textContent = `(${response.posts.length})`
     console.log(backendData)
     container.innerHTML = ''
     console.log(response)
