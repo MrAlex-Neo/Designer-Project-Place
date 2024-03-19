@@ -154,8 +154,6 @@ document.querySelectorAll("#multiselectDaddy .liContent").forEach(elem => {
         const inputField = document.getElementById("multiselect-input");
 
         if (searchArray.length > 0) {
-            // const displayText = searchArray.slice(0, 3).join(", ");
-            // inputField.value = searchArray.length < 4 ? displayText + ` (${searchArray.length}/3)` : displayText;
             inputField.value = new Intl.ListFormat("ru").format(
                 searchArray
             )
@@ -166,6 +164,17 @@ document.querySelectorAll("#multiselectDaddy .liContent").forEach(elem => {
         renderMainList(searchArray, filterArray)
     });
 });
+document.getElementById('cleanFilter').onclick = () => {
+    console.log('clean')
+    filterArray = {
+        city: '',
+        default: true,
+        showrooms: 0,
+        favorite: 0,
+        productSample: 0
+    }
+    renderMainList(searchArray, filterArray)
+}
 document.addEventListener("click", event => {
     const multiselectDaddy = document.getElementById("multiselectDaddy");
     const multiselectOptions = document.querySelector("#multiselectDaddy .multiselect-options");
@@ -368,7 +377,7 @@ async function renderMainList(search, filter) {
                 </div>
                 <div class="btnCatalogForProviderBoxFooter prANDsub">
                     <p>Каталог товаров</p>
-                    <img src="./img/mainPage/another site.svg" alt="">
+                    <img src="./img/mainPage/another_site.svg" alt="">
                 </div>
                 <div class="btnLikeForProviderBoxFooter" data-state=${data.is_favorite} data-index=${data.post_id} onclick={likeClickHandler(this)}>
                     <img src="${data.is_favorite ? './img/mainPage/heart.svg' : './img/mainPage/heart (active).svg'}" class="passiveLike" alt="">

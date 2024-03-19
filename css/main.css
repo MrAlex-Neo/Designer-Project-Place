@@ -772,8 +772,10 @@ textarea::-webkit-scrollbar-thumb {
   transition: all 0.5s;
 }
 .btnCatalogForProviderBoxFooter img {
-  width: 16px;
+  width: 12px;
+  margin-left: 5px;
 }
+
 .btnCatalogForProviderBoxFooter:hover {
   background-color: var(--secondary-hover);
 }
