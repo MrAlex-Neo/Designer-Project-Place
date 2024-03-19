@@ -1320,6 +1320,7 @@ textarea::-webkit-scrollbar-thumb {
   .developerUserBoxRight {
     width: 100%;
   }
+
   #thumbnail-carousel {
     display: none;
   }
@@ -1339,6 +1340,10 @@ textarea::-webkit-scrollbar-thumb {
   }
   .prANDsub {
     width: calc(60.7vw - 88.6px);
+  }
+  .prANDsub.contactTheSeller{
+    width: 100%;
+    box-sizing: border-box;
   }
   #multiselectSonny-input {
     padding: 12px 16px;
@@ -1422,7 +1427,9 @@ textarea::-webkit-scrollbar-thumb {
     grid-template-rows: 0.5fr 3fr 0.5fr 0.5fr;
   }
   .item:nth-child(1) {
-    margin-left: 20px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
     margin-bottom: 0;
     grid-column-start: 1;
     grid-column-end: 2;

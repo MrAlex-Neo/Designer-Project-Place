@@ -157,7 +157,7 @@ document.querySelectorAll("#multiselectDaddy .liContent").forEach(elem => {
             // const displayText = searchArray.slice(0, 3).join(", ");
             // inputField.value = searchArray.length < 4 ? displayText + ` (${searchArray.length}/3)` : displayText;
             inputField.value = new Intl.ListFormat("ru").format(
-                searchArray 
+                searchArray
             )
         } else {
             inputField.value = "";
@@ -251,20 +251,34 @@ document.querySelectorAll('.checkShowRoom input[type="checkbox"]').forEach(check
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // ПЕРЕКЛЮЧАЛКА В МЕНЮ
-document.getElementById('providerCategory').onclick = () => {
-    document.querySelector('.providerPlace').classList.remove('none')
-    document.querySelector('.marketPlace').classList.add('none')
-    document.querySelector('.categoryWithoutFlex').classList.remove('none')
-    document.querySelector('.productFromTheMarket').classList.add('none')
-    document.querySelector('.headerBoxH2andSpan h2').textContent = 'Поставщики'
-}
-document.getElementById('marketCategory').onclick = () => {
-    document.querySelector('.providerPlace').classList.add('none')
-    document.querySelector('.marketPlace').classList.remove('none')
-    document.querySelector('.categoryWithoutFlex').classList.remove('none')
-    document.querySelector('.productFromTheMarket').classList.add('none')
-    document.querySelector('.headerBoxH2andSpan h2').textContent = 'Барахолка'
-}
+
+document.querySelectorAll('.providerCategory').forEach(btn => {
+    btn.onclick = () => {
+        document.querySelector('.providerPlace').classList.remove('none')
+        document.querySelector('.marketPlace').classList.add('none')
+        document.querySelector('.categoryWithoutFlex').classList.remove('none')
+        document.querySelector('.productFromTheMarket').classList.add('none')
+        document.querySelector('.headerBoxH2andSpan h2').textContent = 'Поставщики'
+        if (window.innerWidth < 640) {
+            menuBtn.classList.toggle('active');
+            menu.classList.toggle('active');
+        }
+    }
+})
+document.querySelectorAll('.marketCategory').forEach(btn => {
+    btn.onclick = () => {
+        document.querySelector('.providerPlace').classList.add('none')
+        document.querySelector('.marketPlace').classList.remove('none')
+        document.querySelector('.categoryWithoutFlex').classList.remove('none')
+        document.querySelector('.productFromTheMarket').classList.add('none')
+        document.querySelector('.headerBoxH2andSpan h2').textContent = 'Барахолка'
+        if (window.innerWidth < 640) {
+            menuBtn.classList.toggle('active');
+            menu.classList.toggle('active');
+        }
+    }
+})
+
 // ПЕРЕКЛЮЧАЛКА В МЕНЮ
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -298,7 +312,7 @@ const backendData = [
 ];
 
 async function likeClickHandler(e) {
-    console.log( e.dataset.index);
+    console.log(e.dataset.index);
     console.log(typeof e.dataset.state);
     let response = await sendLikeElemChange(e.dataset.state === 'true' ? 'removeFavorite' : 'addFavorite', e.dataset.index)
     renderMainList(searchArray, filterArray)
