@@ -80,8 +80,68 @@ textarea::-webkit-scrollbar-thumb {
   line-height: 150%;
 }
 /* _____________________________________________________________________________ */
+/* userMenu /начало*/
+.userMenu {
+  position: fixed;
+  right: calc(1.9vw + 9px);
+  top: 14px;
+  display: flex;
+  gap: calc(0.95vw + 12.6px);
+  z-index: 10;
+}
+.userMenuAd {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20px;
+  border: 2px solid var(--BGselect);
+  border-radius: 40px;
+  transition: border 0.5s;
+  cursor: pointer;
+}
+@media (max-width: 640px) {
+  .userMenuAd {
+    display: none;
+  }
+}
+.userMenuAd:hover {
+  border: 2px solid var(--primary-hover);
+}
+.userMenuAd:active {
+  border: 2px solid var(--primary-click);
+}
+.userMenuAd p {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 114%;
+}
+.userMenuImg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.userMenuImg svg {
+  cursor: pointer;
+}
+.userMenuImg svg path {
+  transition: stroke 0.5s;
+}
+.userMenuImg svg:hover path {
+  stroke: var(--primary-hover); /* Новый цвет */
+}
+.userMenuImg svg:active path {
+  stroke: var(--primary-click); /* Новый цвет */
+}
+.userMenuAva img {
+  width: calc(0.95vw + 36.6px);
+  height: calc(0.95vw + 36.6px);
+  border-radius: 50%;
+  cursor: pointer;
+}
+/* userMenu /конец*/
+/* _____________________________________________________________________________ */
 /* burger /начало*/
-.headerBurgAndImg{
+.headerBurgAndImg {
   display: flex;
   align-items: flex-end;
   gap: 2em;
@@ -113,7 +173,7 @@ textarea::-webkit-scrollbar-thumb {
   position: absolute;
   width: 40px;
   height: 3px;
-  top: 50%;
+  top: 4%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--white);
@@ -156,13 +216,16 @@ textarea::-webkit-scrollbar-thumb {
 
 .menu.active {
   transform: translateX(0);
+  padding: 0;
+  margin: 0;
 }
 .menu li {
   list-style-type: none;
   display: flex;
   justify-content: flex-start;
+  gap: 10px;
   align-items: center;
-  margin: 20px 0;
+  margin: 5 0;
   margin-right: 35px;
   border-radius: 8px;
 }
@@ -174,11 +237,11 @@ textarea::-webkit-scrollbar-thumb {
   height: 24px;
   margin: 20px;
 }
-.labelImgForMenuActive{
+.labelImgForMenuActive {
   position: absolute;
   left: 10%;
 }
-.labelImgForMenuActive img{
+.labelImgForMenuActive img {
   width: 248px;
   height: 32px;
 }
@@ -191,27 +254,29 @@ textarea::-webkit-scrollbar-thumb {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 50px;
+  padding-top: 70px;
 }
 /* burger /конец*/
 /* _____________________________________________________________________________ */
 /* main page burger /начало*/
 .unBurgerBox {
+  /* padding-left: 24px; */
   position: fixed;
   left: 0;
   border-right: 1px double var(--secondary-click);
-  max-width: 250px;
+  max-width: auto;
   background-color: var(--background);
-  margin-top: 10px;
+  padding-top: 10px;
   border-radius: 1px;
   z-index: 5;
 }
 .unBurgerBox .categoryForMenuBurger {
-  height: 98vh;
+  height: 100vh;
   margin: 0;
 }
 .unBurgerBox li {
   list-style-type: none;
+  gap: 16px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -222,7 +287,6 @@ textarea::-webkit-scrollbar-thumb {
   border-radius: 32px;
   padding: 16px;
   margin: 10px 6px;
-  border: 1px solid var(--secondary-click);
 }
 .unBurgerBox:hover ul li {
   cursor: pointer;
@@ -235,15 +299,28 @@ textarea::-webkit-scrollbar-thumb {
   cursor: auto;
   background-color: var(--background);
 }
+.unBurgerBox:hover ul .lableForLiForBurger {
+  margin-bottom: 20px;
+}
+.ulLastLiForBurger li {
+  cursor: auto;
+  background-color: var(--primary);
+  transition: background 0.5s;
+}
+.ulLastLiForBurger:hover li {
+  background-color: var(--primary-hover) !important;
+}
+.ulLastLiForBurger:active li {
+  background-color: var(--primary-click) !important;
+}
 .activeLiMenuBurger {
   background-color: var(--secondary-click);
 }
-.unBurgerBox ul {
-  margin-bottom: 30px;
-}
+/* .unBurgerBox ul {
+  margin-bottom: 20px;
+} */
 .unBurgerBox ul li p {
   opacity: 1;
-  margin-left: 16px;
   visibility: visible;
   width: auto;
   transition: opacity 0.5s;
@@ -259,8 +336,6 @@ textarea::-webkit-scrollbar-thumb {
   display: none;
 }
 .secondImgLable {
-  opacity: 1;
-  visibility: visible;
   display: flex;
   position: absolute;
   left: -5px;
@@ -268,6 +343,27 @@ textarea::-webkit-scrollbar-thumb {
   width: 156px;
   height: 17px;
 }
+.categoryForMenuBurgerDown {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 25px;
+}
+.categoryForMenuBurgerDown hr {
+  margin: 8px 0;
+}
+.downMenu {
+  display: flex;
+  justify-content: space-around;
+}
+.downMenu p {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  color: var(--grayColor);
+  cursor: pointer;
+}
+
+
 /* main page burger /конец*/
 /* _____________________________________________________________________________ */
 /* category Box /начало*/
@@ -278,7 +374,7 @@ textarea::-webkit-scrollbar-thumb {
 }
 .mainBoxInThisContainer {
   margin-left: 250px;
-  margin-top: 40px;
+  /* padding-top: 40px; */
 }
 .categoryBox .headerBoxH2andSpan {
   margin-bottom: 12px;
@@ -287,7 +383,6 @@ textarea::-webkit-scrollbar-thumb {
   display: flex;
   justify-content: center;
 }
-
 
 .headerBoxH2andSpan {
   display: flex;
@@ -454,7 +549,7 @@ textarea::-webkit-scrollbar-thumb {
 }
 #filterBoxChooseState li {
   list-style: none;
-  padding: 0 15px ;
+  padding: 0 15px;
   border-radius: 8px;
 }
 #filterBoxChooseState li input[type="checkbox"] {
@@ -484,7 +579,7 @@ textarea::-webkit-scrollbar-thumb {
   box-sizing: border-box;
   width: 100%;
 }
-#typeProjects{
+#typeProjects {
   cursor: pointer;
 }
 .suggestions-wrapper {
@@ -530,7 +625,7 @@ textarea::-webkit-scrollbar-thumb {
 .suggestions-suggestion {
   padding: 8px 8px;
   overflow: hidden;
-  color: var(--grayColor)
+  color: var(--grayColor);
 }
 .suggestions-suggestion:hover {
   background: #303030;
@@ -754,7 +849,7 @@ textarea::-webkit-scrollbar-thumb {
   cursor: pointer;
   width: 300px;
 }
-.prANDsub p{
+.prANDsub p {
   font-size: calc(0.13vw + 13.5px);
 }
 .btnCallForProviderBoxFooter {
@@ -965,7 +1060,7 @@ textarea::-webkit-scrollbar-thumb {
 .developerTilte {
   color: var(--grayColor);
 }
-.aboutDeveloper{
+.aboutDeveloper {
   display: flex;
   gap: 12px;
 }
@@ -979,7 +1074,7 @@ textarea::-webkit-scrollbar-thumb {
   line-height: 100%;
   height: 48px;
 }
-.aboutDeveloperImg img{
+.aboutDeveloperImg img {
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -999,7 +1094,7 @@ textarea::-webkit-scrollbar-thumb {
     max-width: 305px;
     min-width: 260px;
   }
-  .productImg img{
+  .productImg img {
     width: 305px;
     height: 240px;
   }
@@ -1019,8 +1114,8 @@ textarea::-webkit-scrollbar-thumb {
     max-width: 192px;
   }
 }
-@media (max-width: 960px){
-  .providerCategoryBox{
+@media (max-width: 960px) {
+  .providerCategoryBox {
     width: calc(88.75vw - 88px);
   }
 }
@@ -1035,7 +1130,7 @@ textarea::-webkit-scrollbar-thumb {
   .marketCategoryBox {
     max-width: calc(18.7vw + 40px);
   }
-  .productImg img{
+  .productImg img {
     width: calc(18.7vw + 40px);
     height: 196px;
   }
@@ -1059,7 +1154,7 @@ textarea::-webkit-scrollbar-thumb {
     max-width: calc(34vw - 70px);
     /* 250 */
   }
-  .productImg img{
+  .productImg img {
     width: calc(34vw - 70px);
     height: calc(27vw - 64px);
     /* 196 */
@@ -1074,13 +1169,23 @@ textarea::-webkit-scrollbar-thumb {
     max-width: calc(19vw + 132px);
     /* 280 */
   }
-  .productImg img{
+  .productImg img {
     width: calc(19vw + 132px);
     height: calc(16vw + 93px);
     /* 196 */
   }
 }
 @media (min-width: 640px) and (max-width: 960px) {
+  .categoryForMenuBurgerDown {
+    padding-bottom: 15px;
+  }
+  .downHrAndP{
+    display: none;
+  }
+  .headerBoxH2andSpan h2,
+  .headerBoxH2andSpan span {
+    margin-top: 30px;
+  }
   .developerUserBox {
     flex-direction: column;
   }
@@ -1113,6 +1218,7 @@ textarea::-webkit-scrollbar-thumb {
     border-radius: 16px;
     margin: 24px 16px;
     transition: all 0.2s;
+    padding: 0;
   }
   .unBurgerBox .categoryForMenuBurger {
     height: 95vh;
@@ -1125,10 +1231,18 @@ textarea::-webkit-scrollbar-thumb {
     align-items: center;
     padding: 20px 16px;
   }
- 
+
   .lableForLiForBurger .firstImgLable {
+    margin-top: 10px;
     width: 36px;
     height: 17px;
+  }
+  .ulLastLiForBurger{
+    padding: 0;
+    margin: 0;
+  }
+  .lastLiForBurger{
+    margin-bottom: 0px !important;
   }
   .ulLastLiForBurger li {
     display: flex;
@@ -1137,11 +1251,12 @@ textarea::-webkit-scrollbar-thumb {
     margin: 10px 8px;
     border: 1px solid var(--secondary-click);
     transition: all 0.5s;
+    margin-bottom: 0;
   }
   .unBurgerBox:hover {
     max-width: 250px;
     background-color: var(--background);
-    margin-top: 10px;
+    margin-top: 0;
     padding: 0;
     padding: 0;
     border-radius: 1px;
@@ -1175,7 +1290,6 @@ textarea::-webkit-scrollbar-thumb {
   }
   .unBurgerBox ul li p {
     opacity: 0;
-    margin-left: 16px;
     visibility: hidden;
     transition: opacity 0.5s;
     white-space: nowrap;
@@ -1186,6 +1300,15 @@ textarea::-webkit-scrollbar-thumb {
     opacity: 1;
     visibility: visible;
     width: auto;
+  }
+  .unBurgerBox:hover .downHrAndP {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    width: auto;
+  }
+  .unBurgerBox:hover .lastLiForBurger {
+    margin-bottom: 10px !important;
   }
   .unBurgerBox:hover ul li {
     display: flex;
@@ -1270,7 +1393,7 @@ textarea::-webkit-scrollbar-thumb {
     max-width: calc(50vw - 50px);
     /* 280 */
   }
-  .productImg img{
+  .productImg img {
     width: calc(50vw - 50px);
     height: calc(36vw - 29px);
     /* 196 */
@@ -1285,21 +1408,26 @@ textarea::-webkit-scrollbar-thumb {
     margin: 0 calc(14vw - 44px);
     /* 320 */
   }
-  .productImg img{
+  .productImg img {
     width: calc(33vw + 153px);
     height: calc(28vw + 111px);
     /* 250 */
   }
 }
 @media (max-width: 640px) {
+
   .providerCategoryBoxHeaderLeft {
     width: 100%;
   }
-  .headerBoxH2andSpan{
-    margin-left: 50px;
+  .headerBoxH2andSpan {
+    margin-left: 10px;
     margin-top: 0;
   }
-  .searchCategory{
+  .headerBoxH2andSpan h2,
+  .headerBoxH2andSpan span {
+    margin-top: 60px;
+  }
+  .searchCategory {
     display: flex;
     justify-content: center;
   }
@@ -1309,7 +1437,7 @@ textarea::-webkit-scrollbar-thumb {
   .providerCategoryBoxHeaderRight {
     width: max-content;
   }
-  .providerCategoryBoxHeader{
+  .providerCategoryBoxHeader {
     flex-direction: column;
     gap: 1em;
   }
@@ -1343,7 +1471,7 @@ textarea::-webkit-scrollbar-thumb {
   .prANDsub {
     width: calc(60.7vw - 88.6px);
   }
-  .prANDsub.contactTheSeller{
+  .prANDsub.contactTheSeller {
     width: 100%;
     box-sizing: border-box;
   }

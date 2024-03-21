@@ -29,6 +29,15 @@ listItems.forEach((item) => {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//МОИ ОБЪЯВЛЕНИЯ
+document.getElementById('myAd').onclick = () => {
+    document.querySelector('.mainBoxInThisContainer').classList.add('none')
+}
+
+//МОИ ОБЪЯВЛЕНИЯ
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
 //ИНПУТ С КАТЕГОРИЯМИ(всплывающий список)
 const categories = [
     {
@@ -264,6 +273,7 @@ document.querySelectorAll('.providerCategory').forEach(btn => {
         document.querySelector('.providerPlace').classList.remove('none')
         document.querySelector('.marketPlace').classList.add('none')
         document.querySelector('.categoryWithoutFlex').classList.remove('none')
+        document.querySelector('.mainBoxInThisContainer').classList.remove('none')
         document.querySelector('.productFromTheMarket').classList.add('none')
         document.querySelector('.headerBoxH2andSpan h2').textContent = 'Поставщики'
         if (window.innerWidth < 640) {
@@ -277,6 +287,7 @@ document.querySelectorAll('.marketCategory').forEach(btn => {
         document.querySelector('.providerPlace').classList.add('none')
         document.querySelector('.marketPlace').classList.remove('none')
         document.querySelector('.categoryWithoutFlex').classList.remove('none')
+        document.querySelector('.mainBoxInThisContainer').classList.remove('none')
         document.querySelector('.productFromTheMarket').classList.add('none')
         document.querySelector('.headerBoxH2andSpan h2').textContent = 'Барахолка'
         if (window.innerWidth < 640) {
@@ -440,10 +451,6 @@ infoContainers.forEach(container => {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Барахолка - основной бокс
-
-
-
-
 
 document.addEventListener('DOMContentLoaded', function () {
     const marketData = [
