@@ -164,17 +164,6 @@ document.querySelectorAll("#multiselectDaddy .liContent").forEach(elem => {
         renderMainList(searchArray, filterArray)
     });
 });
-document.getElementById('cleanFilter').onclick = () => {
-    console.log('clean')
-    filterArray = {
-        city: '',
-        default: true,
-        showrooms: 0,
-        favorite: 0,
-        productSample: 0
-    }
-    renderMainList(searchArray, filterArray)
-}
 document.addEventListener("click", event => {
     const multiselectDaddy = document.getElementById("multiselectDaddy");
     const multiselectOptions = document.querySelector("#multiselectDaddy .multiselect-options");
@@ -194,6 +183,15 @@ document.querySelector('.cleanAll').onclick = () => {
     document.querySelectorAll('.checkShowRoom').forEach(elem => {
         elem.querySelector('input[type="checkbox"]').checked = false; // Снятие галочки с чекбокса
     });
+    console.log('clean')
+    filterArray = {
+        city: '',
+        default: true,
+        showrooms: 0,
+        favorite: 0,
+        productSample: 0
+    }
+    renderMainList(searchArray, filterArray)
 };
 //ИНПУТ С КАТЕГОРИЯМИ(всплывающий список)
 
@@ -285,6 +283,15 @@ document.querySelectorAll('.marketCategory').forEach(btn => {
             menuBtn.classList.toggle('active');
             menu.classList.toggle('active');
         }
+    }
+})
+document.querySelectorAll('.getOut').forEach(btn => {
+    btn.onclick = () => {
+        document.querySelector('.providerPlace').classList.add('none')
+        document.querySelector('.marketPlace').classList.remove('none')
+        document.querySelector('.categoryWithoutFlex').classList.remove('none')
+        document.querySelector('.productFromTheMarket').classList.add('none')
+        document.querySelector('.headerBoxH2andSpan h2').textContent = 'Барахолка'
     }
 })
 
