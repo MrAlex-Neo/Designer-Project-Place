@@ -254,7 +254,6 @@ textarea::-webkit-scrollbar-thumb {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-top: 70px;
 }
 /* burger /конец*/
 /* _____________________________________________________________________________ */
@@ -299,9 +298,7 @@ textarea::-webkit-scrollbar-thumb {
   cursor: auto;
   background-color: var(--background);
 }
-.unBurgerBox:hover ul .lableForLiForBurger {
-  margin-bottom: 20px;
-}
+
 .ulLastLiForBurger li {
   cursor: auto;
   background-color: var(--primary);
@@ -338,8 +335,8 @@ textarea::-webkit-scrollbar-thumb {
 .secondImgLable {
   display: flex;
   position: absolute;
-  left: -5px;
-  top: 10px;
+  left: -10px;
+  top: 15px;
   width: 156px;
   height: 17px;
 }
@@ -362,7 +359,6 @@ textarea::-webkit-scrollbar-thumb {
   color: var(--grayColor);
   cursor: pointer;
 }
-
 
 /* main page burger /конец*/
 /* _____________________________________________________________________________ */
@@ -395,6 +391,10 @@ textarea::-webkit-scrollbar-thumb {
   font-size: 32px;
   font-weight: 600;
   line-height: 125%;
+}
+.headerBoxH2andSpan h2,
+.headerBoxH2andSpan span {
+  margin-top: 60px;
 }
 .searchCategory {
   display: flex;
@@ -1179,12 +1179,12 @@ textarea::-webkit-scrollbar-thumb {
   .categoryForMenuBurgerDown {
     padding-bottom: 15px;
   }
-  .downHrAndP{
+  .downHrAndP {
     display: none;
   }
   .headerBoxH2andSpan h2,
   .headerBoxH2andSpan span {
-    margin-top: 30px;
+    margin-top: 70px;
   }
   .developerUserBox {
     flex-direction: column;
@@ -1237,11 +1237,11 @@ textarea::-webkit-scrollbar-thumb {
     width: 36px;
     height: 17px;
   }
-  .ulLastLiForBurger{
+  .ulLastLiForBurger {
     padding: 0;
     margin: 0;
   }
-  .lastLiForBurger{
+  .lastLiForBurger {
     margin-bottom: 0px !important;
   }
   .ulLastLiForBurger li {
@@ -1341,10 +1341,11 @@ textarea::-webkit-scrollbar-thumb {
     visibility: visible;
     display: flex;
     position: absolute;
-    left: -5px;
-    top: 20px;
+    left: -25px;
+    top: 10px;
     width: 156px;
     height: 17px;
+    margin-bottom:  20px;
   }
   .grid-container {
     display: grid;
@@ -1415,7 +1416,9 @@ textarea::-webkit-scrollbar-thumb {
   }
 }
 @media (max-width: 640px) {
-
+  .categoryForMenuBurger {
+    padding-top: 70px;
+  }
   .providerCategoryBoxHeaderLeft {
     width: 100%;
   }

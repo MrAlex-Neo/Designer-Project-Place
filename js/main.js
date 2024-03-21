@@ -32,6 +32,7 @@ listItems.forEach((item) => {
 //МОИ ОБЪЯВЛЕНИЯ
 document.getElementById('myAd').onclick = () => {
     document.querySelector('.mainBoxInThisContainer').classList.add('none')
+    document.querySelector('.advertisement').classList.remove('none')
 }
 
 //МОИ ОБЪЯВЛЕНИЯ
@@ -274,6 +275,7 @@ document.querySelectorAll('.providerCategory').forEach(btn => {
         document.querySelector('.marketPlace').classList.add('none')
         document.querySelector('.categoryWithoutFlex').classList.remove('none')
         document.querySelector('.mainBoxInThisContainer').classList.remove('none')
+        document.querySelector('.advertisement').classList.add('none')
         document.querySelector('.productFromTheMarket').classList.add('none')
         document.querySelector('.headerBoxH2andSpan h2').textContent = 'Поставщики'
         if (window.innerWidth < 640) {
@@ -288,6 +290,8 @@ document.querySelectorAll('.marketCategory').forEach(btn => {
         document.querySelector('.marketPlace').classList.remove('none')
         document.querySelector('.categoryWithoutFlex').classList.remove('none')
         document.querySelector('.mainBoxInThisContainer').classList.remove('none')
+        document.querySelector('.advertisement').classList.add('none')
+
         document.querySelector('.productFromTheMarket').classList.add('none')
         document.querySelector('.headerBoxH2andSpan h2').textContent = 'Барахолка'
         if (window.innerWidth < 640) {
