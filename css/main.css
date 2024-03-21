@@ -79,7 +79,9 @@ textarea::-webkit-scrollbar-thumb {
   font-weight: 400;
   line-height: 150%;
 }
+
 /* _____________________________________________________________________________ */
+
 /* userMenu /начало*/
 .userMenu {
   position: fixed;
@@ -87,7 +89,7 @@ textarea::-webkit-scrollbar-thumb {
   top: 14px;
   display: flex;
   gap: calc(0.95vw + 12.6px);
-  z-index: 10;
+  z-index: 1;
 }
 .userMenuAd {
   display: flex;
@@ -139,7 +141,67 @@ textarea::-webkit-scrollbar-thumb {
   cursor: pointer;
 }
 /* userMenu /конец*/
+
 /* _____________________________________________________________________________ */
+
+/* advertisement /начало*/
+.advertisement {
+  margin-left: 220px;
+}
+.advertisement .advertisementBox {
+  display: flex;
+  flex-direction: column;
+  gap: calc(1.9vw + 17px);
+}
+.advCat {
+  display: flex;
+  flex-direction: column;
+  /* gap: calc(0.48vw + 10.3px); */
+}
+.advCat hr{
+  width: calc(54vw + 157px);
+}
+.card--content{
+  position: relative;
+  color: var(--grayColor);
+  border-bottom: 3px solid var(--background);
+  transition: border-bottom .5s;
+}
+.card--content .cardSum{
+  position: absolute;
+  top: -4px;
+  right: -12px;
+  
+}
+.card--content .cardTitle{
+  transition: color .5s;
+}
+.card--content:hover .cardTitle{
+  color: var(--white);
+}
+.card--content:hover{
+  border-bottom: 3px solid white;
+}
+.advertisementCard {
+  width: calc(54vw + 157px);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.card--content {
+  display: inline-block;
+  margin-right: calc(1vw + 20.6px);
+  padding-bottom: 20px;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: calc(0.5vw + 14px);
+  line-height: 120%;
+}
+
+/* advertisement /конец*/
+
+/* _____________________________________________________________________________ */
+
 /* burger /начало*/
 .headerBurgAndImg {
   display: flex;
@@ -256,7 +318,9 @@ textarea::-webkit-scrollbar-thumb {
   justify-content: space-between;
 }
 /* burger /конец*/
+
 /* _____________________________________________________________________________ */
+
 /* main page burger /начало*/
 .unBurgerBox {
   /* padding-left: 24px; */
@@ -361,7 +425,9 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 /* main page burger /конец*/
+
 /* _____________________________________________________________________________ */
+
 /* category Box /начало*/
 .categoryBox {
   display: flex;
@@ -705,7 +771,9 @@ textarea::-webkit-scrollbar-thumb {
 }
 /* filterBox /конец*/
 /* category Box /конец*/
+
 /* _____________________________________________________________________________ */
+
 /* контейнер провайдера /начало */
 .infoBodyForProviderCategory {
   display: flex;
@@ -1080,15 +1148,21 @@ textarea::-webkit-scrollbar-thumb {
   border-radius: 50%;
 }
 /* товар барахолыча Связь /конец */
-
 /* товар барахолыча /конец */
+
 /* _____________________________________________________________________________ */
+
+/* MEDIA */
+/*___________________________________________________________________________1500 */
 @media (max-width: 1500px) {
   #multiselect-input {
     /* width: 545px; */
     width: calc(45.3vw + 2px);
   }
 }
+
+/*___________________________________________________________________________1200 */
+
 @media (min-width: 1200px) {
   .marketCategoryBox {
     max-width: 305px;
@@ -1114,18 +1188,27 @@ textarea::-webkit-scrollbar-thumb {
     max-width: 192px;
   }
 }
+
+/*_______________________________________________________________________________960 */
+
 @media (max-width: 960px) {
   .providerCategoryBox {
     width: calc(88.75vw - 88px);
   }
 }
-/* 1200___________________________________________________________________________960 */
+
+/* 960___________________________________________________________________________1200 */
+
 @media (min-width: 960px) and (max-width: 1200px) {
   .infoBodyForMarketCategory {
     gap: 17px;
   }
+  .advertisement {
+    margin-left: 280px;
+  }
   .mainBoxInThisContainer {
-    margin-left: 240px;
+    margin-left: 340px;
+    padding-right: 20px;
   }
   .marketCategoryBox {
     max-width: calc(18.7vw + 40px);
@@ -1149,6 +1232,9 @@ textarea::-webkit-scrollbar-thumb {
     width: calc(49vw - 43px);
   }
 }
+
+/* 790___________________________________________________________________________960 */
+
 @media (min-width: 790px) and (max-width: 960px) {
   .marketCategoryBox {
     max-width: calc(34vw - 70px);
@@ -1160,6 +1246,9 @@ textarea::-webkit-scrollbar-thumb {
     /* 196 */
   }
 }
+
+/* 640___________________________________________________________________________789 */
+
 @media (min-width: 640px) and (max-width: 789px) {
   .infoBodyForMarketCategory {
     padding-left: calc(17vw - 102px);
@@ -1175,6 +1264,9 @@ textarea::-webkit-scrollbar-thumb {
     /* 196 */
   }
 }
+
+/* 640___________________________________________________________________________960 */
+
 @media (min-width: 640px) and (max-width: 960px) {
   .categoryForMenuBurgerDown {
     padding-bottom: 15px;
@@ -1196,6 +1288,9 @@ textarea::-webkit-scrollbar-thumb {
     width: 100%;
   }
   .mainBoxInThisContainer {
+    margin-left: 100px;
+  }
+  .advertisement {
     margin-left: 100px;
   }
   .productFromTheMarket {
@@ -1345,7 +1440,7 @@ textarea::-webkit-scrollbar-thumb {
     top: 10px;
     width: 156px;
     height: 17px;
-    margin-bottom:  20px;
+    margin-bottom: 20px;
   }
   .grid-container {
     display: grid;
@@ -1383,12 +1478,17 @@ textarea::-webkit-scrollbar-thumb {
     grid-row-end: 3;
   }
 }
-/* 960___________________________________________________________________________640 */
+
+/* ______________________________________________________________________________645 */
+
 @media (min-width: 645px) {
   .unBurgerBox {
     display: block;
   }
 }
+
+/*500____________________________________________________________________________640 */
+
 @media (min-width: 500px) and (max-width: 640px) {
   .marketCategoryBox {
     max-width: calc(50vw - 50px);
@@ -1400,6 +1500,9 @@ textarea::-webkit-scrollbar-thumb {
     /* 196 */
   }
 }
+
+/*200____________________________________________________________________________500 */
+
 @media (min-width: 200px) and (max-width: 500px) {
   .infoBodyForMarketCategory {
     padding-left: 0;
@@ -1415,7 +1518,22 @@ textarea::-webkit-scrollbar-thumb {
     /* 250 */
   }
 }
+
+/*______________________________________________________________________________640 */
+
 @media (max-width: 640px) {
+  .advertisement{
+    margin-left: 40px;
+  }
+  .advertisement .headerBoxH2andSpan{
+    margin-left: 0;
+  }
+  .advertisementCard {
+    max-width: 100vw;
+  }
+  .advCat hr{
+    width: 100vw;
+  }
   .categoryForMenuBurger {
     padding-top: 70px;
   }
