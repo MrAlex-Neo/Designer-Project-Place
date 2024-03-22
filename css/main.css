@@ -224,8 +224,8 @@ textarea::-webkit-scrollbar-thumb {
 }
 /* Гамбургер иконка */
 .menu-btn {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   z-index: 2;
   overflow: hidden;
   position: fixed;
@@ -233,9 +233,9 @@ textarea::-webkit-scrollbar-thumb {
 }
 .menu-btn span {
   position: absolute;
-  width: 40px;
-  height: 3px;
-  top: 4%;
+  width: 25px;
+  height: 2px;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--white);
@@ -259,6 +259,7 @@ textarea::-webkit-scrollbar-thumb {
   top: 50%;
   transform: translate(-50%, 0%) rotate(-45deg);
 }
+
 /* Меню, которое будет появляться */
 .mobileHeader {
   height: 100%;
@@ -278,7 +279,7 @@ textarea::-webkit-scrollbar-thumb {
 
 .menu.active {
   transform: translateX(0);
-  padding: 0;
+  padding: 0 16px;
   margin: 0;
 }
 .menu li {
@@ -287,7 +288,7 @@ textarea::-webkit-scrollbar-thumb {
   justify-content: flex-start;
   gap: 10px;
   align-items: center;
-  margin: 5 0;
+  margin: 5px 0;
   margin-right: 35px;
   border-radius: 8px;
 }
@@ -304,8 +305,9 @@ textarea::-webkit-scrollbar-thumb {
   left: 10%;
 }
 .labelImgForMenuActive img {
-  width: 248px;
-  height: 32px;
+  width: 133px;
+  height: 17px;
+  margin: 27px 0 0 5px;
 }
 .menu p {
   font-size: 16px;
@@ -316,7 +318,23 @@ textarea::-webkit-scrollbar-thumb {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 87vh;
+  padding-right: 26px;
 }
+.burgerMyAd{
+  padding: 0 !important;
+}
+.burgerAddAd{
+  padding: 0 !important;
+  background: var(--secondary) !important;
+}
+.ulLastLiForBurger .burgerAddAd:hover {
+  background: var(--secondary-hover) !important;
+}
+.ulLastLiForBurger .burgerAddAd:active {
+  background: var(--secondary-click) !important;
+}
+
 /* burger /конец*/
 
 /* _____________________________________________________________________________ */
@@ -1025,6 +1043,7 @@ textarea::-webkit-scrollbar-thumb {
 
 /* товар барахолыча /начало */
 .productFromTheMarketBox {
+  margin-top: 80px;
   margin-bottom: calc(0.9vw + 21px);
 }
 .grid-container {
@@ -1043,7 +1062,7 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .item:nth-child(3) {
-  grid-column-start: 5;
+  grid-column-start: 4;
   grid-column-end: 6;
   justify-self: end;
 }
@@ -1522,6 +1541,9 @@ textarea::-webkit-scrollbar-thumb {
 /*______________________________________________________________________________640 */
 
 @media (max-width: 640px) {
+  .productFromTheMarketBox{
+    margin-top: 0;
+  }
   .advertisement{
     margin-left: 40px;
   }
@@ -1679,7 +1701,7 @@ textarea::-webkit-scrollbar-thumb {
   }
   .item:nth-child(1) {
     position: absolute;
-    right: 20px;
+    left: 20px;
     top: 20px;
     margin-bottom: 0;
     grid-column-start: 1;
