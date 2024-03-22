@@ -30,10 +30,364 @@ listItems.forEach((item) => {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //МОИ ОБЪЯВЛЕНИЯ
+document.addEventListener("DOMContentLoaded", function () {
+    const advCat = document.getElementById('advCat');
+    const categorySection = document.getElementById('categorySection');
+    const advContent = document.getElementById('advContent');
+
+
+    const myAd = [
+        {
+            title: 'Активные',
+            sell: [{
+                id: '1',
+                img: 'https://www.freecodecamp.org/news/content/images/2021/08/imgTag.png',
+                cost: '56000',
+                name: 'Диван KOLLIN BLUE',
+                days: '29'
+            }],
+            pay: [{
+                id: '2',
+                img: 'https://www.freecodecamp.org/news/content/images/2021/08/imgTag.png',
+                cost: '56000',
+                name: 'Диван KOLLIN BLUE',
+                days: '29'
+            }]
+        },
+        {
+            title: 'На модерации',
+            sell: [
+                {
+                    id: '3',
+                    img: 'https://www.freecodecamp.org/news/content/images/2021/08/imgTag.png',
+                    cost: '56000',
+                    name: 'Диван KOLLIN BLUE',
+                    days: '29'
+                },
+                {
+                    id: '4',
+                    img: 'https://www.freecodecamp.org/news/content/images/2021/08/imgTag.png',
+                    cost: '56000',
+                    name: 'Диван KOLLIN BLUE',
+                    days: '29'
+                },
+                {
+                    id: '5',
+                    img: 'https://www.freecodecamp.org/news/content/images/2021/08/imgTag.png',
+                    cost: '56000',
+                    name: 'Диван KOLLIN BLUE',
+                    days: '29'
+                },
+            ],
+            pay: [{
+                id: '6',
+                img: 'https://www.freecodecamp.org/news/content/images/2021/08/imgTag.png',
+                cost: '56000',
+                name: 'Диван KOLLIN BLUE',
+                days: '29'
+            }]
+        },
+        {
+            title: 'Черновики',
+            sell: [],
+            pay: [{
+                id: '7',
+                img: 'https://www.freecodecamp.org/news/content/images/2021/08/imgTag.png',
+                cost: '56000',
+                name: 'Диван KOLLIN BLUE',
+                days: '29'
+            }]
+        },
+        {
+            title: 'Архив',
+            sell: [],
+            pay: []
+        },
+    ]
+
+    function renderCategories() {
+        categorySection.innerHTML = "";
+
+        let firstNonEmptyCategory = null;
+
+        myAd.forEach(item => {
+            if (item.sell.length > 0 || item.pay.length > 0) {
+                const categoryDiv = document.createElement('div');
+                categoryDiv.classList.add('card--content');
+                categoryDiv.innerHTML = `<p class="cardTitle">${item.title}</p><p class="cardSum">${item.sell.length + item.pay.length}</p>`;
+                categoryDiv.addEventListener('click', () => {
+                    renderCategory(item.title);
+                    setActiveCategory(categoryDiv);
+                });
+                categorySection.appendChild(categoryDiv);
+
+                if (!firstNonEmptyCategory) {
+                    firstNonEmptyCategory = item.title;
+                }
+            }
+        });
+
+        // Автоматически показываем первую активную категорию
+        if (firstNonEmptyCategory) {
+            renderCategory(firstNonEmptyCategory);
+            const firstCategoryDiv = categorySection.querySelector('.card--content p.cardTitle');
+            setActiveCategory(firstCategoryDiv.parentNode);
+        }
+    }
+
+    function renderCategory(category) {
+        advContent.innerHTML = "";
+
+        const categoryData = myAd.find(item => item.title === category);
+        console.log(categoryData)
+        if (categoryData) {
+            if (categoryData.sell.length > 0 || categoryData.pay.length > 0) {
+                const fragment = document.createDocumentFragment();
+
+                if (categoryData.sell.length > 0) {
+                    const sellDiv = document.createElement('div');
+                    sellDiv.classList.add('advCatContentChild');
+                    sellDiv.innerHTML = `<h5>Продаю</h5>`;
+                    categoryData.sell.forEach(item => {
+                        console.log(categoryData.title)
+                        const contentChildDiv = document.createElement('div');
+                        contentChildDiv.classList.add('contentChild');
+                        contentChildDiv.dataset.index = item.id;
+                        const editOrOption = category === 'Черновики' ? '<img src="./img/mainPage/user/edit.svg" alt=""></img>' : '<img src="./img/mainPage/user/option.svg" alt=""></img>';
+                        contentChildDiv.innerHTML = `
+                            <div class="contentChildImg">
+                                <img src="${item.img}" alt="">
+                            </div>
+                            <div class="contentChildInfo">
+                                <p class="contentChildPrice">${item.cost}</p>
+                                <p class="contentChildName">${item.name}</p>
+                                <p class="contentChildDays">${item.days} дней до удаления</p>
+                            </div>
+                            <div>
+                                ${editOrOption}
+                            </div>`;
+                        sellDiv.appendChild(contentChildDiv);
+                    });
+
+                    fragment.appendChild(sellDiv);
+                }
+
+                if (categoryData.pay.length > 0) {
+                    const payDiv = document.createElement('div');
+                    payDiv.classList.add('advCatContentChild');
+                    payDiv.innerHTML = `<h5>Покупаю</h5>`;
+                    categoryData.pay.forEach(item => {
+                        const contentChildDiv = document.createElement('div');
+                        contentChildDiv.classList.add('contentChild');
+                        contentChildDiv.dataset.index = item.id;
+                        const editOrOption = category === 'Черновики' ? '<img src="./img/mainPage/user/edit.svg" alt=""></img>' : '<img src="./img/mainPage/user/option.svg" alt=""></img>';
+                        contentChildDiv.innerHTML = `
+                            <div class="contentChildImg">
+                                <img src="${item.img}" alt="">
+                            </div>
+                            <div class="contentChildInfo">
+                                <p class="contentChildPrice">${item.cost}</p>
+                                <p class="contentChildName">${item.name}</p>
+                                <p class="contentChildDays">${item.days} дней до удаления</p>
+                            </div>
+                            <div>
+                                ${editOrOption}
+                            </div>`;
+                            payDiv.appendChild(contentChildDiv);
+                    });
+                    fragment.appendChild(payDiv);
+                }
+
+                advContent.appendChild(fragment);
+            }
+        }
+    }
+
+    function setActiveCategory(categoryElement) {
+        const activeCategory = categorySection.querySelector('.card--content.active');
+        if (activeCategory) {
+            activeCategory.classList.remove('active');
+        }
+        categoryElement.classList.add('active');
+    }
+
+    renderCategories(); // Рендерим категории при загрузке страницы
+});
+
+// document.addEventListener("DOMContentLoaded", function () {
+//     const advCat = document.getElementById('advCat');
+//     const categorySection = document.getElementById('categorySection');
+//     const advContent = document.getElementById('advContent');
+
+//     const myAd = [
+//         {
+//             title: 'Активные',
+//             sell: [{
+//                 id: '1',
+//                 img: 'https://www.freecodecamp.org/news/content/images/2021/08/imgTag.png',
+//                 cost: '56000',
+//                 name: 'Диван KOLLIN BLUE',
+//                 days: '29'
+//             }],
+//             pay: [{
+//                 id: '2',
+//                 img: 'https://www.freecodecamp.org/news/content/images/2021/08/imgTag.png',
+//                 cost: '56000',
+//                 name: 'Диван KOLLIN BLUE',
+//                 days: '29'
+//             }]
+//         },
+//         {
+//             title: 'На модерации',
+//             sell: [
+//                 {
+//                     id: '3',
+//                     img: 'https://www.freecodecamp.org/news/content/images/2021/08/imgTag.png',
+//                     cost: '56000',
+//                     name: 'Диван KOLLIN BLUE',
+//                     days: '29'
+//                 },
+//                 {
+//                     id: '4',
+//                     img: 'https://www.freecodecamp.org/news/content/images/2021/08/imgTag.png',
+//                     cost: '56000',
+//                     name: 'Диван KOLLIN BLUE',
+//                     days: '29'
+//                 },
+//                 {
+//                     id: '5',
+//                     img: 'https://www.freecodecamp.org/news/content/images/2021/08/imgTag.png',
+//                     cost: '56000',
+//                     name: 'Диван KOLLIN BLUE',
+//                     days: '29'
+//                 },
+//             ],
+//             pay: [{
+//                 id: '6',
+//                 img: 'https://www.freecodecamp.org/news/content/images/2021/08/imgTag.png',
+//                 cost: '56000',
+//                 name: 'Диван KOLLIN BLUE',
+//                 days: '29'
+//             }]
+//         },
+//         {
+//             title: 'Черновики',
+//             sell: [],
+//             pay: [{
+//                 id: '7',
+//                 img: 'https://www.freecodecamp.org/news/content/images/2021/08/imgTag.png',
+//                 cost: '56000',
+//                 name: 'Диван KOLLIN BLUE',
+//                 days: '29'
+//             }]
+//         },
+//         {
+//             title: 'Архив',
+//             sell: [],
+//             pay: []
+//         },
+//     ]
+
+//     function renderCategories() {
+//         categorySection.innerHTML = "";
+
+//         let firstNonEmptyCategory = null;
+
+//         myAd.forEach(item => {
+//             if (item.sell.length > 0 || item.pay.length > 0) {
+//                 const categoryDiv = document.createElement('div');
+//                 categoryDiv.classList.add('card--content');
+//                 categoryDiv.innerHTML = `<p class="cardTitle">${item.title}</p><p class="cardSum">${item.sell.length + item.pay.length}</p>`;
+//                 categoryDiv.addEventListener('click', () => renderCategory(item.title));
+//                 categorySection.appendChild(categoryDiv);
+
+//                 if (!firstNonEmptyCategory) {
+//                     firstNonEmptyCategory = item.title;
+//                 }
+//             }
+//         });
+
+//         if (firstNonEmptyCategory) {
+//             renderCategory(firstNonEmptyCategory);
+//         }
+//     }
+
+//     function renderCategory(category) {
+//         advContent.innerHTML = "";
+
+//         const categoryData = myAd.find(item => item.title === category);
+
+//         if (categoryData) {
+//             if (categoryData.sell.length > 0 || categoryData.pay.length > 0) {
+//                 const fragment = document.createDocumentFragment();
+
+//                 if (categoryData.sell.length > 0) {
+//                     const sellDiv = document.createElement('div');
+//                     sellDiv.classList.add('advCatContentChild');
+//                     sellDiv.innerHTML = `<h5>Продаю</h5>`;
+//                     categoryData.sell.forEach(item => {
+//                         const contentChildDiv = document.createElement('div');
+//                         contentChildDiv.classList.add('contentChild');
+//                         contentChildDiv.dataset.index = item.id;
+//                         contentChildDiv.innerHTML = `
+//                             <div class="contentChildImg">
+//                                 <img src="${item.img}" alt="">
+//                             </div>
+//                             <div class="contentChildInfo">
+//                                 <p class="contentChildPrice">${item.cost}</p>
+//                                 <p class="contentChildName">${item.name}</p>
+//                                 <p class="contentChildDays">${item.days} дней до удаления</p>
+//                             </div>
+//                             <div>
+//                                 <img src="./img/mainPage/user/option.svg" alt="">
+//                             </div>`;
+//                         sellDiv.appendChild(contentChildDiv);
+//                     });
+//                     fragment.appendChild(sellDiv);
+//                 }
+
+//                 if (categoryData.pay.length > 0) {
+//                     const payDiv = document.createElement('div');
+//                     payDiv.classList.add('advCatContentChild');
+//                     payDiv.innerHTML = `<h5>Покупаю</h5>`;
+//                     categoryData.pay.forEach(item => {
+//                         const contentChildDiv = document.createElement('div');
+//                         contentChildDiv.classList.add('contentChild');
+//                         contentChildDiv.dataset.index = item.id;
+//                         contentChildDiv.innerHTML = `
+//                             <div class="contentChildImg">
+//                                 <img src="${item.img}" alt="">
+//                             </div>
+//                             <div class="contentChildInfo">
+//                                 <p class="contentChildPrice">${item.cost}</p>
+//                                 <p class="contentChildName">${item.name}</p>
+//                                 <p class="contentChildDays">${item.days} дней до удаления</p>
+//                             </div>
+//                             <div>
+//                                 <img src="./img/mainPage/user/option.svg" alt="">
+//                             </div>`;
+//                         payDiv.appendChild(contentChildDiv);
+//                     });
+//                     fragment.appendChild(payDiv);
+//                 }
+
+//                 advContent.appendChild(fragment);
+//             }
+//         }
+//     }
+
+//     renderCategories(); // Рендерим категории при загрузке страницы
+// });
+
+
+
+
 document.getElementById('myAd').onclick = () => {
     document.querySelector('.mainBoxInThisContainer').classList.add('none')
     document.querySelector('.advertisement').classList.remove('none')
 }
+
+
 
 //МОИ ОБЪЯВЛЕНИЯ
 

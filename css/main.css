@@ -147,6 +147,7 @@ textarea::-webkit-scrollbar-thumb {
 /* advertisement /начало*/
 .advertisement {
   margin-left: 220px;
+  margin-bottom: calc(0.9vw + 21px);
 }
 .advertisement .advertisementBox {
   display: flex;
@@ -158,30 +159,35 @@ textarea::-webkit-scrollbar-thumb {
   flex-direction: column;
   /* gap: calc(0.48vw + 10.3px); */
 }
-.advCat hr{
+.advCat hr {
   width: calc(54vw + 157px);
+  margin-bottom: calc(1vw + 28.6px);
 }
-.card--content{
+.card--content {
   position: relative;
   color: var(--grayColor);
   border-bottom: 3px solid var(--background);
-  transition: border-bottom .5s;
+  transition: border-bottom 0.5s;
 }
-.card--content .cardSum{
+.card--content .cardSum {
   position: absolute;
   top: -4px;
   right: -12px;
-  
 }
-.card--content .cardTitle{
-  transition: color .5s;
+.card--content .cardTitle {
+  transition: color 0.5s;
 }
-.card--content:hover .cardTitle{
+.card--content:hover .cardTitle {
   color: var(--white);
 }
-.card--content:hover{
+.card--content:hover {
   border-bottom: 3px solid white;
 }
+.card--content.active {
+  border-bottom: 3px solid white;
+  color: white;
+}
+
 .advertisementCard {
   width: calc(54vw + 157px);
   overflow-x: auto;
@@ -197,7 +203,60 @@ textarea::-webkit-scrollbar-thumb {
   font-size: calc(0.5vw + 14px);
   line-height: 120%;
 }
-
+/* advertisementBody /Начало*/
+.advCatContent {
+  display: flex;
+  flex-direction: column;
+  gap: calc(1vw + 28.6px);
+}
+.advCatContentChild {
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.5vw + 18.6px);
+}
+.advCatContentChild h5 {
+  font-weight: 400;
+  font-size: calc(0.24vw + 13px);
+  line-height: 150%;
+  color: var(--grayColor);
+}
+.contentAdvBox {
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.5vw + 18.6px);
+}
+.contentChild {
+  display: flex;
+  gap: 16px;
+}
+.contentChild .contentChildImg img {
+  border-radius: 12px;
+  width: 156px;
+  height: 120px;
+}
+.contentChild .contentChildInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: calc(11.9vw + 85px);
+}
+.contentChild .contentChildInfo .contentChildPrice {
+  font-weight: 600;
+  font-size: calc(0.7vw + 11.4px);
+  line-height: 120%;
+}
+.contentChild .contentChildInfo .contentChildName {
+  font-weight: 400;
+  font-size: calc(0.48vw + 10px);
+  line-height: 150%;
+}
+.contentChild .contentChildInfo .contentChildDays {
+  font-weight: 400;
+  font-size: calc(0.48vw + 10px);
+  line-height: 150%;
+  color: var(--grayColor);
+}
+/* advertisementBody /Конец*/
 /* advertisement /конец*/
 
 /* _____________________________________________________________________________ */
@@ -319,12 +378,11 @@ textarea::-webkit-scrollbar-thumb {
   flex-direction: column;
   justify-content: space-between;
   height: 87vh;
-  padding-right: 26px;
 }
-.burgerMyAd{
+.burgerMyAd {
   padding: 0 !important;
 }
-.burgerAddAd{
+.burgerAddAd {
   padding: 0 !important;
   background: var(--secondary) !important;
 }
@@ -1541,23 +1599,26 @@ textarea::-webkit-scrollbar-thumb {
 /*______________________________________________________________________________640 */
 
 @media (max-width: 640px) {
-  .productFromTheMarketBox{
+
+  .productFromTheMarketBox {
     margin-top: 0;
   }
-  .advertisement{
+  .advertisement {
     margin-left: 40px;
   }
-  .advertisement .headerBoxH2andSpan{
+  .advertisement .headerBoxH2andSpan {
     margin-left: 0;
   }
   .advertisementCard {
     max-width: 100vw;
   }
-  .advCat hr{
+  .advCat hr {
     width: 100vw;
   }
   .categoryForMenuBurger {
     padding-top: 70px;
+    padding-right: 26px;
+
   }
   .providerCategoryBoxHeaderLeft {
     width: 100%;
@@ -1701,7 +1762,7 @@ textarea::-webkit-scrollbar-thumb {
   }
   .item:nth-child(1) {
     position: absolute;
-    left: 20px;
+    left: 50px;
     top: 20px;
     margin-bottom: 0;
     grid-column-start: 1;
