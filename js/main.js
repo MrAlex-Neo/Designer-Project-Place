@@ -193,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <div>
                                 ${editOrOption}
                             </div>`;
-                            payDiv.appendChild(contentChildDiv);
+                        payDiv.appendChild(contentChildDiv);
                     });
                     fragment.appendChild(payDiv);
                 }
@@ -495,7 +495,7 @@ categories.forEach((category, index) => {
 });
 
 // Добавление событий для элементов
-document.querySelectorAll("#multiselectDaddy .inputCheck p").forEach(elem => {
+document.querySelectorAll("#multiselect .inputCheck p").forEach(elem => {
     elem.addEventListener("click", event => {
         const dataIndex = elem.getAttribute("data-index");
         const suboptions = document.querySelector(`.suboptions[data-index="${dataIndex}"]`);
@@ -504,7 +504,7 @@ document.querySelectorAll("#multiselectDaddy .inputCheck p").forEach(elem => {
         }
     });
 });
-document.querySelectorAll("#multiselectDaddy .liContent").forEach(elem => {
+document.querySelectorAll("#multiselect .liContent").forEach(elem => {
     elem.addEventListener("click", event => {
         const text = elem.querySelector("h6").textContent;
         const img = elem.querySelector("img");
@@ -529,15 +529,15 @@ document.querySelectorAll("#multiselectDaddy .liContent").forEach(elem => {
     });
 });
 document.addEventListener("click", event => {
-    const multiselectDaddy = document.getElementById("multiselectDaddy");
-    const multiselectOptions = document.querySelector("#multiselectDaddy .multiselect-options");
-    if (event.target !== multiselectDaddy && !multiselectDaddy.contains(event.target)) {
+    const multiselect = document.getElementById("multiselect");
+    const multiselectOptions = document.querySelector("#multiselect .multiselect-options");
+    if (event.target !== multiselect && !multiselect.contains(event.target)) {
         multiselectOptions.classList.add("none");
     }
 });
 document.getElementById("multiselect-input").addEventListener("click", event => {
-    document.querySelector("#multiselectDaddy .multiselect-options").classList.toggle("none");
-    document.querySelectorAll("#multiselectDaddy .suboptions").forEach(elem => {
+    document.querySelector("#multiselect .multiselect-options").classList.toggle("none");
+    document.querySelectorAll("#multiselect .suboptions").forEach(elem => {
         elem.classList.add("none");
     });
 });
@@ -714,52 +714,68 @@ async function renderMainList(search, filter) {
     response.posts.forEach(data => {
         const providerCategoryBox = document.createElement('div');
         providerCategoryBox.classList.add('providerCategoryBox');
-
         providerCategoryBox.innerHTML = `
-            <div class="providerCategoryBoxHeader" >
-                <div class="providerCategoryBoxHeaderLeft">
-                    <h3>${data.organizationInfo.value}</h3>
-                    <p>${data.productCategory}</p>
+            <div class="providerCategoryBoxFirst">
+                <div class="providerFirstImg">
+                <img src="./img/mainPage/user/2.jpg" alt="">
                 </div>
-                <div class="providerCategoryBoxHeaderRight">
+                <div class="providerFirstComission">
                     <h3>${data.showroomData.minDiscount} - ${data.showroomData.maxDiscount} %</h3>
                     <p>Комиссия</p>
                 </div>
-            </div>
-            <div class="providerCategoryBoxBody">
-                <div class="providerCategoryBoxBodyUp">
-                    <div class="smallHeader">
-                        <img src="./img/mainPage/sale.svg" alt="">
-                        <h4>Условия скидок</h4>
-                    </div>
-                    <p class="infoAboutProviderProduct">${data.showroomData.infoAboutMe}</p>
-                    <div class="accordeonchikForText readMore">
-                        <p>Подробнее</p>
-                        <img src="./img/mainPage/down.svg" class="readMore" alt="">
-                        <img src="./img/mainPage/up.svg" class="readLess none" alt="">
-                    </div>
-                </div>
-                <div class="providerCategoryBoxBodyDown">
-                    <div class="smallHeader">
-                        <img src="./img/mainPage/geo.svg" alt="">
-                        <h4>Шоурумы</h4>
-                    </div>
-                    <p>${data.userCity}</p>
+                <div class="providerFirstHeader">
+                    <h3>${data.organizationInfo.value}</h3>
+                    <p>${data.productCategory.join(' / ')}</p>  
                 </div>
             </div>
-            <div class="providerCategoryBoxFooter">
-                <div class="btnCallForProviderBoxFooter prANDsub">
-                    <p>Связаться</p>
-                </div>
-                <div class="btnCatalogForProviderBoxFooter prANDsub">
-                    <p>Каталог товаров</p>
-                    <img src="./img/mainPage/another_site.svg" alt="">
-                </div>
-                <div class="btnLikeForProviderBoxFooter" data-state=${data.is_favorite} data-index=${data.post_id} onclick={likeClickHandler(this)}>
-                    <img src="${data.is_favorite ? './img/mainPage/heart.svg' : './img/mainPage/heart (active).svg'}" class="passiveLike" alt="">
-                </div>
+            <div class="providerCategoryBoxSecond none">
             </div>
         `;
+        // providerCategoryBox.innerHTML = `
+        //     <div class="providerCategoryBoxHeader" >
+        //         <div class="providerCategoryBoxHeaderLeft">
+        //             <h3>${data.organizationInfo.value}</h3>
+        //             <p>${data.productCategory}</p>
+        //         </div>
+        //         <div class="providerCategoryBoxHeaderRight">
+        //             <h3>${data.showroomData.minDiscount} - ${data.showroomData.maxDiscount} %</h3>
+        //             <p>Комиссия</p>
+        //         </div>
+        //     </div>
+        //     <div class="providerCategoryBoxBody">
+        //         <div class="providerCategoryBoxBodyUp">
+        //             <div class="smallHeader">
+        //                 <img src="./img/mainPage/sale.svg" alt="">
+        //                 <h4>Условия скидок</h4>
+        //             </div>
+        //             <p class="infoAboutProviderProduct">${data.showroomData.infoAboutMe}</p>
+        //             <div class="accordeonchikForText readMore">
+        //                 <p>Подробнее</p>
+        //                 <img src="./img/mainPage/down.svg" class="readMore" alt="">
+        //                 <img src="./img/mainPage/up.svg" class="readLess none" alt="">
+        //             </div>
+        //         </div>
+        //         <div class="providerCategoryBoxBodyDown">
+        //             <div class="smallHeader">
+        //                 <img src="./img/mainPage/geo.svg" alt="">
+        //                 <h4>Шоурумы</h4>
+        //             </div>
+        //             <p>${data.userCity}</p>
+        //         </div>
+        //     </div>
+        //     <div class="providerCategoryBoxFooter">
+        //         <div class="btnCallForProviderBoxFooter prANDsub">
+        //             <p>Связаться</p>
+        //         </div>
+        //         <div class="btnCatalogForProviderBoxFooter prANDsub">
+        //             <p>Каталог товаров</p>
+        //             <img src="./img/mainPage/another_site.svg" alt="">
+        //         </div>
+        //         <div class="btnLikeForProviderBoxFooter" data-state=${data.is_favorite} data-index=${data.post_id} onclick={likeClickHandler(this)}>
+        //             <img src="${data.is_favorite ? './img/mainPage/heart.svg' : './img/mainPage/heart (active).svg'}" class="passiveLike" alt="">
+        //         </div>
+        //     </div>
+        // `;
 
         // Добавляем элемент в контейнер
         container.appendChild(providerCategoryBox);
