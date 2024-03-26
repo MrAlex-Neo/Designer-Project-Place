@@ -696,6 +696,8 @@ const backendData = [
     // ... другие объекты
 ];
 
+const myCategory = ['Первая категория', 'Длинная категория neneneneneneennenenenenen', 'Еще одна категория']
+
 async function likeClickHandler(e) {
     console.log(e.dataset.index);
     console.log(typeof e.dataset.state);
@@ -714,18 +716,29 @@ async function renderMainList(search, filter) {
     response.posts.forEach(data => {
         const providerCategoryBox = document.createElement('div');
         providerCategoryBox.classList.add('providerCategoryBox');
+        providerCategoryBox.classList.add('box');
         providerCategoryBox.innerHTML = `
             <div class="providerCategoryBoxFirst">
                 <div class="providerFirstImg">
-                <img src="./img/mainPage/user/2.jpg" alt="">
+                    <img src="./img/mainPage/user/2.jpg" alt="">
                 </div>
                 <div class="providerFirstComission">
                     <h3>${data.showroomData.minDiscount} - ${data.showroomData.maxDiscount} %</h3>
-                    <p>Комиссия</p>
                 </div>
-                <div class="providerFirstHeader">
+                <div class="providerFirstComission second">
+                    <h3>${data.showroomData.minDiscount} - ${data.showroomData.maxDiscount} %</h3>
+                </div>
+                <div class="btnLikeProviderBox" data-state=${data.is_favorite} data-index=${data.post_id} onclick={likeClickHandler(this)}>
+                    <img src="${data.is_favorite ? './img/mainPage/heart.svg' : './img/mainPage/heart (active).svg'}" class="passiveLike" alt="">
+                </div>
+                <div class="providerFirstHeader box">
                     <h3>${data.organizationInfo.value}</h3>
-                    <p>${data.productCategory.join(' / ')}</p>  
+                    <p class="allCategoryForProdBox">${data.productCategory ? data.productCategory.join(' / ') : myCategory.join(' / ')}</p>  
+                    <div class="buildPrivideBoxCategory box">
+                        <p>${data.productCategory && data.productCategory[0] ? data.productCategory[0] : myCategory[0]}/</p>  
+                        <p>${data.productCategory && data.productCategory[1] ? data.productCategory[1] : myCategory[1]}/</p>  
+                        <p>${data.productCategory && data.productCategory[2] ? data.productCategory[2] : myCategory[2]}</p>   
+                    </div>
                 </div>
             </div>
             <div class="providerCategoryBoxSecond none">
@@ -907,6 +920,7 @@ document.addEventListener('DOMContentLoaded', function () {
     marketData.forEach(data => {
         const marketCategoryBox = document.createElement('div');
         marketCategoryBox.classList.add('marketCategoryBox');
+        marketCategoryBox.classList.add('box');
 
         marketCategoryBox.innerHTML = `
             <div class="marketCategoryBox">
