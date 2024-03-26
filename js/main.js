@@ -832,6 +832,11 @@ infoContainers.forEach(container => {
         container.querySelector('.passiveLike').classList.toggle('none');
         container.querySelector('.activeLike').classList.toggle('none');
     });
+    const likeButtonNew = container.querySelector('.btnLikeProviderBox');
+    likeButtonNew.addEventListener('click', () => {
+        container.querySelector('.passiveLike').classList.toggle('none');
+        container.querySelector('.activeLike').classList.toggle('none');
+    });
 });
 // ПРОВАЙДЕР - основной бокс
 

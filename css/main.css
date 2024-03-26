@@ -634,6 +634,7 @@ textarea::-webkit-scrollbar-thumb {
 .filterBoxBody {
   position: absolute;
   left: -47%;
+  z-index: 1;
 }
 .filterBtn {
   display: flex;
