@@ -984,10 +984,11 @@ textarea::-webkit-scrollbar-thumb {
   width: 90%;
   font-weight: 700;
   font-size: 16px;
+  max-height: 50px;
   line-height: 150%;
   text-align: center;
   box-sizing: border-box;
-  white-space: nowrap; /* Запрещаем перенос текста */
+  white-space: wrap; /* Запрещаем перенос текста */
   overflow: hidden; /* Скрываем часть текста, которая не помещается */
   text-overflow: ellipsis;
 }
@@ -996,6 +997,8 @@ textarea::-webkit-scrollbar-thumb {
   white-space: nowrap; /* Запрещаем перенос текста */
   overflow: hidden; /* Скрываем часть текста, которая не помещается */
   text-overflow: ellipsis;
+  color: var(--grayColor);
+  
 }
 
 /* контейнер провайдера default - начало */
