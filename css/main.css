@@ -952,9 +952,7 @@ textarea::-webkit-scrollbar-thumb {
   .providerCategoryBox:hover .providerFirstComission {
     opacity: 0;
   }
-  .providerCategoryBox:hover .providerFirstComission.second {
-    opacity: 1;
-  }
+  
   .providerCategoryBox:hover .buildPrivideBoxCategory {
     display: flex;
   }
