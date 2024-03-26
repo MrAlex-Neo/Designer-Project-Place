@@ -887,6 +887,7 @@ textarea::-webkit-scrollbar-thumb {
 }
 .providerFirstImg img {
   width: 64px;
+  height: 64px;
   border-radius: 10px;
 }
 .providerFirstComission {
