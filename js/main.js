@@ -456,6 +456,26 @@ const categories = [
     }
 ];
 // Генерация категорий и подкатегорий
+document.getElementById("multiselectEmpty").onclick = () => {
+    document.getElementById("multiselectEmpty").classList.add('none')
+    document.getElementById("multiselectArrow").classList.remove('none')
+    searchArray = []
+    document.getElementById("multiselect-input").value = ''
+    renderMainList(searchArray, filterArray)
+}
+function multiselectSign() {
+    if (searchArray.length === 0) {
+        document.getElementById("multiselectArrow").classList.remove('none')
+        document.getElementById("multiselectEmpty").classList.add('none')
+    } else {
+        document.getElementById("multiselectArrow").classList.add('none')
+        document.getElementById("multiselectEmpty").classList.remove('none')
+    }
+}
+// document.getElementById("multiselectArrow").onclick = () => {
+//     document.getElementById("multiselectArrow").classList.add('none')
+//     document.getElementById("multiselectEmpty").classList.remove('none')
+// }
 const multiselectOptions = document.getElementById("multiselect-options");
 categories.forEach((category, index) => {
     const liCategory = document.createElement("li");
@@ -532,6 +552,7 @@ document.querySelectorAll("#multiselect .liContent").forEach(elem => {
         const searchContent = searchArray.map(elem => {
             return elem.replace(/"/g, '')
         })
+        multiselectSign()
         renderMainList(searchContent, filterArray)
     });
 });
@@ -724,11 +745,12 @@ function categoryClickHandler(e) {
     if (!searchArray.includes((`"${text}"`))) {
         searchArray = [(`"${text}"`)]
         document.getElementById("multiselect-input").value = searchArray[0]
-    }else{
+    } else {
         searchArray = []
         document.getElementById("multiselect-input").value = ''
     }
     const searchText = searchArray[0] && searchArray[0].length > 0 ? searchArray[0].replace(/"/g, '') : ''
+    multiselectSign()
     renderMainList([searchText], filterArray)
 }
 const container = document.querySelector('.infoBodyForProviderCategory');

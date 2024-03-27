@@ -430,7 +430,7 @@ textarea::-webkit-scrollbar-thumb {
   padding: 12px;
   margin: 10px 6px;
 }
-.ulLastLiForBurger li img{
+.ulLastLiForBurger li img {
   width: 16px;
 }
 .unBurgerBox:hover ul li {
@@ -551,6 +551,9 @@ textarea::-webkit-scrollbar-thumb {
   display: flex;
   gap: 16px;
 }
+.multiselect {
+  position: relative;
+}
 /* всплывающий список /начало*/
 /* .multiselect.Sonny {
   display: none;
@@ -559,6 +562,19 @@ textarea::-webkit-scrollbar-thumb {
   width: 713px;
   padding: 12px 16px;
   z-index: 1;
+}
+.multiselectSign {
+  position: absolute;
+  top: 15px;
+  right: 16px;
+  cursor: pointer;
+}
+.multiselectSign svg path{
+  stroke: #8F8F8F;
+  transition: stroke 0.5s;
+}
+.multiselectSign svg path:hover{
+  stroke: #fff;
 }
 .regBoxThreeForProvider #multiselect-input {
   background-color: var(--surface);
@@ -1490,7 +1506,7 @@ textarea::-webkit-scrollbar-thumb {
   .marketCategoryBox.box {
     max-width: calc(34vw - 70px);
   }
-  .categoryBox{
+  .categoryBox {
     padding-right: 20px;
   }
   #multiselect-input {
@@ -1510,7 +1526,7 @@ textarea::-webkit-scrollbar-thumb {
     padding-left: calc(17vw - 102px);
     gap: calc(15vw - 82px);
   }
-  .categoryBox{
+  .categoryBox {
     padding-right: 20px;
   }
 
@@ -1902,6 +1918,7 @@ textarea::-webkit-scrollbar-thumb {
   /* .multiselect-input {
     border: 1px solid var(--text-prizrak);
   } */
+
   #multiselect-input {
     width: calc(96.8vw - 83.43px);
   }
