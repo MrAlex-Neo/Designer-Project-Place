@@ -715,7 +715,7 @@ function categoryClickHandler(e) {
     console.log(e.textContent.replace("/", ""))
     const text = e.textContent.replace("/", "")
     document.querySelectorAll(`#multiselect-options .liContent`).forEach(elem => {
-        if (e.textContent === elem.textContent.replace("/", "")) {
+        if (text === elem.textContent.replace("/", "")) {
             console.log(elem);
             elem.querySelector('img').classList.toggle('none')
         }
