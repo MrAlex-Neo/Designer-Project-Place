@@ -427,8 +427,11 @@ textarea::-webkit-scrollbar-thumb {
 .ulLastLiForBurger li {
   display: flex;
   border-radius: 32px;
-  padding: 16px;
+  padding: 12px;
   margin: 10px 6px;
+}
+.ulLastLiForBurger li img{
+  width: 16px;
 }
 .unBurgerBox:hover ul li {
   cursor: pointer;
@@ -466,6 +469,9 @@ textarea::-webkit-scrollbar-thumb {
   transition: opacity 0.5s;
   white-space: nowrap;
   display: block;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 114%;
 }
 .unBurgerBox:hover ul li {
   display: flex;
@@ -486,7 +492,7 @@ textarea::-webkit-scrollbar-thumb {
 .categoryForMenuBurgerDown {
   display: flex;
   flex-direction: column;
-  padding-bottom: 25px;
+  padding-bottom: 20px;
 }
 .categoryForMenuBurgerDown hr {
   margin: 8px 0;
@@ -550,7 +556,7 @@ textarea::-webkit-scrollbar-thumb {
   display: none;
 } */
 #multiselect-input {
-  width: 682px;
+  width: 713px;
   padding: 12px 16px;
   z-index: 1;
 }
@@ -560,8 +566,8 @@ textarea::-webkit-scrollbar-thumb {
 .multiselect-options {
   margin-top: 2px;
   position: absolute;
+  width: 713px;
   padding: 12px 16px;
-  max-width: 682px;
   z-index: 9;
   border-radius: 8px;
   border: 1px solid var(--secondary-click);
@@ -898,7 +904,7 @@ textarea::-webkit-scrollbar-thumb {
   padding: 4px 8px;
   color: var(--colorPointedGreen);
   background: var(--colorPointedGreenDark);
-  transition: opacity .5s;
+  transition: opacity 0.5s;
 }
 .providerFirstComission h3 {
   font-weight: 400;
@@ -937,7 +943,7 @@ textarea::-webkit-scrollbar-thumb {
   overflow: hidden; /* Скрываем часть текста, которая не помещается */
   text-overflow: ellipsis;
 }
-.providerFirstComission.second{
+.providerFirstComission.second {
   opacity: 0;
   right: auto;
   left: 6px;
@@ -953,7 +959,7 @@ textarea::-webkit-scrollbar-thumb {
   .providerCategoryBox:hover .providerFirstComission {
     opacity: 0;
   }
-  
+
   .providerCategoryBox:hover .buildPrivideBoxCategory {
     display: flex;
   }
@@ -1001,7 +1007,6 @@ textarea::-webkit-scrollbar-thumb {
   overflow: hidden; /* Скрываем часть текста, которая не помещается */
   text-overflow: ellipsis;
   color: var(--grayColor);
-  
 }
 
 /* контейнер провайдера default - начало */
@@ -1203,6 +1208,7 @@ textarea::-webkit-scrollbar-thumb {
 /* контейнер барахолыча /начало */
 .infoBodyForMarketCategory {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
   padding-left: 5px;
   gap: 27px;
@@ -1390,7 +1396,7 @@ textarea::-webkit-scrollbar-thumb {
 @media (max-width: 1500px) {
   #multiselect-input {
     /* width: 545px; */
-    width: calc(45.3vw + 2px);
+    /* width: calc(45.3vw + 2px); */
   }
   .multiselect-options {
   }
@@ -1399,8 +1405,11 @@ textarea::-webkit-scrollbar-thumb {
 /*___________________________________________________________________________1200 */
 
 @media (min-width: 1200px) {
+  .categoryBox {
+    padding-right: 20px;
+  }
   .box {
-    max-width: 305px;
+    max-width: 33%;
     min-width: 260px;
   }
   .productImg img {
@@ -1411,7 +1420,7 @@ textarea::-webkit-scrollbar-thumb {
     max-width: 684px;
   } */
   .multiselect-options {
-    width: calc(45.3vw + 2px);
+    /* width: calc(45.3vw + 2px); */
   }
   .productFromTheMarket {
     width: 900px;
@@ -1445,7 +1454,10 @@ textarea::-webkit-scrollbar-thumb {
     margin-left: 340px;
     padding-right: 20px;
   }
-  .box {
+  .providerCategoryBox.box {
+    max-width: 500px;
+  }
+  .marketCategoryBox.box {
     max-width: calc(18.7vw + 40px);
   }
   .productImg img {
@@ -1472,7 +1484,17 @@ textarea::-webkit-scrollbar-thumb {
 
 @media (min-width: 790px) and (max-width: 960px) {
   .box {
+    max-width: 600px;
+    /* max-width: calc(34vw - 70px); */
+  }
+  .marketCategoryBox.box {
     max-width: calc(34vw - 70px);
+  }
+  .categoryBox{
+    padding-right: 20px;
+  }
+  #multiselect-input {
+    width: 784px;
   }
   .productImg img {
     width: calc(34vw - 70px);
@@ -1488,7 +1510,11 @@ textarea::-webkit-scrollbar-thumb {
     padding-left: calc(17vw - 102px);
     gap: calc(15vw - 82px);
   }
-  .box {
+  .categoryBox{
+    padding-right: 20px;
+  }
+
+  .marketCategoryBox.box {
     max-width: calc(19vw + 132px);
   }
   .productImg img {
@@ -1500,6 +1526,23 @@ textarea::-webkit-scrollbar-thumb {
 
 /* 640___________________________________________________________________________960 */
 
+@media (min-width: 780px) and (max-width: 960px) {
+  #multiselect-input {
+    width: calc(100vw - 401px);
+  }
+  .multiselect-options {
+    width: calc(100vw - 401px);
+  }
+}
+@media (min-width: 641px) and (max-width: 780px) {
+  #multiselect-input {
+    width: calc(90vw - 340px);
+    /* 530 */
+  }
+  .multiselect-options {
+    width: calc(90vw - 340px);
+  }
+}
 @media (min-width: 641px) and (max-width: 960px) {
   .categoryForMenuBurgerDown {
     padding-bottom: 15px;
@@ -1529,13 +1572,7 @@ textarea::-webkit-scrollbar-thumb {
   .productFromTheMarket {
     width: calc(62vw + 100px);
   }
-  #multiselect-input {
-    width: calc(90vw - 340px);
-    /* 530 */
-  }
-  .multiselect-options {
-    width: calc(90vw - 340px);
-  }
+
   .firstImgLable {
     display: block;
   }
@@ -1724,7 +1761,7 @@ textarea::-webkit-scrollbar-thumb {
 
 @media (min-width: 500px) and (max-width: 640px) {
   .marketCategoryBox.box {
-    max-width: calc(50vw - 50px);
+    width: 42%;
   }
   .productImg img {
     width: calc(50vw - 50px);
@@ -1741,17 +1778,25 @@ textarea::-webkit-scrollbar-thumb {
   }
 
   .marketCategoryBox.box {
-    width: calc(33vw + 153px);
+    width: 300px !important;
     margin: 0 calc(14vw - 44px);
   }
   .productImg img {
-    width: calc(33vw + 153px);
-    height: calc(28vw + 111px);
+    width: calc(64.3vw + 68.6px);
+    height: calc(35.7vw + 121.4px);
+    /* width: 390px;
+    height: 300px; */
     /* 250 */
   }
 }
 
 /*______________________________________________________________________________640 */
+/* @media (max-width: 790px) {
+  .providerCategoryBox.box {
+    max-width:800p ;
+    minx-width:800p ;
+  }
+} */
 
 @media (max-width: 640px) {
   .btnLikeProviderBox {
@@ -1763,9 +1808,9 @@ textarea::-webkit-scrollbar-thumb {
   .providerFirstComission.second {
     opacity: 1;
   }
-  .box {
+  /* .providerCategoryBox.box {
     width: calc(107vw - 85.7px);
-  }
+  } */
   .infoBodyForProviderCategory {
     justify-content: center;
   }
@@ -1789,7 +1834,7 @@ textarea::-webkit-scrollbar-thumb {
     padding-right: 26px;
   }
   .providerCategoryBox.box {
-    max-width: 550px ;
+    max-width: 550px;
   }
   /* .providerCategoryBoxHeaderLeft {
     width: 100%;

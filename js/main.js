@@ -511,9 +511,13 @@ document.querySelectorAll("#multiselect .liContent").forEach(elem => {
         if (searchArray.includes(`"${text}"`)) {
             searchArray = searchArray.filter(item => item !== (`"${text}"`));
             img.classList.add("none");
+        } else if (searchArray[0] === text) {
+            img.classList.add("none");
         } else if (searchArray.length < 3) {
             img.classList.remove("none");
-            searchArray.push((`"${text}"`));
+            if (searchArray[0] !== text) {
+                searchArray.push((`"${text}"`));
+            }
         }
         const inputField = document.getElementById("multiselect-input");
 
@@ -525,7 +529,10 @@ document.querySelectorAll("#multiselect .liContent").forEach(elem => {
             inputField.value = "";
         }
         console.log(searchArray);
-        renderMainList(searchArray, filterArray)
+        const searchContent = searchArray.map(elem => {
+            return elem.replace(/"/g, '')
+        })
+        renderMainList(searchContent, filterArray)
     });
 });
 document.addEventListener("click", event => {
@@ -704,15 +711,36 @@ async function likeClickHandler(e) {
     let response = await sendLikeElemChange(e.dataset.state === 'true' ? 'removeFavorite' : 'addFavorite', e.dataset.index)
     renderMainList(searchArray, filterArray)
 }
+function categoryClickHandler(e) {
+    console.log(e.textContent.replace("/", ""))
+    const text = e.textContent.replace("/", "")
+    document.querySelectorAll(`#multiselect-options .liContent`).forEach(elem => {
+        if (e.textContent === elem.textContent.replace("/", "")) {
+            console.log(elem);
+            elem.querySelector('img').classList.toggle('none')
+        }
+    });
+
+    if (!searchArray.includes((`"${text}"`))) {
+        searchArray = [(`"${text}"`)]
+        document.getElementById("multiselect-input").value = searchArray[0]
+    }else{
+        searchArray = []
+        document.getElementById("multiselect-input").value = ''
+    }
+    const searchText = searchArray[0] && searchArray[0].length > 0 ? searchArray[0].replace(/"/g, '') : ''
+    renderMainList([searchText], filterArray)
+}
 const container = document.querySelector('.infoBodyForProviderCategory');
 renderMainList(searchArray, filterArray)
 async function renderMainList(search, filter) {
+    console.log(search)
     let response = await sendFilterParams(search, filter)
     console.log(response.posts)
     document.querySelector('.providerSumHead').textContent = `(${response.posts.length})`
-    console.log(backendData)
+    // console.log(backendData)
     container.innerHTML = ''
-    console.log(response)
+    // console.log(response)
     response.posts.forEach(data => {
         const providerCategoryBox = document.createElement('div');
         providerCategoryBox.classList.add('providerCategoryBox');
@@ -735,9 +763,9 @@ async function renderMainList(search, filter) {
                     <h3>${data.organizationInfo.value}</h3>
                     <p class="allCategoryForProdBox">${data.productCategory ? data.productCategory.join(' / ') : myCategory.join(' / ')}</p>  
                     <div class="buildPrivideBoxCategory box">
-                        <p>${data.productCategory && data.productCategory[0] ? data.productCategory[0] : myCategory[0]}/</p>  
-                        <p>${data.productCategory && data.productCategory[1] ? data.productCategory[1] : myCategory[1]}/</p>  
-                        <p>${data.productCategory && data.productCategory[2] ? data.productCategory[2] : myCategory[2]}</p>   
+                        <p onclick={categoryClickHandler(this)}>${data.productCategory && data.productCategory[0] ? data.productCategory[0] : myCategory[0]}/</p>  
+                        <p onclick={categoryClickHandler(this)}>${data.productCategory && data.productCategory[1] ? data.productCategory[1] : myCategory[1]}/</p>  
+                        <p onclick={categoryClickHandler(this)}>${data.productCategory && data.productCategory[2] ? data.productCategory[2] : myCategory[2]}</p>   
                     </div>
                 </div>
             </div>
@@ -795,7 +823,8 @@ async function renderMainList(search, filter) {
     });
 
 }
-// renderMainList(searchArray, filterArray)
+
+renderMainList(searchArray, filterArray)
 
 const infoContainers = document.querySelectorAll('.providerCategoryBox');
 
