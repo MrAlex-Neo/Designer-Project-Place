@@ -563,12 +563,16 @@ document.addEventListener("click", event => {
         multiselectOptions.classList.add("none");
     }
 });
-document.getElementById("multiselect-input").addEventListener("click", event => {
-    document.querySelector("#multiselect .multiselect-options").classList.toggle("none");
+const toggleMultiselectOptions = () => {
+    const multiselectOptions = document.querySelector("#multiselect .multiselect-options");
+    multiselectOptions.classList.toggle("none");
     document.querySelectorAll("#multiselect .suboptions").forEach(elem => {
         elem.classList.add("none");
     });
-});
+};
+document.getElementById("multiselect-input").addEventListener("click", toggleMultiselectOptions);
+document.getElementById("multiselectArrow").addEventListener("click", toggleMultiselectOptions);
+
 document.querySelector('.cleanAll').onclick = () => {
     document.getElementById('filterBoxChooseTown').value = '';
     document.getElementById('filterBoxChooseState-input').value = '';
